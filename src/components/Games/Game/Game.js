@@ -1,39 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
+import * as gameService from '../../../services/gameService';
+
 export const Game = () => {
     const [game, setGame] = useState({});
 
     const { gameId } = useParams();
 
-    const API_KEY = process.env.REACT_APP_RAPID_API_KEY;
-
     useEffect(() => {
-        fetch(`https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`)
-            .then((res) => res.json())
-            .then(async (result) => {
-                const genres = [];
-                const availablePlatforms = [];
-                const trailerResponse = await fetch(`https://api.rawg.io/api/games/${gameId}/movies?key=${API_KEY}`);
-                const trailer = await trailerResponse.json();
-
-                result.platforms.forEach((x) => {
-                    availablePlatforms.push(x.platform.name);
-                });
-
-                result.genres.forEach((x) => {
-                    genres.push(x.name);
-                });
-
-                result.availablePlatforms = availablePlatforms.join(', ');
-                result.genres = genres.join(', ');
-
-                if (trailer.count !== 0) {
-                    result.trailer = trailer.results[0].data.max;
-                }
-
-                setGame(result);
-            });
+        gameService.getById(gameId).then((result) => {
+            setGame(result);
+        });
     }, [gameId]);
 
     return (

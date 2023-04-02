@@ -22,4 +22,31 @@ const endpoints = {
 };
 
 export const getAll = async (platform) => await request.get(baseUrl + endpoints.getAll(platform));
-// export const getById = async (gameId) => await request.get(baseUrl + endpoints.getAll(gameId));
+
+export const getById = async (gameId) => {
+    return fetch(`https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`)
+        .then((res) => res.json())
+        .then(async (result) => {
+            const genres = [];
+            const availablePlatforms = [];
+            const trailerResponse = await fetch(`https://api.rawg.io/api/games/${gameId}/movies?key=${API_KEY}`);
+            const trailer = await trailerResponse.json();
+
+            result.platforms.forEach((x) => {
+                availablePlatforms.push(x.platform.name);
+            });
+
+            result.genres.forEach((x) => {
+                genres.push(x.name);
+            });
+
+            result.availablePlatforms = availablePlatforms.join(', ');
+            result.genres = genres.join(', ');
+
+            if (trailer.count !== 0) {
+                result.trailer = trailer.results[0].data.max;
+            }
+
+            return result;
+        });
+};
