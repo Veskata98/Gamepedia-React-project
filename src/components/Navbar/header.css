@@ -1,0 +1,101 @@
+.header {
+    background-color: #7952e2;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0px 10px 12px -10px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 10px 12px -10px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 10px 12px -10px rgba(0, 0, 0, 0.75);
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.header-link {
+    text-decoration: none;
+}
+
+.header-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-brand-logo {
+    width: 3.5rem;
+    margin-right: 0.75rem;
+}
+.header-brand-name {
+    width: 10rem;
+}
+
+.header-logo-title {
+    font-size: 2rem;
+    color: #fff;
+}
+
+.header-logo-title a {
+    color: #fff;
+}
+
+.header-list,
+.user-nav-list {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.user-nav-list {
+    padding-left: 0;
+}
+
+.header-item:first-of-type {
+    display: flex;
+    align-items: center;
+}
+
+.header-item a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.header-item a.active {
+    background-color: unset;
+    text-decoration: underline;
+}
+
+.header-item a:hover {
+    text-decoration: underline;
+}
+
+.header-item-username {
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #00ffff;
+}
+
+.header-logout-form {
+    margin: 0;
+}
+
+.logout-btn {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: none;
+
+    line-height: 1.45;
+}
+
+.logout-btn:hover {
+    text-decoration: underline;
+}
