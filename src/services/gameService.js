@@ -2,7 +2,7 @@ import * as request from './requester';
 
 const baseUrl = 'https://api.rawg.io/api/games';
 
-const API_KEY = '';
+const API_KEY = process.env.REACT_APP_RAWG_GAMING_API_KEY;
 
 const PLATFORMS = {
     pc: 4,
@@ -22,3 +22,4 @@ const endpoints = {
 };
 
 export const getAll = async (platform) => await request.get(baseUrl + endpoints.getAll(platform));
+// export const getById = async (gameId) => await request.get(baseUrl + endpoints.getAll(gameId));

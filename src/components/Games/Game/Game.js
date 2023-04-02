@@ -6,7 +6,7 @@ export const Game = () => {
 
     const { gameId } = useParams();
 
-    const API_KEY = '';
+    const API_KEY = process.env.REACT_APP_RAPID_API_KEY;
 
     useEffect(() => {
         fetch(`https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`)

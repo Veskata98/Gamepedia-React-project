@@ -18,14 +18,6 @@ import { NewsProvider } from './contexts/NewsContext';
 import { GamesProvider } from './contexts/GameContext';
 
 const App = () => {
-    // const [user, setUser] = useState();
-
-    // useEffect(() => {
-    //     setUser({ username: '' });
-    // }, []);
-
-    // const AuthContext = createContext();
-
     return (
         <AuthContext.Provider value={{ username: 'Venko' }}>
             <GamesProvider>
