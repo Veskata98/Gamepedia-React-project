@@ -3,9 +3,10 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 
 import { Navbar } from './components/Navbar/Navbar';
-import { Home } from './components/Home/Home';
+import { Main } from './components/Main/Main';
 import { Footer } from './components/Footer/Footer';
 
+import { Home } from './components/Home/Home';
 import { Forum } from './components/Forum/Forum';
 
 import { Login } from './components/Auth/Login/Login';
@@ -24,7 +25,7 @@ const App = () => {
             <GamesProvider>
                 <NewsProvider>
                     <Navbar />
-                    <main className="main">
+                    <Main>
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/game/:gameId" element={<Game />} />
@@ -34,7 +35,7 @@ const App = () => {
                             <Route path="/auth/login" element={<Login />} />
                             <Route path="/auth/register" element={<Register />} />
                         </Routes>
-                    </main>
+                    </Main>
                     <Footer />
                 </NewsProvider>
             </GamesProvider>

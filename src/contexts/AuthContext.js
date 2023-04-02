@@ -6,12 +6,13 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
 
     const localStorageUser = localStorage.getItem('user');
+    const localStorageUserId = localStorage.getItem('userId');
 
     useEffect(() => {
         if (localStorageUser) {
-            setUser({ username: localStorageUser });
+            setUser({ username: localStorageUser, userId: localStorageUserId });
         }
-    }, [localStorageUser]);
+    }, [localStorageUser, localStorageUserId]);
 
     return (
         <AuthContext.Provider

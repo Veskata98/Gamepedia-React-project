@@ -5,15 +5,19 @@ import { Link, useParams } from 'react-router-dom';
 
 import * as gameService from '../../../services/gameService';
 import * as request from '../../../services/requester';
+
 import { AuthContext } from '../../../contexts/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 export const Game = () => {
     const [game, setGame] = useState({});
+    const { gameId } = useParams();
+
     const { user } = useContext(AuthContext);
 
-    const { gameId } = useParams();
+    const [result, setResult] = useState(null);
+    const [showResult, setShowResult] = useState(false);
 
     useEffect(() => {
         gameService.getById(gameId).then((result) => {
@@ -24,11 +28,18 @@ export const Game = () => {
     const [favorites, setFavorites] = useState(false);
 
     const addToFavorites = (gameId) => {
-        const userId = user?.userId;
         request
-            .post('/api/favorites', { game_id: gameId, user_id: userId })
+            .post('http://localhost:5000/api/favorites', { gameId, userId: user.userId })
             .then((response) => {
                 setFavorites((prevState) => !prevState);
+
+                setResult(response.result);
+                setShowResult(true);
+
+                // Fade away the result after 2 seconds
+                setTimeout(() => {
+                    setShowResult(false);
+                }, 2000);
             })
             .catch((error) => console.error(error));
     };
@@ -37,7 +48,7 @@ export const Game = () => {
         <section className="oneGame-section">
             <img className="oneGame-background-img" src={game.background_image} alt="background-img" />
             <div className="oneGame-container">
-                <Link className="oneGame-return-link" to="#">
+                <Link className="oneGame-return-link" to={-1}>
                     Back
                 </Link>
                 <h1 className="oneGame-title">
@@ -51,6 +62,7 @@ export const Game = () => {
                             )}
                         </button>
                     )}
+                    {showResult && <span className="animated fadeOut">{result}</span>}
                 </h1>
                 <p className="omeGame bold_p">
                     Release Date:
