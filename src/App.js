@@ -8,18 +8,19 @@ import { Footer } from './components/Footer/Footer';
 
 import { Forum } from './components/Forum/Forum';
 
-import { Login } from './components/Login/Login';
+import { Login } from './components/Auth/Login/Login';
+import { Register } from './components/Auth/Register/Register';
 
 import Games from './components/Games/Games';
 import { Game } from './components/Games/Game/Game';
 
-import { AuthContext } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 import { NewsProvider } from './contexts/NewsContext';
 import { GamesProvider } from './contexts/GameContext';
 
 const App = () => {
     return (
-        <AuthContext.Provider value={{ username: 'Venko' }}>
+        <AuthProvider>
             <GamesProvider>
                 <NewsProvider>
                     <Navbar />
@@ -31,12 +32,13 @@ const App = () => {
                             <Route path="/games/:platformName" element={<Games />} />
                             <Route path="/forum" element={<Forum />} />
                             <Route path="/auth/login" element={<Login />} />
+                            <Route path="/auth/register" element={<Register />} />
                         </Routes>
                     </main>
                     <Footer />
                 </NewsProvider>
             </GamesProvider>
-        </AuthContext.Provider>
+        </AuthProvider>
     );
 };
 

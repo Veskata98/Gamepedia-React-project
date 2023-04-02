@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import gemepediaTextLogo from '../../assets/gemepedia-text-logo.png';
 
@@ -8,7 +8,19 @@ import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 
 export const Navbar = () => {
-    const { username } = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext);
+
+    const navigate = useNavigate();
+
+    const logoutHandler = (e) => {
+        e.preventDefault();
+
+        // localStorage.clear();
+
+        setUser({});
+
+        navigate('/');
+    };
 
     return (
         <header className="header">
@@ -37,13 +49,13 @@ export const Navbar = () => {
                         <NavLink to="/myGames">My Games</NavLink>
                     </li>
                 </ul>
-                {username ? (
+                {user.username ? (
                     <ul className="user-nav-list">
                         <li className="header-item">
-                            <p className="header-item-username">Welcome, {username}</p>
+                            <p className="header-item-username">Welcome, {user.username}</p>
                         </li>
                         <li className="header-item">
-                            <form className="header-logout-form" action="/auth/logout" method="post">
+                            <form className="header-logout-form" onSubmit={logoutHandler}>
                                 <button className="logout-btn">Logout</button>
                             </form>
                         </li>
@@ -54,7 +66,7 @@ export const Navbar = () => {
                             <Link to="/auth/login">Login</Link>
                         </li>
                         <li className="header-item">
-                            <a href="/auth/register">Register</a>
+                            <Link to="/auth/register">Register</Link>
                         </li>
                     </ul>
                 )}
