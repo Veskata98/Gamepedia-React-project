@@ -15,8 +15,7 @@ export const Navbar = () => {
     const logoutHandler = (e) => {
         e.preventDefault();
 
-        // localStorage.clear();
-
+        localStorage.clear();
         setUser({});
 
         navigate('/');

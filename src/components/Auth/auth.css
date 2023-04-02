@@ -1,6 +1,6 @@
 .login-section,
 .register-section {
-    height: 80%;
+    height: 80vh;
 
     display: flex;
     flex-direction: column;
@@ -15,7 +15,7 @@
     background: rgb(161, 161, 161);
     border-radius: 5px;
     border-top: 5px solid #7952e2;
-    margin: 10% auto;
+    margin: 0 auto;
 }
 
 .login-block h1,
@@ -43,16 +43,16 @@
     outline: none;
 }
 
-.login-block input[name="username"],
-.register-block input[name="username"] {
-    background: #fff url("http://i.imgur.com/u0XmBmv.png") 20px top no-repeat;
+.login-block input[name='username'],
+.register-block input[name='username'] {
+    background: #fff url('http://i.imgur.com/u0XmBmv.png') 20px top no-repeat;
     background-size: 16px 80px;
 }
 
-.login-block input[name="password"],
-.register-block input[name="password"],
-.register-block input[name="repass"] {
-    background: #fff url("http://i.imgur.com/Qf83FTt.png") 20px top no-repeat;
+.login-block input[name='password'],
+.register-block input[name='password'],
+.register-block input[name='repass'] {
+    background: #fff url('http://i.imgur.com/Qf83FTt.png') 20px top no-repeat;
     background-size: 16px 80px;
 }
 
@@ -86,6 +86,7 @@
 }
 
 .auth-redirect-link {
+    margin-top: 2rem;
     color: #fff;
 }
 

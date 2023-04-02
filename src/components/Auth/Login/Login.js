@@ -6,6 +6,7 @@ import { AuthContext } from '../../../contexts/AuthContext';
 
 export const Login = () => {
     const [loginAuth, setLoginAuth] = useState({});
+    const [loginError, setLoginError] = useState('');
 
     const { setUser } = useContext(AuthContext);
 
@@ -21,48 +22,42 @@ export const Login = () => {
     const loginHandler = async (e) => {
         e.preventDefault();
 
-        // fetch('http://localhost:5000/auth/login', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     credentials: 'include',
-        //     body: JSON.stringify({ ...loginAuth }),
-        // })
-        //     .then((res) => res.json())
-        //     .then((result) => {
-        //         setUser({ username: result.username });
-        //         localStorage.setItem('user', result.username);
-        //         localStorage.setItem('userId', result.userId);
-        //         navigate('/');
-        //     })
-        //     .catch((err) => {
-        //         console.error(err);
-        //         alert('Error logging in please try again');
-        //     });
+        try {
+            const response = await fetch('http://localhost:5000/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: loginAuth.username, password: loginAuth.password }),
+            });
 
-        const oldToken = localStorage.getItem('token');
+            if (!response.ok) {
+                const errorMsg = (await response.json()).error;
+                throw Error(errorMsg);
+            }
 
-        const response = await fetch('http://localhost:5000/auth/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${oldToken}` },
-            body: JSON.stringify({ username: loginAuth.username, password: loginAuth.password }),
-        });
+            const { token, userId, username } = await response.json();
+            setUser({ username: username });
 
-        // Parse the response as JSON and store the token in local storage or a cookie
-        const { token, userId, username } = await response.json();
-        setUser({ username: username });
+            localStorage.setItem('token', token);
+            localStorage.setItem('user', username);
+            localStorage.setItem('userId', userId);
 
-        localStorage.setItem('token', token);
-        localStorage.setItem('user', username);
-        localStorage.setItem('userId', userId);
+            navigate('/');
 
-        navigate('/');
-
-        // setUser({ username: '', password: '' });
+            setLoginAuth({});
+            setLoginError({});
+        } catch (error) {
+            setLoginError(error.message);
+        }
     };
 
     return (
         <section className="login-section">
             <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+            {loginError && (
+                <div className="error">
+                    <p>{loginError}</p>
+                </div>
+            )}
             <div className="login-block">
                 <form onSubmit={loginHandler}>
                     <h1>Login</h1>
