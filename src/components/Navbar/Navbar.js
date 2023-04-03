@@ -51,7 +51,7 @@ export const Navbar = () => {
                 {user.username ? (
                     <ul className="user-nav-list">
                         <li className="header-item">
-                            <p className="header-item-username">Welcome, {user.username}</p>
+                            <p className="header-item-username">{user.username}</p>
                         </li>
                         <li className="header-item">
                             <form className="header-logout-form" onSubmit={logoutHandler}>

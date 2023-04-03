@@ -8,12 +8,13 @@ import { Footer } from './components/Footer/Footer';
 
 import { Home } from './components/Home/Home';
 import { Forum } from './components/Forum/Forum';
-
-import { Login } from './components/Auth/Login/Login';
-import { Register } from './components/Auth/Register/Register';
+import Platforms from './components/Platforms/Platforms';
 
 import Games from './components/Games/Games';
 import { Game } from './components/Games/Game/Game';
+
+import { Login } from './components/Auth/Login/Login';
+import { Register } from './components/Auth/Register/Register';
 
 import { AuthProvider } from './contexts/AuthContext';
 import { NewsProvider } from './contexts/NewsContext';
@@ -30,6 +31,7 @@ const App = () => {
                             <Route path="/" element={<Home />} />
                             <Route path="/game/:gameId" element={<Game />} />
                             <Route path="/games" element={<Games />} />
+                            <Route path="/platforms" element={<Platforms />} />
                             <Route path="/games/:platformName" element={<Games />} />
                             <Route path="/forum" element={<Forum />} />
                             <Route path="/auth/login" element={<Login />} />

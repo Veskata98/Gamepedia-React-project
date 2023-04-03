@@ -1,0 +1,125 @@
+/* platforms */
+.platforms-titles {
+    display: flex;
+}
+.platforms-heading-main {
+    font-size: 1.75rem;
+    padding: 2rem;
+    padding-bottom: 1rem;
+
+    width: 75%;
+}
+
+.platforms-heading-news {
+    font-size: 1.75rem;
+    padding: 2rem;
+    padding-left: 0;
+    padding-bottom: 1rem;
+
+    width: 25%;
+}
+
+.platforms-wrapper {
+    display: flex;
+}
+
+.platforms-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2rem;
+    width: 75%;
+}
+
+.platform-card {
+    width: 25%;
+}
+
+.platform-title {
+    display: inline-block;
+    font-size: 1.5rem;
+}
+
+.platform-title a {
+    text-decoration: none;
+    color: #000;
+}
+.platform-title a:hover {
+    color: rgb(88, 88, 88);
+    text-decoration: underline;
+}
+
+.platform-img {
+    width: 100%;
+    height: 250px;
+    object-fit: fill;
+}
+
+/* Platforms News */
+
+.platforms-news {
+    width: 20%;
+}
+
+.platforms-news-list {
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0;
+}
+
+.platforms-news-item a {
+    font-weight: 500;
+    font-size: 1.125rem;
+}
+
+/* Each platform */
+
+.platform-section {
+    width: 90%;
+    margin: auto;
+
+    position: relative;
+}
+
+.platform-details-title {
+    padding-top: 2rem;
+    margin-bottom: 1rem;
+
+    font-size: 2rem;
+}
+
+.platform-details-games_count {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.platform-details-description {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+.platform-return-link {
+    position: absolute;
+    top: 3rem;
+    right: 1rem;
+
+    text-decoration: none;
+    color: #000;
+    font-size: 1.5rem;
+    background-color: rgb(174, 179, 184);
+
+    padding: 0.5rem 1rem;
+
+    background-color: #00feff;
+    border-radius: 0.75rem;
+}
+
+.platform-return-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}

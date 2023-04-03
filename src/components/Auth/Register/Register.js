@@ -36,7 +36,7 @@ export const Register = () => {
                 throw new Error('Password do not match');
             }
 
-            const response = await fetch('http://localhost:5000/auth/register', {
+            const response = await fetch('http://localhost:5000/api/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username: regUsername, password: regPassword, repass: regRepass }),
@@ -56,12 +56,13 @@ export const Register = () => {
 
             navigate('/');
 
-            setRegisterAuth({ username: '', password: '', repass: '' });
+            setRegisterAuth({});
             setRegisterError({});
         } catch (error) {
             setRegisterError(error.message);
         }
     };
+
     return (
         <section className="register-section">
             <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
