@@ -18,6 +18,11 @@
     margin: 0 auto;
 }
 
+.login-form,
+.register-form {
+    margin-bottom: 0.5rem;
+}
+
 .login-block h1,
 .register-block h1 {
     text-align: center;

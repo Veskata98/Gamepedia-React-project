@@ -5,14 +5,14 @@ import { useContext, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthContext';
 
 export const Login = () => {
-    const [loginAuth, setLoginAuth] = useState({});
+    const [loginAuth, setLoginAuth] = useState({ username: '', password: '' });
     const [loginError, setLoginError] = useState('');
 
     const { setUser } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
-    const userInputHandler = (e) => {
+    const loginInputHandler = (e) => {
         setLoginAuth((state) => ({
             ...state,
             [e.target.name]: e.target.value,
@@ -23,10 +23,17 @@ export const Login = () => {
         e.preventDefault();
 
         try {
+            const loginUsername = loginAuth.username;
+            const loginPassword = loginAuth.password;
+
+            if (loginUsername === '' || loginPassword === '') {
+                throw new Error('All fields are required');
+            }
+
             const response = await fetch('http://localhost:5000/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username: loginAuth.username, password: loginAuth.password }),
+                body: JSON.stringify({ username: loginUsername, password: loginPassword }),
             });
 
             if (!response.ok) {
@@ -35,7 +42,7 @@ export const Login = () => {
             }
 
             const { token, userId, username } = await response.json();
-            setUser({ username: username });
+            setUser({ username, userId });
 
             localStorage.setItem('token', token);
             localStorage.setItem('user', username);
@@ -59,10 +66,17 @@ export const Login = () => {
                 </div>
             )}
             <div className="login-block">
-                <form onSubmit={loginHandler}>
+                <form className="login-form" onSubmit={loginHandler}>
                     <h1>Login</h1>
-                    <input type="text" value={loginAuth.username} placeholder="Username" name="username" onChange={userInputHandler} />
-                    <input type="password" value={loginAuth.password} placeholder="Password" name="password" onChange={userInputHandler} />
+                    <input type="text" value={loginAuth.username} placeholder="Username" name="username" onChange={loginInputHandler} />
+                    <input
+                        type="password"
+                        value={loginAuth.password}
+                        placeholder="Password"
+                        name="password"
+                        onChange={loginInputHandler}
+                        autoComplete="new-password"
+                    />
                     <button>Sign In</button>
                 </form>
                 <div className="auth-redirect-container">
