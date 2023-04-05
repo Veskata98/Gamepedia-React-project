@@ -99,7 +99,7 @@
     margin-bottom: 2rem;
     color: #fff;
 
-    font-size: 2rem;
+    font-size: 1.75rem;
 }
 
 .games-container {
@@ -167,4 +167,44 @@
 
 .games-pagination a:hover {
     color: rgb(150, 223, 252);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 10px 0;
+    margin-bottom: 2rem;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    border-radius: 50%;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.pagination a.active {
+    background-color: #49bcc6;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.pagination a.prev,
+.pagination a.next {
+    background-color: #49bcc6;
+    color: white;
+}
+
+.pagination a.disabled {
+    pointer-events: none;
+    opacity: 0.6;
 }

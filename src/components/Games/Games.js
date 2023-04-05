@@ -63,6 +63,22 @@ const Games = () => {
                         )}
                     </div>
 
+                    <div className="pagination">
+                        <a href="#" className="prev">
+                            &laquo;
+                        </a>
+                        <a href="#" className="active">
+                            1
+                        </a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a href="#" className="next">
+                            &raquo;
+                        </a>
+                    </div>
+
                     {/* <p className="games-pagination">
                         <a href="/games{{#if platformName}}/{{platformName}}{{/if}}?{{#if search}}search={{search}}&{{/if}}page={{prevPage}}">Prev</a>
                         Page page of pages
