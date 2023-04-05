@@ -5,6 +5,9 @@ import { NavLink, useParams } from 'react-router-dom';
 import { GamesContext } from '../../contexts/GameContext';
 import { GamesRender } from './GamesRender';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+
 const Games = () => {
     const { platformName } = useParams();
     const { games, sectorHeading, setPlatform } = useContext(GamesContext);
@@ -17,10 +20,12 @@ const Games = () => {
         <section className="games-section">
             <div className="games-section-header">
                 <h1 className="games-heading">{sectorHeading}</h1>
-                {/* <form>
-                    <input type="text" name="search" placeholder="Enter game name..." value="" />
-                    <button>Search</button>
-                </form> */}
+                <form>
+                    <input className="games-search-input" type="text" name="search" placeholder="World of Warcraft..." value="" />
+                    <button className="games-search-button">
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </button>
+                </form>
             </div>
             <div className="games-section-main-wrapper">
                 <div className="games-show-options">

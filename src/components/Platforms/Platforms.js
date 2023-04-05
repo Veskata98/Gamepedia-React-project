@@ -1,4 +1,4 @@
-import './platform.css';
+import './platforms.css';
 
 import { useEffect, useState } from 'react';
 import { PlatformTemplate } from './PlatformTemplate';
@@ -20,9 +20,9 @@ const Platforms = () => {
                 const rawPlatformImgs = (await platformImgsResponse.json()).imageUrls;
 
                 const sortedImgs = rawPlatformImgs.sort((a, b) => {
-                    const numA = parseInt(a.split('/').pop().split('-')[0]);
-                    const numB = parseInt(b.split('/').pop().split('-')[0]);
-                    return numA - numB;
+                    const n1 = parseInt(a.split('/').pop().split('-')[0]);
+                    const n2 = parseInt(b.split('/').pop().split('-')[0]);
+                    return n1 - n2;
                 });
 
                 const finalPlatforms = rawPlatforms.map((x, i) => {
@@ -38,8 +38,6 @@ const Platforms = () => {
 
         fetchData();
     }, []);
-
-    //TODO: Platoform component
 
     return (
         <section className="plaftorms-section">
