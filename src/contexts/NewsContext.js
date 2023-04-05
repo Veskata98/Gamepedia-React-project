@@ -8,24 +8,24 @@ export const NewsProvider = ({ children }) => {
     const [news, setNews] = useState([]);
     const [mainArticle, setMainArticle] = useState({});
 
-    useEffect(() => {
-        newsService.getNews().then((result) => {
-            result.map((x) => {
-                const date = new Date(x.date);
-                x.date = date.toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                });
-                return x;
-            });
+    // useEffect(() => {
+    //     newsService.getNews().then((result) => {
+    //         result.map((x) => {
+    //             const date = new Date(x.date);
+    //             x.date = date.toLocaleString('en-US', {
+    //                 year: 'numeric',
+    //                 month: 'short',
+    //                 day: 'numeric',
+    //                 hour: 'numeric',
+    //                 minute: 'numeric',
+    //             });
+    //             return x;
+    //         });
 
-            setMainArticle(result.slice(0, 1)[0]);
-            setNews(result.slice(1, -1));
-        });
-    }, []);
+    //         setMainArticle(result.slice(0, 1)[0]);
+    //         setNews(result.slice(1, -1));
+    //     });
+    // }, []);
 
     return (
         <NewsContext.Provider

@@ -6,6 +6,7 @@
     font-size: 1.75rem;
     padding: 2rem;
     padding-bottom: 1rem;
+    color: #fff;
 
     width: 75%;
 }
@@ -15,6 +16,7 @@
     padding: 2rem;
     padding-left: 0;
     padding-bottom: 1rem;
+    color: #fff;
 
     width: 25%;
 }
@@ -35,26 +37,42 @@
 
 .platform-card {
     width: 25%;
+    position: relative;
+}
+
+.platform-card a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .platform-title {
-    display: inline-block;
-    font-size: 1.5rem;
-}
-
-.platform-title a {
+    position: absolute;
     text-decoration: none;
-    color: #000;
-}
-.platform-title a:hover {
-    color: rgb(88, 88, 88);
-    text-decoration: underline;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.9);
+    text-align: center;
 }
 
 .platform-img {
     width: 100%;
     height: 250px;
     object-fit: fill;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.platform-card:hover img,
+.platform-card:hover span {
+    opacity: 0.8;
+    scale: 1.05;
+    transition: scale 0.2s ease;
+}
+
+.platform-card:hover span {
+    opacity: 1;
 }
 
 /* Platforms News */

@@ -1,45 +1,61 @@
 import './platform.css';
 
 import { useEffect, useState } from 'react';
-import * as request from '../../services/requester';
+import { PlatformTemplate } from './PlatformTemplate';
 
 const Platforms = () => {
-    const [imagePaths, setImagePaths] = useState([]);
+    const [platforms, setPlatforms] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/platforms/images')
-            .then((response) => response.json())
-            .then((data) => {
-                setImagePaths(data.imageUrls);
-                console.log(data.imageUrls);
-            })
-            .catch((error) => console.error(error));
+        const RAWG_API_KEY = process.env.REACT_APP_RAWG_GAMING_API_KEY;
+
+        const fetchData = async () => {
+            try {
+                const platformResponse = await fetch(`https://rawg-video-games-database.p.rapidapi.com/platforms?key=${RAWG_API_KEY}`, {
+                    headers: { 'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY, 'X-RapidAPI-Host': process.env.REACT_APP_RAWG_API_HOST },
+                });
+                const rawPlatforms = (await platformResponse.json()).results;
+
+                const platformImgsResponse = await fetch('http://localhost:5000/api/platforms/images');
+                const rawPlatformImgs = (await platformImgsResponse.json()).imageUrls;
+
+                const sortedImgs = rawPlatformImgs.sort((a, b) => {
+                    const numA = parseInt(a.split('/').pop().split('-')[0]);
+                    const numB = parseInt(b.split('/').pop().split('-')[0]);
+                    return numA - numB;
+                });
+
+                const finalPlatforms = rawPlatforms.map((x, i) => {
+                    x.image = sortedImgs[i];
+                    return x;
+                });
+
+                setPlatforms(finalPlatforms);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
     }, []);
 
+    //TODO: Platoform component
+
     return (
-        <section class="plaftorms-section">
-            <div class="platforms-titles">
-                <h1 class="platforms-heading-main">Gaming Platforms</h1>
-                <h1 class="platforms-heading-news">Console News</h1>
+        <section className="plaftorms-section">
+            <div className="platforms-titles">
+                <h1 className="platforms-heading-main">Gaming Platforms</h1>
+                <h1 className="platforms-heading-news">Console News</h1>
             </div>
-            <div class="platforms-wrapper">
-                <div class="platforms-container">
-                    {imagePaths.map((x) => {
-                        return (
-                            <div class="platform-card">
-                                <h2 class="platform-title">
-                                    <a href="/platforms/{{id}}">{x.name}</a>
-                                </h2>
-                                <a href="/platforms/{{id}}">
-                                    <img src={x} loading="lazy" alt="platform-img" class="platform-img" />
-                                </a>
-                            </div>
-                        );
-                    })}
+            <div className="platforms-wrapper">
+                <div className="platforms-container">
+                    {platforms.map((x) => (
+                        <PlatformTemplate key={x.id} platform={x} />
+                    ))}
                 </div>
-                <div class="platforms-news">
-                    <ul class="platforms-news-list" role="list">
-                        <li class="platforms-news-item">
+                <div className="platforms-news">
+                    <ul className="platforms-news-list">
+                        <li className="platforms-news-item">
                             <a href="{{url}}" target="_blank">
                                 title
                             </a>
