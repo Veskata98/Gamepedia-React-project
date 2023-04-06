@@ -237,151 +237,6 @@ export const Home = () => {
             content:
                 'When Rode released the original Wireless GO, it was an instant success. The ease of use, audio quality and reasonable price made wireless microphones much more accessible. In fact it was so successfu… [+4660 chars]',
         },
-        {
-            source: {
-                id: null,
-                name: 'Hollywood Reporter',
-            },
-            author: 'J. Clara Chan',
-            title: 'Spotify Shutters Live Audio App - Hollywood Reporter',
-            description:
-                'The tech giant, which created its live audio offering after acquiring Betty Labs, canceled some of its live audio shows last year.',
-            url: 'https://www.hollywoodreporter.com/business/business-news/spotify-live-shutters-1235366519/',
-            urlToImage:
-                'https://www.hollywoodreporter.com/wp-content/uploads/2023/04/Spotify-Logo-Mobile-Phone-GettyImages-1234971748-H-2023.jpg?w=1024',
-            publishedAt: '2023-04-03T23:21:11Z',
-            content:
-                'Spotify is shutting down its standalone live audio app, Spotify Live, at the end of this month as the audio giant turns away from live programming, a company spokesperson told The Hollywood Reporter … [+2098 chars]',
-        },
-        {
-            source: {
-                id: null,
-                name: 'New York Post',
-            },
-            author: 'Steve Cuozzo',
-            title: 'Gigantic Mermaid Inn to reopen near former Upper West Side location - New York Post ',
-            description:
-                'Danny Abrams, who owns the popular seafood-driven Mermaid mini-empire with Cindy Smith, said it will have an impressive 6,500 square feet.',
-            url: 'https://nypost.com/2023/04/03/mermaid-inn-to-reopen-on-upper-west-side-this-year/',
-            urlToImage: 'https://nypost.com/wp-content/uploads/sites/2/2023/04/NYPICHPDPICT000009182648.jpg?quality=75&strip=all&w=1024',
-            publishedAt: '2023-04-03T23:13:00Z',
-            content:
-                'They’re breaking out the Chardonnay and cocktail sauce on the Upper West Side.\r\nThe Mermaid Inn, which made a splash on Amsterdam Avenue for 15 years before it closed last year, is taking the plunge … [+1524 chars]',
-        },
-        {
-            source: {
-                id: null,
-                name: 'ComicBook.com',
-            },
-            author: 'ComicBook.com',
-            title: 'Super Mario Movie Cast Plays Mario Kart 8 Deluxe in New Video - ComicBook.com',
-            description: null,
-            url: 'https://comicbook.com/gaming/news/super-mario-movie-cast-mario-kart-8-video/',
-            urlToImage: null,
-            publishedAt: '2023-04-03T23:07:00Z',
-            content: null,
-        },
-        {
-            source: {
-                id: null,
-                name: 'The Nerd Stash',
-            },
-            author: 'Omer Dursun',
-            title: 'Hogwarts Legacy DLC: Release Date, New Items, Locations - The Nerd Stash',
-            description: 'Hogwarts Legacy has been a hit, and players are interested in any DLC down the road. Here are the details about DLC.',
-            url: 'https://thenerdstash.com/hogwarts-legacy-dlc-release-date-new-items-locations/',
-            urlToImage: 'https://thenerdstash.com/wp-content/uploads/2023/03/hogwarts-legacy-is-now-the-fastest-selling-1-1.jpg',
-            publishedAt: '2023-04-03T22:35:06Z',
-            content:
-                'Hogwarts Legacy has been highly played by the Harry Potter franchise fans, who are eager to immerse themselves in the magical world of Hogwarts School of Witchcraft and Wizardry. Moreover, players ar… [+1641 chars]',
-        },
-        {
-            source: {
-                id: null,
-                name: 'Dexerto',
-            },
-            author: 'Zackerie Fairfax',
-            title: 'Pokemon Go outrage over Remote Raids devolves into death threats and hate speech - Dexerto',
-            description:
-                'Some disgruntled Pokemon Go players have resorted to hate speech and death threats following the announcement of a Remote Raid nerf.',
-            url: 'https://www.dexerto.com/pokemon/pokemon-go-outrage-over-remote-raids-devolves-into-death-threats-and-hate-speech-2103682/',
-            urlToImage: 'https://editors.dexerto.com/wp-content/uploads/2023/04/03/pokemon-oak-gary.jpg',
-            publishedAt: '2023-04-03T22:17:17Z',
-            content:
-                'While a large number of players plan to boycott Pokemon Go or have signed petitions in support of reverting Remote Raid pass changes, others have devolved to using transphobic hate speech and sending… [+2680 chars]',
-        },
-        {
-            source: {
-                id: null,
-                name: 'GameSpot',
-            },
-            author: 'Steven Petite',
-            title: 'EA Sports PGA Tour Preorders - Discounts Available, Early Access Starting Now, And More - GameSpot',
-            description: 'EA Sports PGA Tour is available for Xbox Series X|S, PS5, and PC.',
-            url: 'https://www.gamespot.com/gallery/ea-sports-pga-tour-preorders-discounts-available-early-access-starting-now-and-more/2900-4612/',
-            urlToImage: 'https://www.gamespot.com/a/uploads/screen_kubrick/1595/15950357/4090640-easports.jpeg',
-            publishedAt: '2023-04-03T22:03:24Z',
-            content:
-                'The products discussed here were independently chosen by our editors.\r\n GameSpot may get a share of the revenue if you buy anything featured on our site.',
-        },
-        {
-            source: {
-                id: null,
-                name: 'Gizchina.com',
-            },
-            author: 'Marco Lancaster',
-            title: 'PS5 Slim / PS5 Pro could arrive in June during PlayStation Showcase - Gizchina.com',
-            description:
-                'There is a new PlayStation Showcase rumored for June! As per the rumors, it may serve as a stage for the PS5 Slim and PS5 Pro launch.',
-            url: 'https://www.gizchina.com/2023/04/03/ps5-slim-launch-rumors-playstation-showcase-june/',
-            urlToImage: 'https://www.gizchina.com/wp-content/uploads/images/2023/04/imagem_2023-04-03_190139832.png',
-            publishedAt: '2023-04-03T22:02:21Z',
-            content:
-                'Rumors keep popping out regarding the launch of new PS5 models. As per these rumors, Sony is gearing up to introduce the PS5 Slim and PS5 Pro very soon. Apparently, the Slim variant could come a litt… [+3742 chars]',
-        },
-        {
-            source: {
-                id: 'ars-technica',
-                name: 'Ars Technica',
-            },
-            author: 'John Timmer',
-            title: 'Proton’s mass radius is apparently shorter than its charge radius - Ars Technica',
-            description: "The quarks that give it charge aren't hanging out with the gluons that provide mass.",
-            url: 'https://arstechnica.com/science/2023/04/protons-mass-radius-is-apparently-shorter-than-its-charge-radius/',
-            urlToImage: 'https://cdn.arstechnica.net/wp-content/uploads/2023/04/Jefferson-Lab-Aerial-Photo-760x380.jpg',
-            publishedAt: '2023-04-03T20:30:42Z',
-            content:
-                'Enlarge/ The Jefferson Lab particle accelerator, where the work took place. Electrons in the oval at top center are sent to different underground target rooms (circles at lower right).\r\n30 with \r\nIf … [+4122 chars]',
-        },
-        {
-            source: {
-                id: null,
-                name: 'CNET',
-            },
-            author: 'Zachary McAuliffe',
-            title: 'New Privacy-Focused Browser Aims to Fight Data Tracking - CNET',
-            description: 'The browser is free and available for Windows, MacOS and Linux.',
-            url: 'https://www.cnet.com/tech/services-and-software/new-privacy-focused-browser-aims-to-fight-data-tracking/',
-            urlToImage:
-                'https://www.cnet.com/a/img/resize/b85361319d79268a92d4019349f121b66461016e/hub/2021/02/12/2f1eeabe-731f-475c-a0f7-eb0922e0571b/locks-privacy-security-hack-hackers-2638.jpg?auto=webp&fit=crop&height=630&width=1200',
-            publishedAt: '2023-04-03T20:18:49Z',
-            content:
-                'On Monday, the Tor Project and Mullvad VPN, two organizations focused on user privacy, released a new privacy-focused web browser called Mullvad Browser. The browser is free to download and works on … [+1581 chars]',
-        },
-        {
-            source: {
-                id: 'ars-technica',
-                name: 'Ars Technica',
-            },
-            author: 'Ron Amadeo',
-            title: 'Google brings “Nearby Share” to Windows, making it easy to transfer files - Ars Technica',
-            description: 'Google dives into the competitive world of Windows + Android file sharing.',
-            url: 'https://arstechnica.com/gadgets/2023/04/google-brings-nearby-share-to-windows-making-it-easy-to-transfer-files/',
-            urlToImage: 'https://cdn.arstechnica.net/wp-content/uploads/2023/04/8-760x380.jpg',
-            publishedAt: '2023-04-03T19:42:44Z',
-            content:
-                'Enlarge/ Google\'s Nearby Share can quickly send a photo to your computer. \r\n18 with \r\nGoogle is bringing Android\'s "Nearby Share" feature to the desktop with a new Windows app. Google says the new pr… [+3982 chars]',
-        },
     ];
 
     return (
@@ -407,40 +262,55 @@ export const Home = () => {
                         <News key={x.title} news={x} />
                     ))}
                 </div>
-                <div className="last-discussions">
-                    <h2 className="home-subheading discussions">Latest threads</h2>
-                    <ul className="last-discussion-list">
-                        <li className="last-discussion-item">
-                            <a href="/forum/discussions/{{_id}}">
-                                <p className="last-discussion-title">title</p>
-                                <p className="last-discussion-date">date</p>
-                            </a>
-                        </li>
-                        <li className="last-discussion-item">
-                            <a href="/forum/discussions/{{_id}}">
-                                <p className="last-discussion-title">title</p>
-                                <p className="last-discussion-date">date</p>
-                            </a>
-                        </li>
-                        <li className="last-discussion-item">
-                            <a href="/forum/discussions/{{_id}}">
-                                <p className="last-discussion-title">title</p>
-                                <p className="last-discussion-date">date</p>
-                            </a>
-                        </li>
-                        <li className="last-discussion-item">
-                            <a href="/forum/discussions/{{_id}}">
-                                <p className="last-discussion-title">title</p>
-                                <p className="last-discussion-date">date</p>
-                            </a>
-                        </li>
-                        <li className="last-discussion-item">
-                            <a href="/forum/discussions/{{_id}}">
-                                <p className="last-discussion-title">title</p>
-                                <p className="last-discussion-date">date</p>
-                            </a>
-                        </li>
-                    </ul>
+                <div className="home-sidebar">
+                    <div className="last-discussions">
+                        <h2 className="home-subheading discussions">Latest threads</h2>
+                        <ul className="last-discussion-list">
+                            <li className="last-discussion-item">
+                                <a href="/forum/discussions/{{_id}}">
+                                    <p className="last-discussion-title">title</p>
+                                    <p className="last-discussion-date">date</p>
+                                </a>
+                            </li>
+                            <li className="last-discussion-item">
+                                <a href="/forum/discussions/{{_id}}">
+                                    <p className="last-discussion-title">title</p>
+                                    <p className="last-discussion-date">date</p>
+                                </a>
+                            </li>
+                            <li className="last-discussion-item">
+                                <a href="/forum/discussions/{{_id}}">
+                                    <p className="last-discussion-title">title</p>
+                                    <p className="last-discussion-date">date</p>
+                                </a>
+                            </li>
+                            <li className="last-discussion-item">
+                                <a href="/forum/discussions/{{_id}}">
+                                    <p className="last-discussion-title">title</p>
+                                    <p className="last-discussion-date">date</p>
+                                </a>
+                            </li>
+                            <li className="last-discussion-item">
+                                <a href="/forum/discussions/{{_id}}">
+                                    <p className="last-discussion-title">title</p>
+                                    <p className="last-discussion-date">date</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="home-technews">
+                        <h2 className="home-subheading techNews">Tech News</h2>
+                        {techNews.map((x) => {
+                            return (
+                                <div className="home-techNews-container">
+                                    <a className="home-techNews-link" href={x.url}>
+                                        <h3 className="home-textNews-title">{x.title}</h3>
+                                        <p className="home-techNews-desc">{x.description}</p>
+                                    </a>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         </section>
