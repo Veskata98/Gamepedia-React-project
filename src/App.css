@@ -29,7 +29,7 @@ body {
         #34b8d1,
         #49bcc6
     );
-    min-height: calc(100vh - 8rem);
+    min-height: calc(100vh - 116px);
 }
 
 .active {

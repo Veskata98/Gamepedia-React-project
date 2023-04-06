@@ -44,9 +44,11 @@ export const Navbar = () => {
                     <li className="header-item">
                         <NavLink to="/forum">Forum</NavLink>
                     </li>
-                    <li className="header-item">
-                        <NavLink to="/myGames">My Games</NavLink>
-                    </li>
+                    {user.username && (
+                        <li className="header-item">
+                            <NavLink to="/myGames">My Games</NavLink>
+                        </li>
+                    )}
                 </ul>
                 {user.username ? (
                     <ul className="user-nav-list">

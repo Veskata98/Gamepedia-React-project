@@ -19,15 +19,32 @@ export const GamesProvider = ({ children }) => {
     const [sectorHeading, setSectorHeading] = useState('');
 
     const [platform, setPlatform] = useState();
+    const [search, setSearch] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
-        gameService.getAll(platform).then((res) => {
+        gameService.getAll(platform, searchQuery).then((res) => {
             setGames(res.results);
 
             const platformTitle = PLATFORM_TITLES[platform];
-            setSectorHeading(platformTitle || 'Top Rated Games');
-        });
-    }, [platform]);
 
-    return <GamesContext.Provider value={{ games, sectorHeading, setPlatform }}>{children}</GamesContext.Provider>;
+            if (searchQuery) {
+                setSectorHeading(`Results for: ${searchQuery}`);
+            } else {
+                setSectorHeading(platformTitle || 'Trending Games');
+            }
+        });
+    }, [platform, searchQuery]);
+
+    const searchHandler = (e) => {
+        e.preventDefault();
+        setSearchQuery(search);
+        setSearch('');
+    };
+
+    return (
+        <GamesContext.Provider value={{ games, sectorHeading, setPlatform, search, setSearch, setSearchQuery, searchHandler }}>
+            {children}
+        </GamesContext.Provider>
+    );
 };

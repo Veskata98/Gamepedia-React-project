@@ -10,18 +10,31 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const Games = () => {
     const { platformName } = useParams();
-    const { games, sectorHeading, setPlatform } = useContext(GamesContext);
+
+    const { games, sectorHeading, setPlatform, search, setSearch, setSearchQuery, searchHandler } = useContext(GamesContext);
 
     useEffect(() => {
+        setSearchQuery('');
         setPlatform(platformName);
-    }, [setPlatform, platformName]);
+    }, [setPlatform, platformName, setSearchQuery]);
+
+    const searchInputHandler = (e) => {
+        setSearch(e.target.value);
+    };
 
     return (
         <section className="games-section">
             <div className="games-section-header">
                 <h1 className="games-heading">{sectorHeading}</h1>
-                <form>
-                    <input className="games-search-input" type="text" name="search" placeholder="World of Warcraft..." value="" />
+                <form onSubmit={searchHandler}>
+                    <input
+                        className="games-search-input"
+                        type="text"
+                        name="search"
+                        placeholder="World of Warcraft..."
+                        value={search}
+                        onChange={searchInputHandler}
+                    />
                     <button className="games-search-button">
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </button>

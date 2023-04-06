@@ -125,6 +125,8 @@
 .home-mainNews-article-link {
     color: #fff;
     font-size: 1.25rem;
+    width: 100px;
+    font-style: italic;
 }
 
 .home-news-article-link:hover,
