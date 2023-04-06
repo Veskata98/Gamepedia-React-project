@@ -15,13 +15,22 @@ const PLATFORMS = {
 };
 
 const endpoints = {
-    getAll: (platform) => {
-        const platformId = PLATFORMS[platform];
-        return `?key=${API_KEY}&page_size=15${typeof platformId === 'number' ? `&platforms=${platformId}` : ''}`;
+    getAll: (fetchParams) => {
+        if (fetchParams.platform && fetchParams.search) {
+            const platformId = PLATFORMS[fetchParams.platform];
+            return `?key=${API_KEY}&page_size=15${typeof platformId === 'number' ? `&platforms=${platformId}` : ''}&search=${fetchParams.search}`;
+        } else if (fetchParams.platform) {
+            const platformId = PLATFORMS[fetchParams.platform];
+            return `?key=${API_KEY}&page_size=15${typeof platformId === 'number' ? `&platforms=${platformId}` : ''}`;
+        } else if (fetchParams.search) {
+            return `?key=${API_KEY}&page_size=15&search=${fetchParams.search}`;
+        } else {
+            return `?key=${API_KEY}&page_size=15`;
+        }
     },
 };
 
-export const getAll = async (platform) => await request.get(baseUrl + endpoints.getAll(platform));
+export const getAll = async (fetchParams) => await request.get(baseUrl + endpoints.getAll(fetchParams));
 
 export const getById = async (gameId) => {
     return fetch(`https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`)

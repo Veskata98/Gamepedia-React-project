@@ -18,35 +18,33 @@ import { Register } from './components/Auth/Register/Register';
 
 import { AuthProvider } from './contexts/AuthContext';
 import { NewsProvider } from './contexts/NewsContext';
-import { GamesProvider } from './contexts/GameContext';
+
 import { Platform } from './components/Platforms/Platform/Platform';
 
 const App = () => {
     return (
         <AuthProvider>
-            <GamesProvider>
-                <NewsProvider>
-                    <Navbar />
-                    <Main>
-                        <Routes>
-                            <Route path="/" element={<Home />} />
+            <NewsProvider>
+                <Navbar />
+                <Main>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
 
-                            <Route path="/game/:gameId" element={<Game />} />
-                            <Route path="/games" element={<Games />} />
-                            <Route path="/games/:platformName" element={<Games />} />
+                        <Route path="/game/:gameId" element={<Game />} />
+                        <Route path="/games" element={<Games />} />
+                        <Route path="/games/:platformName" element={<Games />} />
 
-                            <Route path="/platforms" element={<Platforms />} />
-                            <Route path="/platforms/:platformId" element={<Platform />} />
+                        <Route path="/platforms" element={<Platforms />} />
+                        <Route path="/platforms/:platformId" element={<Platform />} />
 
-                            <Route path="/forum" element={<Forum />} />
+                        <Route path="/forum" element={<Forum />} />
 
-                            <Route path="/auth/login" element={<Login />} />
-                            <Route path="/auth/register" element={<Register />} />
-                        </Routes>
-                    </Main>
-                    <Footer />
-                </NewsProvider>
-            </GamesProvider>
+                        <Route path="/auth/login" element={<Login />} />
+                        <Route path="/auth/register" element={<Register />} />
+                    </Routes>
+                </Main>
+                <Footer />
+            </NewsProvider>
         </AuthProvider>
     );
 };

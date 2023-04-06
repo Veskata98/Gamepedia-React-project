@@ -1,26 +1,57 @@
 import './games.css';
 
-import { useContext, useEffect } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
-import { GamesContext } from '../../contexts/GameContext';
+import { useEffect, useState } from 'react';
+import { NavLink, useParams, useSearchParams } from 'react-router-dom';
 import { GamesRender } from './GamesRender';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
+import * as gameService from '../../services/gameService';
+
+const PLATFORM_TITLES = {
+    pc: 'PC',
+    playstation5: 'PlayStation 5',
+    playstation4: 'PlayStation 4',
+    'xbox-one': 'Xbox-One',
+    'nintendo-switch': 'Nintendo Swtich',
+    ios: 'iOS',
+    android: 'Android',
+};
+
 const Games = () => {
+    const [games, setGames] = useState([]);
+    const [search, setSearch] = useState('');
+    const [sectorHeading, setSectorHeading] = useState('');
+
     const { platformName } = useParams();
-
-    const { games, sectorHeading, setPlatform, search, setSearch, setSearchQuery, searchHandler } = useContext(GamesContext);
-
-    useEffect(() => {
-        setSearchQuery('');
-        setPlatform(platformName);
-    }, [setPlatform, platformName, setSearchQuery]);
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const searchInputHandler = (e) => {
         setSearch(e.target.value);
     };
+
+    const searchHandler = (e) => {
+        e.preventDefault();
+        setSearchParams({ search });
+    };
+
+    useEffect(() => {
+        const fetchParams = { platform: platformName || '', search: searchParams.get('search') };
+        setSearch(searchParams.get('search') || '');
+
+        gameService.getAll(fetchParams).then((res) => {
+            setGames(res.results);
+
+            const platformTitle = PLATFORM_TITLES[fetchParams.platform];
+
+            if (fetchParams.search) {
+                setSectorHeading(`Results for: ${fetchParams.search}`);
+            } else {
+                setSectorHeading(platformTitle || 'Trending Games');
+            }
+        });
+    }, [platformName, searchParams]);
 
     return (
         <section className="games-section">
