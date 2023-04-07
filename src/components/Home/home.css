@@ -147,7 +147,7 @@
     width: 100%;
     /* border: 3px ridge #7952e2; */
     border-radius: 20px;
-    height: 480px;
+    height: 520px;
 }
 
 .last-discussions h2 {
@@ -162,14 +162,15 @@
 }
 
 .last-discussion-item {
-    background-color: #9d7aff;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
+    background: linear-gradient(90deg, rgba(157, 122, 255, 1) 0%, rgba(157, 122, 255, 0.2) 95%, rgba(157, 122, 255, 0.1) 100%);
+    padding: 0.75rem;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
     color: #fff;
 
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    /* box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75); */
 }
 
 .last-discussion-item a {

@@ -1,8 +1,9 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import './navbar.css';
 import logo from '../../assets/logo.png';
+
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import gemepediaTextLogo from '../../assets/gemepedia-text-logo.png';
 
-import './header.css';
 import { useContext } from 'react';
 
 import { AuthContext } from '../../contexts/AuthContext';

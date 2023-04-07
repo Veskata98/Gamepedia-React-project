@@ -25,7 +25,7 @@
     display: flex;
 }
 
-.platforms-container {
+.platforms-main {
     display: flex;
     flex-wrap: wrap;
     gap: 3rem;
@@ -33,6 +33,13 @@
     align-items: center;
     padding-bottom: 2rem;
     width: 75%;
+}
+
+.platforms-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: center;
 }
 
 .platform-card {
@@ -92,4 +99,19 @@
 .platforms-news-item a {
     font-weight: 500;
     font-size: 1.125rem;
+}
+
+.platforms-showAll-button {
+    display: inline-block;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    background-color: #612feb;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    font-size: 1.15rem;
+}
+
+.platforms-showAll-button:hover {
+    background-color: #653ada;
 }

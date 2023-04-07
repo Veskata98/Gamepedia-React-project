@@ -5,6 +5,7 @@ import { PlatformTemplate } from './PlatformTemplate';
 
 const Platforms = () => {
     const [platforms, setPlatforms] = useState([]);
+    const [showAll, setShowAll] = useState(false);
 
     useEffect(() => {
         const RAWG_API_KEY = process.env.REACT_APP_RAWG_GAMING_API_KEY;
@@ -39,6 +40,10 @@ const Platforms = () => {
         fetchData();
     }, []);
 
+    const showAllHandler = () => {
+        setShowAll((s) => !s);
+    };
+
     return (
         <section className="plaftorms-section">
             <div className="platforms-titles">
@@ -46,10 +51,16 @@ const Platforms = () => {
                 <h1 className="platforms-heading-news">Console News</h1>
             </div>
             <div className="platforms-wrapper">
-                <div className="platforms-container">
-                    {platforms.map((x) => (
-                        <PlatformTemplate key={x.id} platform={x} />
-                    ))}
+                <div className="platforms-main">
+                    <div className="platforms-container">
+                        {platforms.slice(0, 15).map((x) => (
+                            <PlatformTemplate key={x.id} platform={x} />
+                        ))}
+                        {showAll && platforms.slice(16, -1).map((x) => <PlatformTemplate key={x.id} platform={x} />)}
+                    </div>
+                    <button className="platforms-showAll-button" onClick={showAllHandler}>
+                        {showAll ? 'Show less' : 'Show All'}
+                    </button>
                 </div>
                 <div className="platforms-news">
                     <ul className="platforms-news-list">

@@ -1,4 +1,5 @@
 import './game.css';
+import defaultImg from '../../../../src/assets/default.jpg';
 
 import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
@@ -12,12 +13,14 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 export const Game = () => {
     const [game, setGame] = useState({});
-    const { gameId } = useParams();
-
-    const { user } = useContext(AuthContext);
+    const [gamesIsFavorite, setGameIsFavorite] = useState();
 
     const [result, setResult] = useState(null);
     const [showResult, setShowResult] = useState(false);
+
+    const { gameId } = useParams();
+
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         gameService.getById(gameId).then((result) => {
@@ -25,15 +28,24 @@ export const Game = () => {
         });
     }, [gameId]);
 
-    const [favorites, setFavorites] = useState(false);
+    useEffect(() => {
+        if (user.userId) {
+            fetch('http://localhost:5000/api/games/isLiked', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ gameId, userId: user.userId }),
+            })
+                .then((res) => res.json())
+                .then((data) => setGameIsFavorite(data.message));
+        }
+    }, [user, gameId]);
 
     const addToFavorites = (gameId) => {
         request
-            .post('http://localhost:5000/api/favorites', { gameId, userId: user.userId })
+            .post('http://localhost:5000/api/games/favorites', { gameId, userId: user.userId })
             .then((response) => {
-                setFavorites((prevState) => !prevState);
-
-                setResult(response.result);
+                setGameIsFavorite((state) => !state);
+                setResult(response.message);
                 setShowResult(true);
 
                 // Fade away the result after 2 seconds
@@ -46,7 +58,7 @@ export const Game = () => {
 
     return (
         <section className="oneGame-section">
-            <img className="oneGame-background-img" src={game.background_image} alt="background-img" />
+            <img className="oneGame-background-img" src={game.background_image || defaultImg} alt="background-img" />
             <div className="oneGame-container">
                 <Link className="oneGame-return-link" to={-1}>
                     Back
@@ -55,7 +67,7 @@ export const Game = () => {
                     {game.name}
                     {user.username && (
                         <button className="button-favorites" onClick={() => addToFavorites(game.id)}>
-                            {favorites ? (
+                            {gamesIsFavorite ? (
                                 <FontAwesomeIcon icon={faStar} size="2xl" style={{ color: '#ffec00' }} />
                             ) : (
                                 <FontAwesomeIcon icon={faStar} size="2xl" style={{ color: '#645a00' }} />
