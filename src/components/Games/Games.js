@@ -1,13 +1,14 @@
 import './games.css';
 
 import { useEffect, useState } from 'react';
-import { NavLink, useParams, useSearchParams } from 'react-router-dom';
+import { Link, NavLink, useParams, useSearchParams } from 'react-router-dom';
 import { GamesRender } from './GamesRender';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import * as gameService from '../../services/gameService';
+
 import Spinner from '../Spinner/Spinner';
 
 const PLATFORM_TITLES = {
@@ -22,6 +23,8 @@ const PLATFORM_TITLES = {
 
 const Games = () => {
     const [games, setGames] = useState([]);
+    const [gamesCount, setGamesCount] = useState();
+    const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState('');
     const [sectorHeading, setSectorHeading] = useState('');
     const [loading, setLoading] = useState(true);
@@ -35,7 +38,9 @@ const Games = () => {
 
     const searchHandler = (e) => {
         e.preventDefault();
-        setSearchParams({ search });
+        setSearchParams((state) => {
+            return { ...state, search };
+        });
     };
 
     useEffect(() => {
@@ -43,6 +48,7 @@ const Games = () => {
         setSearch(searchParams.get('search') || '');
 
         gameService.getAll(fetchParams).then((res) => {
+            setGamesCount(res.count);
             setGames(res.results);
             setLoading(false);
 
@@ -51,7 +57,7 @@ const Games = () => {
             if (fetchParams.search) {
                 setSectorHeading(`Results for: ${fetchParams.search}`);
             } else {
-                setSectorHeading(platformTitle || 'Trending Games');
+                setSectorHeading(`${platformTitle} Games` || 'Trending Games');
             }
         });
     }, [platformName, searchParams]);
@@ -114,16 +120,21 @@ const Games = () => {
                         </div>
                         {games.length ? (
                             <div className="pagination">
-                                <a href="#" className="prev">
+                                <Link
+                                    disabled={true}
+                                    to={`/games/${platformName ? platformName : ''}?page=${(searchParams.get('page') || 1) - 1}`}
+                                    className="prev">
                                     &laquo;
-                                </a>
+                                </Link>
                                 <a href="#" className="active">
-                                    1
+                                    {searchParams.get('page') || 1}
                                 </a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#">4</a>
-                                <a href="#">5</a>
+                                <a href="#">{Number(searchParams.get('page') || 1) + 1}</a>
+                                <a href="#">{Number(searchParams.get('page') || 1) + 2}</a>
+                                <a href="#">{Number(searchParams.get('page') || 1) + 3}</a>
+                                <a href="#">{Number(searchParams.get('page') || 1) + 4}</a>
+                                <span>...</span>
+                                <a href="#">{Math.ceil(gamesCount / 15)}</a>
                                 <a href="#" className="next">
                                     &raquo;
                                 </a>

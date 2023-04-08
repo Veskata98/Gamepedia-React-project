@@ -1,11 +1,12 @@
 import './game.css';
+
 import defaultImg from '../../../../src/assets/default.jpg';
 
 import { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import * as gameService from '../../../services/gameService';
-import * as request from '../../../services/requester';
+import * as request from '../../../services/backEndRequest';
 
 import { AuthContext } from '../../../contexts/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,9 +19,11 @@ export const Game = () => {
     const [result, setResult] = useState(null);
     const [showResult, setShowResult] = useState(false);
 
+    const { user } = useContext(AuthContext);
+
     const { gameId } = useParams();
 
-    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -31,30 +34,33 @@ export const Game = () => {
 
     useEffect(() => {
         if (user.userId) {
-            fetch('http://localhost:5000/api/games/isLiked', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ gameId, userId: user.userId }),
-            })
-                .then((res) => res.json())
-                .then((data) => setGameIsFavorite(data.message));
+            request
+                .post('http://localhost:5000/api/games/isGameInFavorites', { gameId, userId: user.userId })
+                .then((data) => setGameIsFavorite(data.message))
+                .catch((error) => {
+                    console.error(error);
+                    navigate('/auth/login');
+                });
         }
     }, [user, gameId]);
 
     const addToFavorites = (gameId) => {
         request
-            .post('http://localhost:5000/api/games/favorites', { gameId, userId: user.userId })
+            .post('http://localhost:5000/api/games/favoritizeGame', { gameId, userId: user.userId })
             .then((response) => {
                 setGameIsFavorite((state) => !state);
                 setResult(response.message);
                 setShowResult(true);
 
-                // Fade away the result after 2 seconds
+                // Fade away the result after 1.5 seconds
                 setTimeout(() => {
                     setShowResult(false);
-                }, 2000);
+                }, 1500);
             })
-            .catch((error) => console.error(error));
+            .catch((error) => {
+                console.error(error);
+                navigate('/auth/login');
+            });
     };
 
     return (
