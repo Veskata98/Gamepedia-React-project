@@ -96,9 +96,15 @@
     margin-top: 0;
 }
 
+.platforms-news-item {
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed rgb(51, 51, 51);
+}
+
 .platforms-news-item a {
     font-weight: 500;
     font-size: 1.125rem;
+    color: #fff;
 }
 
 .platforms-showAll-button {
@@ -114,4 +120,17 @@
 
 .platforms-showAll-button:hover {
     background-color: #653ada;
+}
+
+.platform-news-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.platform-news-author {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: 120px;
 }

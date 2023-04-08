@@ -23,8 +23,11 @@ export const Platform = () => {
 
             //Removing HTML Tags and Special Elements from Platform descriptions
             let descr = data.description;
-            descr = descr.replace(/(&nbsp;|<([^>]+)>)/gi, '');
-            descr = descr.replace(/&#39;/gm, "'");
+            descr = descr.replace(/(&nbsp;|<([^>]+)>)/gim, '');
+            descr = descr.replace(/&quot;/gim, '');
+            descr = descr.replace(/&#39;/gim, "'");
+            descr = descr.replace(/;/gim, '');
+
             data.description = descr;
 
             setPlatform(data);
@@ -33,7 +36,7 @@ export const Platform = () => {
         //get top games for the platform
         (async () => {
             const response = await fetch(
-                `https://rawg-video-games-database.p.rapidapi.com/games?key=${RAWG_API_KEY}&platforms=${platformId}&ordering=-rating&page_size=20`,
+                `https://rawg-video-games-database.p.rapidapi.com/games?key=${RAWG_API_KEY}&platforms=${platformId}&page_size=20`,
                 {
                     headers: { 'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY, 'X-RapidAPI-Host': process.env.REACT_APP_RAWG_API_HOST },
                 }

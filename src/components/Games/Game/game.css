@@ -17,16 +17,15 @@
 
 .oneGame-background-img {
     position: fixed;
-
     width: 100%;
-    height: 100vh;
+    height: calc(100vh + 150px);
     top: 0;
     left: 0;
 
     z-index: -1;
     opacity: 0.2;
 
-    object-fit: cover;
+    object-fit: fill;
     object-position: center center;
 }
 
@@ -96,9 +95,9 @@
     right: 1rem;
 
     text-decoration: none;
-    color: #000;
+    color: #fff;
     font-size: 1.5rem;
-    background-color: rgb(174, 179, 184);
+    background-color: none;
 
     padding: 0.5rem 1rem;
 

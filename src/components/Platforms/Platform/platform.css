@@ -29,9 +29,10 @@
     right: 1rem;
 
     text-decoration: none;
-    color: #000;
     font-size: 1.5rem;
-    background-color: rgb(174, 179, 184);
+    color: #fff;
+    font-size: 1.5rem;
+    background-color: none;
 
     padding: 0.5rem 1rem;
 

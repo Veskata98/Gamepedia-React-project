@@ -23,6 +23,7 @@ export const Game = () => {
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         gameService.getById(gameId).then((result) => {
             setGame(result);
         });

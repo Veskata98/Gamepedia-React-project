@@ -56,6 +56,9 @@ export const getById = async (gameId) => {
                 result.trailer = trailer.results[0].data.max;
             }
 
+            result.description_raw = result.description_raw.replace(/#+/gim, '');
+            result.description_raw = result.description_raw.replace(/&#39/gim, "'");
+
             return result;
         });
 };

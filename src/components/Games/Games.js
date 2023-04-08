@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import * as gameService from '../../services/gameService';
+import Spinner from '../Spinner/Spinner';
 
 const PLATFORM_TITLES = {
     pc: 'PC',
@@ -23,6 +24,7 @@ const Games = () => {
     const [games, setGames] = useState([]);
     const [search, setSearch] = useState('');
     const [sectorHeading, setSectorHeading] = useState('');
+    const [loading, setLoading] = useState(true);
 
     const { platformName } = useParams();
     const [searchParams, setSearchParams] = useSearchParams();
@@ -42,6 +44,7 @@ const Games = () => {
 
         gameService.getAll(fetchParams).then((res) => {
             setGames(res.results);
+            setLoading(false);
 
             const platformTitle = PLATFORM_TITLES[fetchParams.platform];
 
@@ -98,34 +101,38 @@ const Games = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="games-container-wrapper">
-                    <div className="games-container">
+                {loading ? (
+                    <Spinner />
+                ) : (
+                    <div className="games-container-wrapper">
+                        <div className="games-container">
+                            {games.length ? (
+                                games.map((x) => <GamesRender key={x.id} game={x} />)
+                            ) : (
+                                <h2>Not found any games with your search criteria.</h2>
+                            )}
+                        </div>
                         {games.length ? (
-                            games.map((x) => <GamesRender key={x.id} game={x} />)
+                            <div className="pagination">
+                                <a href="#" className="prev">
+                                    &laquo;
+                                </a>
+                                <a href="#" className="active">
+                                    1
+                                </a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#" className="next">
+                                    &raquo;
+                                </a>
+                            </div>
                         ) : (
-                            <h2>Not found any games with your search criteria.</h2>
+                            ''
                         )}
                     </div>
-                    {games.length ? (
-                        <div className="pagination">
-                            <a href="#" className="prev">
-                                &laquo;
-                            </a>
-                            <a href="#" className="active">
-                                1
-                            </a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#">4</a>
-                            <a href="#">5</a>
-                            <a href="#" className="next">
-                                &raquo;
-                            </a>
-                        </div>
-                    ) : (
-                        ''
-                    )}
-                </div>
+                )}
             </div>
         </section>
     );
