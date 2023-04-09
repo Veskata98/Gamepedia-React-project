@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthContext';
 
+import * as request from '../../../services/backEndRequest';
+
 export const Login = () => {
     const [loginAuth, setLoginAuth] = useState({ username: '', password: '' });
     const [loginError, setLoginError] = useState('');
@@ -30,28 +32,21 @@ export const Login = () => {
                 throw new Error('All fields are required');
             }
 
-            const response = await fetch('http://localhost:5000/api/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username: loginUsername, password: loginPassword }),
-            });
+            await request
+                .post('/api/auth/login', { username: loginUsername, password: loginPassword }, (path) => navigate(path))
+                .then((data) => {
+                    const { authToken, userId, username } = data;
+                    setUser({ username, userId });
 
-            if (!response.ok) {
-                const errorMsg = (await response.json()).error;
-                throw Error(errorMsg);
-            }
+                    localStorage.setItem('authToken', authToken);
+                    localStorage.setItem('user', username);
+                    localStorage.setItem('userId', userId);
 
-            const { token, userId, username } = await response.json();
-            setUser({ username, userId });
+                    navigate('/');
 
-            localStorage.setItem('token', token);
-            localStorage.setItem('user', username);
-            localStorage.setItem('userId', userId);
-
-            navigate('/');
-
-            setLoginAuth({});
-            setLoginError({});
+                    setLoginAuth({});
+                    setLoginError({});
+                });
         } catch (error) {
             setLoginError(error.message);
         }

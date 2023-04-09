@@ -1,4 +1,5 @@
-import "./forum.css";
+import { Link } from 'react-router-dom';
+import './forum.css';
 
 export const Forum = () => {
     return (
@@ -13,9 +14,9 @@ export const Forum = () => {
                     </a>
 
                     <div className="discussions-container">
-                        <a className="create-discussion-link" href="/forum/discussions/create">
+                        <Link className="create-discussion-link" to="/forum/discussions/create">
                             Create discussion
-                        </a>
+                        </Link>
                         <a className="discussion-card" href="/forum/discussions/{{_id}}">
                             <div className="discussion-container">
                                 <h3 className="discussion-title">title</h3>

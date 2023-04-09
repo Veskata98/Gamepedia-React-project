@@ -36,8 +36,9 @@ export const Register = () => {
                 throw new Error('Password do not match');
             }
 
-            const response = await fetch('http://localhost:5000/api/register', {
+            const response = await fetch('http://localhost:5000/api/auth/register', {
                 method: 'POST',
+                credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username: regUsername, password: regPassword, repass: regRepass }),
             });
@@ -47,10 +48,10 @@ export const Register = () => {
                 throw Error(errorMsg);
             }
 
-            const { token, userId, username } = await response.json();
+            const { authToken, userId, username } = await response.json();
             setUser({ username, userId });
 
-            localStorage.setItem('token', token);
+            localStorage.setItem('authToken', authToken);
             localStorage.setItem('user', username);
             localStorage.setItem('userId', userId);
 

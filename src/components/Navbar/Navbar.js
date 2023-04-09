@@ -1,6 +1,8 @@
 import './navbar.css';
 import logo from '../../assets/logo.png';
 
+import * as request from '../../services/backEndRequest';
+
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import gemepediaTextLogo from '../../assets/gemepedia-text-logo.png';
 
@@ -13,13 +15,21 @@ export const Navbar = () => {
 
     const navigate = useNavigate();
 
-    const logoutHandler = (e) => {
+    const logoutHandler = async (e) => {
         e.preventDefault();
 
-        localStorage.clear();
-        setUser({});
+        try {
+            await request.post('/api/auth/logout', { userId: user.userId }, (path) => navigate(path));
 
-        navigate('/');
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('user');
+            localStorage.removeItem('userId');
+            setUser({});
+
+            navigate('/');
+        } catch (err) {
+            console.log(err.message);
+        }
     };
 
     return (

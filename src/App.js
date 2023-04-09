@@ -21,6 +21,7 @@ import { NewsProvider } from './contexts/NewsContext';
 
 import { Platform } from './components/Platforms/Platform/Platform';
 import NotFound from './components/NotFound/NotFound';
+import CreateDiscussion from './components/Forum/Discussions/CreateDiscussion/CreateDiscussion';
 
 const App = () => {
     return (
@@ -39,6 +40,7 @@ const App = () => {
                         <Route path="/platforms/:platformId" element={<Platform />} />
 
                         <Route path="/forum" element={<Forum />} />
+                        <Route path="/forum/discussions/create" element={<CreateDiscussion />} />
 
                         <Route path="/auth/login" element={<Login />} />
                         <Route path="/auth/register" element={<Register />} />

@@ -1,20 +1,23 @@
-const request = async (method, url, data) => {
+const baseUrl = 'http://localhost:5000';
+
+const request = async (method, url, data, navigateCallback) => {
     try {
-        const token = localStorage.getItem('token');
+        const authToken = localStorage.getItem('authToken');
 
         let headers = {};
 
-        if (token) {
-            headers['token'] = token;
+        if (authToken) {
+            headers['authToken'] = authToken;
         }
 
         let buildRequest;
 
         if (method === 'GET') {
-            buildRequest = fetch(url, { headers });
+            buildRequest = fetch(baseUrl + url, { headers });
         } else {
-            buildRequest = fetch(url, {
+            buildRequest = fetch(baseUrl + url, {
                 method,
+                credentials: 'include',
                 headers: {
                     ...headers,
                     'content-type': 'application/json',
@@ -25,9 +28,21 @@ const request = async (method, url, data) => {
         const response = await buildRequest;
         const result = await response.json();
 
+        if (response.url === 'http://localhost:5000/api/auth/login' && (response.status === 403 || response.status === 401)) {
+            throw new Error(result.message);
+        }
+
+        if (response.status === 403 || response.status === 401) {
+            return navigateCallback('/auth/login');
+        }
+
+        if (response.status === 304) {
+            throw new Error('Something went wrong!');
+        }
+
         return result;
     } catch (error) {
-        console.log(error);
+        throw new Error(error.message);
     }
 };
 

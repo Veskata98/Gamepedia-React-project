@@ -170,7 +170,7 @@ const Platforms = () => {
                 });
                 const rawPlatforms = (await platformResponse.json()).results;
 
-                const platformImgsResponse = await fetch('http://localhost:5000/api/platforms/images');
+                const platformImgsResponse = await fetch('http://localhost:5000/api/platforms/images', { credentials: 'include' });
                 const rawPlatformImgs = (await platformImgsResponse.json()).imageUrls;
 
                 const sortedImgs = rawPlatformImgs.sort((a, b) => {
