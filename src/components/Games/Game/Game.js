@@ -42,7 +42,7 @@ export const Game = () => {
                     navigate('/auth/login');
                 });
         }
-    }, [user, gameId]);
+    }, [user, gameId, navigate]);
 
     const addToFavorites = (gameId) => {
         request

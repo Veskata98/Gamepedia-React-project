@@ -1,13 +1,14 @@
-.header {
+.navbar {
     background-color: #7952e2;
     position: relative;
     z-index: 100;
     box-shadow: 0px 10px 12px -10px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 0px 10px 12px -10px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 10px 12px -10px rgba(0, 0, 0, 0.75);
+    max-height: 62px;
 }
 
-.header-nav {
+.navbar-nav {
     display: flex;
     align-items: center;
     width: 80%;
@@ -15,34 +16,34 @@
     justify-content: space-between;
 }
 
-.header-link {
+.navbar-link {
     text-decoration: none;
 }
 
-.header-logo-container {
+.navbar-logo-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.header-brand-logo {
+.navbar-brand-logo {
     width: 3.25rem;
     margin-right: 0.75rem;
 }
-.header-brand-name {
+.navbar-brand-name {
     width: 8.5rem;
 }
 
-.header-logo-title {
+.navbar-logo-title {
     font-size: 2rem;
     color: #fff;
 }
 
-.header-logo-title a {
+.navbar-logo-title a {
     color: #fff;
 }
 
-.header-list,
+.navbar-list,
 .user-nav-list {
     display: flex;
     gap: 1.5rem;
@@ -52,35 +53,35 @@
     padding-left: 0;
 }
 
-.header-item:first-of-type {
+.navbar-item:first-of-type {
     display: flex;
     align-items: center;
 }
 
-.header-item a {
+.navbar-item a {
     text-decoration: none;
     font-size: 1.25rem;
     color: #fff;
     font-weight: 500;
 }
 
-.header-item a.active {
+.navbar-item a.active {
     background-color: unset;
     text-decoration: underline;
 }
 
-.header-item a:hover {
+.navbar-item a:hover {
     text-decoration: underline;
 }
 
-.header-item-username {
+.navbar-item-username {
     text-decoration: none;
     font-size: 1.3rem;
     font-weight: 500;
     color: #00ffff;
 }
 
-.header-logout-form {
+.navbar-logout-form {
     margin: 0;
 }
 

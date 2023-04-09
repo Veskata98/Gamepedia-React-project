@@ -20,6 +20,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import { NewsProvider } from './contexts/NewsContext';
 
 import { Platform } from './components/Platforms/Platform/Platform';
+import NotFound from './components/NotFound/NotFound';
 
 const App = () => {
     return (
@@ -41,6 +42,8 @@ const App = () => {
 
                         <Route path="/auth/login" element={<Login />} />
                         <Route path="/auth/register" element={<Register />} />
+
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                 </Main>
                 <Footer />

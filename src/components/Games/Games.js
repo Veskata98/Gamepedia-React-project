@@ -24,7 +24,9 @@ const PLATFORM_TITLES = {
 const Games = () => {
     const [games, setGames] = useState([]);
     const [gamesCount, setGamesCount] = useState();
+
     const [currentPage, setCurrentPage] = useState(1);
+
     const [search, setSearch] = useState('');
     const [sectorHeading, setSectorHeading] = useState('');
     const [loading, setLoading] = useState(true);
@@ -57,7 +59,7 @@ const Games = () => {
             if (fetchParams.search) {
                 setSectorHeading(`Results for: ${fetchParams.search}`);
             } else {
-                setSectorHeading(`${platformTitle} Games` || 'Trending Games');
+                setSectorHeading(platformName ? `${platformTitle} Games` : 'Trending Games');
             }
         });
     }, [platformName, searchParams]);
