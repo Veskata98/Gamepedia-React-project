@@ -1,38 +1,17 @@
 import './navbar.css';
 import logo from '../../assets/logo.png';
 
-import * as request from '../../services/expressAPI';
-
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import gemepediaTextLogo from '../../assets/gemepedia-text-logo.png';
 
 import { useContext } from 'react';
 
 import { AuthContext } from '../../contexts/AuthContext';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import Logout from './Logout/Logout';
+
 
 export const Navbar = () => {
-    const { user, setUser } = useContext(AuthContext);
-
-    const navigate = useNavigate();
-
-    const logoutHandler = async (e) => {
-        e.preventDefault();
-
-        try {
-            await request.post('/api/auth/logout', { userId: user.userId }, (path) => navigate(path));
-
-            localStorage.removeItem('authToken');
-            localStorage.removeItem('user');
-            localStorage.removeItem('userId');
-            setUser({});
-
-            navigate('/');
-        } catch (err) {
-            console.log(err.message);
-        }
-    };
+    const { user } = useContext(AuthContext);
 
     return (
         <header className="navbar">
@@ -69,9 +48,7 @@ export const Navbar = () => {
                             <p className="navbar-item-username">{user.username}</p>
                         </li>
                         <li className="navbar-item">
-                            <form className="navbar-logout-form" onSubmit={logoutHandler}>
-                                <button data-hover="Log Out" className="logout-btn"><FontAwesomeIcon icon={faRightFromBracket} style={{ color: "#ffffff", }} /></button>
-                            </form>
+                            <Logout />
                         </li>
                     </ul>
                 ) : (
