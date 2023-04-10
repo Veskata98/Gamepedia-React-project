@@ -9,6 +9,8 @@ import gemepediaTextLogo from '../../assets/gemepedia-text-logo.png';
 import { useContext } from 'react';
 
 import { AuthContext } from '../../contexts/AuthContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 export const Navbar = () => {
     const { user, setUser } = useContext(AuthContext);
@@ -68,7 +70,7 @@ export const Navbar = () => {
                         </li>
                         <li className="navbar-item">
                             <form className="navbar-logout-form" onSubmit={logoutHandler}>
-                                <button className="logout-btn">Logout</button>
+                                <button data-hover="Log Out" className="logout-btn"><FontAwesomeIcon icon={faRightFromBracket} style={{ color: "#ffffff", }} /></button>
                             </form>
                         </li>
                     </ul>

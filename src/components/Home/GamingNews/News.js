@@ -1,4 +1,4 @@
-export const News = ({ news }) => {
+const GamingNews = ({ news }) => {
     return (
         <article className="home-news-article">
             <img src={news.image} alt="news_img" className="home-news-article-img" />
@@ -13,3 +13,5 @@ export const News = ({ news }) => {
         </article>
     );
 };
+
+export default GamingNews;

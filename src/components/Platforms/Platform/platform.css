@@ -3,6 +3,7 @@
     margin: auto;
 
     position: relative;
+    min-height: inherit;
 }
 
 .platform-details-title {

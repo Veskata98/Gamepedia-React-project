@@ -11,6 +11,7 @@ import * as request from '../../../services/expressAPI';
 import { AuthContext } from '../../../contexts/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import Spinner from '../../Spinner/Spinner';
 
 const STORE_NAMES = {
     1: 'Steam',
@@ -33,6 +34,8 @@ export const Game = () => {
     const [result, setResult] = useState(null);
     const [showResult, setShowResult] = useState(false);
 
+    const [loading, setLoading] = useState(true);
+
     const { user } = useContext(AuthContext);
 
     const { gameId } = useParams();
@@ -46,6 +49,7 @@ export const Game = () => {
         gameService.getById(gameId).then((result) => {
             setGame(result);
             fetch(`https://api.rawg.io/api/games/${result.id}/stores?key=${API_KEY}`).then(res => res.json()).then(data => setStores(data.results));
+            setLoading(false);
         });
     }, [gameId]);
 
@@ -82,61 +86,67 @@ export const Game = () => {
 
     return (
         <section className="oneGame-section">
-            <img className="oneGame-background-img" src={game.background_image || defaultImg} alt="background-img" />
-            <div className="oneGame-container">
-                <Link className="oneGame-return-link" to={-1}>
-                    Back
-                </Link>
-                <h1 className="oneGame-title">
-                    {game.name}
-                    {user.username && (
-                        <button className="button-favorites" onClick={() => addToFavorites(game.id)}>
-                            {gamesIsFavorite ? (
-                                <FontAwesomeIcon icon={faStar} size="2xl" style={{ color: '#ffec00' }} />
-                            ) : (
-                                <FontAwesomeIcon icon={faStar} size="2xl" style={{ color: '#645a00' }} />
+            {loading
+                ? <Spinner />
+                : <>
+                    <img className="oneGame-background-img" src={game.background_image || defaultImg} alt="background-img" />
+                    <div className="oneGame-container">
+                        <Link className="oneGame-return-link" to={-1}>
+                            Back
+                        </Link>
+                        <h1 className="oneGame-title">
+                            {game.name}
+                            {user.username && (
+                                <button className="button-favorites" onClick={() => addToFavorites(game.id)}>
+                                    {gamesIsFavorite ? (
+                                        <FontAwesomeIcon icon={faStar} size="2xl" style={{ color: '#ffec00' }} />
+                                    ) : (
+                                        <FontAwesomeIcon icon={faStar} size="2xl" style={{ color: '#645a00' }} />
+                                    )}
+                                </button>
                             )}
-                        </button>
-                    )}
-                    {showResult && <span className="animated fadeOut">{result}</span>}
-                </h1>
-                <p className="omeGame bold_p">
-                    Release Date:
-                    <span className="omeGame normal_span"> {game.released}</span>
-                </p>
-                <p className="omeGame bold_p">
-                    Platforms:
-                    <span className="omeGame normal_span"> {game.availablePlatforms}</span>
-                </p>
-                <p className="omeGame bold_p last">
-                    Genres:
-                    <span className="omeGame normal_span"> {game.genres}</span>
-                </p>
-                <h5 className="oneGame-description-title">Description:</h5>
-                <p className="oneGame-description">{game.description_raw}</p>
+                            {showResult && <span className="animated fadeOut">{result}</span>}
+                        </h1>
+                        <p className="omeGame bold_p">
+                            Release Date:
+                            <span className="omeGame normal_span"> {game.released}</span>
+                        </p>
+                        <p className="omeGame bold_p">
+                            Platforms:
+                            <span className="omeGame normal_span"> {game.availablePlatforms}</span>
+                        </p>
+                        <p className="omeGame bold_p last">
+                            Genres:
+                            <span className="omeGame normal_span"> {game.genres}</span>
+                        </p>
+                        <h5 className="oneGame-description-title">Description:</h5>
+                        <p className="oneGame-description">{game.description_raw}</p>
 
-                {game.trailer && (
-                    <>
-                        <h5 className="oneGame-description-title">Game Trailer</h5>
-                        <div className="trailer-container">
-                            <video width="100%" height="600" controls src={game.trailer}>
-                                Your browser does not support the video tag.
-                            </video>
+                        {game.trailer && (
+                            <>
+                                <h5 className="oneGame-description-title">Game Trailer</h5>
+                                <div className="trailer-container">
+                                    <video width="100%" height="600" controls src={game.trailer}>
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </>
+                        )}
+
+                        <p className='oneGame-stores-title'>Stores</p>
+                        <div className='oneGame-stores-links'>
+                            {stores.map(s =>
+                                <Link key={s.id} className='oneGame-stores-link' to={s.url} target='_blank'>
+                                    <div className='oneGane-stores-img-wrapper'>
+                                        <img className="oneGame-stores-img" src={`${process.env.PUBLIC_URL}/stores/${STORE_NAMES[s.store_id]}.png`} alt={STORE_NAMES[s.store_id]} />
+                                    </div>
+                                    {STORE_NAMES[s.store_id]}
+                                </Link>)}
                         </div>
-                    </>
-                )}
+                    </div>
+                </>
+            }
 
-                <p className='oneGame-stores-title'>Stores</p>
-                <div className='oneGame-stores-links'>
-                    {stores.map(s =>
-                        <Link key={s.id} className='oneGame-stores-link' to={s.url} target='_blank'>
-                            <div className='oneGane-stores-img-wrapper'>
-                                <img className="oneGame-stores-img" src={`${process.env.PUBLIC_URL}/stores/${STORE_NAMES[s.store_id]}.png`} alt={STORE_NAMES[s.store_id]} />
-                            </div>
-                            {STORE_NAMES[s.store_id]}
-                        </Link>)}
-                </div>
-            </div>
         </section>
     );
 };

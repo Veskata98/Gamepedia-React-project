@@ -30,6 +30,7 @@
     width: 3.25rem;
     margin-right: 0.75rem;
 }
+
 .navbar-brand-name {
     width: 8.5rem;
 }
@@ -95,8 +96,29 @@
     background: none;
 
     line-height: 1.45;
+    position: relative;
 }
 
 .logout-btn:hover {
     text-decoration: underline;
+}
+
+.logout-btn:before {
+    content: attr(data-hover);
+    visibility: hidden;
+    opacity: 0;
+    color: #fff;
+    transition: opacity 1s ease-in-out;
+
+    position: absolute;
+    z-index: 1;
+    left: 30%;
+    top: 50%;
+    font-size: 0.9rem;
+    width: 100px;
+}
+
+.logout-btn:hover:before {
+    opacity: 1;
+    visibility: visible;
 }

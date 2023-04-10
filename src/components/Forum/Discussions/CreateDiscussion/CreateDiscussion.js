@@ -18,8 +18,12 @@ const CreateDiscussion = () => {
     const submitHandler = (e) => {
         e.preventDefault();
         request
-            .post('http://localhost:5000/api/forum/discussions/create', { userId: user.userId, discussion }, (path) => navigate(path))
-            .then((result) => console.log(result.message));
+            .post('/api/forum/discussions/create', { userId: user.userId, discussion })
+            .then((result) => console.log(result.message))
+            .catch(error => {
+                console.error(error.message);
+                navigate('/auth/login');
+            });
     };
 
     return (
