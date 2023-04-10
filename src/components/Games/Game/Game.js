@@ -6,15 +6,29 @@ import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import * as gameService from '../../../services/gameService';
-import * as request from '../../../services/backEndRequest';
+import * as request from '../../../services/expressAPI';
 
 import { AuthContext } from '../../../contexts/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
+const STORE_NAMES = {
+    1: 'Steam',
+    2: 'Xbox Store',
+    3: 'PlayStation Store',
+    4: 'App Store',
+    5: 'GOG',
+    6: 'Nintendo Store',
+    7: 'Xbox 360 Store',
+    8: 'Google Play',
+    9: 'itch.io',
+    11: 'Epic Games',
+};
+
 export const Game = () => {
     const [game, setGame] = useState({});
     const [gamesIsFavorite, setGameIsFavorite] = useState();
+    const [stores, setStores] = useState([]);
 
     const [result, setResult] = useState(null);
     const [showResult, setShowResult] = useState(false);
@@ -25,17 +39,20 @@ export const Game = () => {
 
     const navigate = useNavigate();
 
+
     useEffect(() => {
+        const API_KEY = process.env.REACT_APP_RAWG_GAMING_API_KEY;
         window.scrollTo(0, 0);
         gameService.getById(gameId).then((result) => {
             setGame(result);
+            fetch(`https://api.rawg.io/api/games/${result.id}/stores?key=${API_KEY}`).then(res => res.json()).then(data => setStores(data.results));
         });
     }, [gameId]);
 
     useEffect(() => {
         if (user.userId) {
             request
-                .post('http://localhost:5000/api/games/isGameInFavorites', { gameId, userId: user.userId })
+                .post('/api/games/isGameInFavorites', { gameId, userId: user.userId })
                 .then((data) => setGameIsFavorite(data.message))
                 .catch((error) => {
                     console.error(error);
@@ -46,7 +63,7 @@ export const Game = () => {
 
     const addToFavorites = (gameId) => {
         request
-            .post('http://localhost:5000/api/games/favoritizeGame', { gameId, userId: user.userId })
+            .post('/api/games/favoritizeGame', { gameId, userId: user.userId })
             .then((response) => {
                 setGameIsFavorite((state) => !state);
                 setResult(response.message);
@@ -108,6 +125,17 @@ export const Game = () => {
                         </div>
                     </>
                 )}
+
+                <p className='oneGame-stores-title'>Stores</p>
+                <div className='oneGame-stores-links'>
+                    {stores.map(s =>
+                        <Link key={s.id} className='oneGame-stores-link' to={s.url} target='_blank'>
+                            <div className='oneGane-stores-img-wrapper'>
+                                <img className="oneGame-stores-img" src={`${process.env.PUBLIC_URL}/stores/${STORE_NAMES[s.store_id]}.png`} alt={STORE_NAMES[s.store_id]} />
+                            </div>
+                            {STORE_NAMES[s.store_id]}
+                        </Link>)}
+                </div>
             </div>
         </section>
     );

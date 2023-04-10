@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import * as request from '../../../../services/backEndRequest';
+import * as request from '../../../../services/expressAPI';
 import { AuthContext } from '../../../../contexts/AuthContext';
 
 const CreateDiscussion = () => {

@@ -26,14 +26,20 @@ const request = async (method, url, data, navigateCallback) => {
             });
         }
         const response = await buildRequest;
+        const newAuthToken = response.headers.get('newAuthToken')
+
+        if (newAuthToken) {
+            localStorage.setItem("authToken", newAuthToken)
+        }
+
         const result = await response.json();
 
-        if (response.url === 'http://localhost:5000/api/auth/login' && (response.status === 403 || response.status === 401)) {
+        if (response.url === 'http://localhost:5000/api/auth/login' && response.status === 401) {
             throw new Error(result.message);
         }
 
-        if (response.status === 403 || response.status === 401) {
-            return navigateCallback('/auth/login');
+        if (response.status === 401) {
+            throw new Error('Unauthorized access!');
         }
 
         if (response.status === 304) {
@@ -41,6 +47,7 @@ const request = async (method, url, data, navigateCallback) => {
         }
 
         return result;
+
     } catch (error) {
         throw new Error(error.message);
     }

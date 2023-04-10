@@ -1,4 +1,4 @@
-import * as request from './requester';
+import * as request from './thirdPartyAPI';
 
 const baseUrl = 'https://api.rawg.io/api/games';
 

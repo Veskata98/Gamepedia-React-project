@@ -3,10 +3,12 @@ import './platforms.css';
 import { useEffect, useState } from 'react';
 import { PlatformTemplate } from './PlatformTemplate';
 import { Link } from 'react-router-dom';
+import Spinner from '../Spinner/Spinner';
 
 const Platforms = () => {
     const [platforms, setPlatforms] = useState([]);
     const [showAll, setShowAll] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const techNews = [
         {
@@ -188,6 +190,7 @@ const Platforms = () => {
             } catch (error) {
                 console.error(error);
             }
+            setLoading(false);
         };
 
         fetchData();
@@ -199,44 +202,50 @@ const Platforms = () => {
 
     return (
         <section className="plaftorms-section">
-            <div className="platforms-titles">
-                <h1 className="platforms-heading-main">Gaming Platforms</h1>
-                <h1 className="platforms-heading-news">Tech News</h1>
-            </div>
-            <div className="platforms-wrapper">
-                <div className="platforms-main">
-                    <div className="platforms-container">
-                        {platforms.slice(0, 15).map((x) => (
-                            <PlatformTemplate key={x.id} platform={x} />
-                        ))}
-                        {showAll && platforms.slice(16, -1).map((x) => <PlatformTemplate key={x.id} platform={x} />)}
+            {loading
+                ? <Spinner />
+                : <>
+                    <div className="platforms-titles">
+                        <h1 className="platforms-heading-main">Gaming Platforms</h1>
+                        <h1 className="platforms-heading-news">Tech News</h1>
                     </div>
-                    <button className="platforms-showAll-button" onClick={showAllHandler}>
-                        {showAll ? 'Show less' : 'Show All'}
-                    </button>
-                </div>
-                <div className="platforms-news">
-                    <ul className="platforms-news-list">
-                        {techNews.map((x) => {
-                            return (
-                                <li className="platforms-news-item">
-                                    <Link to={x.url} target="_blank">
-                                        {x.title}
-                                    </Link>
-                                    <div className="platform-news-info">
-                                        <span className="platform-news-author">{x.author || '-'}</span>
-                                        <span className="platform-news-date">
-                                            {new Date(x.publishedAt).toLocaleString(
-                                                ('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' })
-                                            )}
-                                        </span>
-                                    </div>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </div>
-            </div>
+                    <div className="platforms-wrapper">
+                        <div className="platforms-main">
+                            <div className="platforms-container">
+                                {platforms.slice(0, 15).map((x) => (
+                                    <PlatformTemplate key={x.id} platform={x} />
+                                ))}
+                                {showAll && platforms.slice(16, -1).map((x) => <PlatformTemplate key={x.id} platform={x} />)}
+                            </div>
+                            <button className="platforms-showAll-button" onClick={showAllHandler}>
+                                {showAll ? 'Show less' : 'Show All'}
+                            </button>
+                        </div>
+                        <div className="platforms-news">
+                            <ul className="platforms-news-list">
+                                {techNews.map((x) => {
+                                    return (
+                                        <li className="platforms-news-item">
+                                            <Link to={x.url} target="_blank">
+                                                {x.title}
+                                            </Link>
+                                            <div className="platform-news-info">
+                                                <span className="platform-news-author">{x.author || '-'}</span>
+                                                <span className="platform-news-date">
+                                                    {new Date(x.publishedAt).toLocaleString(
+                                                        ('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' })
+                                                    )}
+                                                </span>
+                                            </div>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                    </div>
+                </>
+            }
+
         </section>
     );
 };

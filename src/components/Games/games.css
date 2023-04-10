@@ -3,6 +3,7 @@
     margin: auto;
 
     position: relative;
+    min-height: inherit;
 }
 
 .games-section-header {
@@ -133,6 +134,7 @@
     text-decoration: none;
     color: #000;
 }
+
 .games-name a:hover {
     color: rgb(88, 88, 88);
     text-decoration: underline;

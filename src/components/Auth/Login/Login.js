@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthContext';
 
-import * as request from '../../../services/backEndRequest';
+import * as request from '../../../services/expressAPI';
 
 export const Login = () => {
     const [loginAuth, setLoginAuth] = useState({ username: '', password: '' });
@@ -32,8 +32,7 @@ export const Login = () => {
                 throw new Error('All fields are required');
             }
 
-            await request
-                .post('/api/auth/login', { username: loginUsername, password: loginPassword }, (path) => navigate(path))
+            await request.post('/api/auth/login', { username: loginUsername, password: loginPassword })
                 .then((data) => {
                     const { authToken, userId, username } = data;
                     setUser({ username, userId });
@@ -63,7 +62,13 @@ export const Login = () => {
             <div className="login-block">
                 <form className="login-form" onSubmit={loginHandler}>
                     <h1>Login</h1>
-                    <input type="text" value={loginAuth.username} placeholder="Username" name="username" onChange={loginInputHandler} />
+                    <input
+                        type="text"
+                        value={loginAuth.username}
+                        placeholder="Username"
+                        name="username"
+                        onChange={loginInputHandler}
+                    />
                     <input
                         type="password"
                         value={loginAuth.password}

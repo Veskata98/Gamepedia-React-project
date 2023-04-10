@@ -1,7 +1,7 @@
 import './navbar.css';
 import logo from '../../assets/logo.png';
 
-import * as request from '../../services/backEndRequest';
+import * as request from '../../services/expressAPI';
 
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import gemepediaTextLogo from '../../assets/gemepedia-text-logo.png';

@@ -81,12 +81,33 @@
 }
 
 .oneGame-stores-link {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .oneGame-stores-link:hover {
     color: rgb(174, 179, 184);
+}
+
+.oneGane-stores-img-wrapper {
+    background-color: #fff;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.oneGame-stores-img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
 }
 
 .oneGame-return-link {
@@ -120,6 +141,11 @@
     cursor: pointer;
 }
 
+.button-favorites .fa-star {
+    width: 50px;
+    height: 50px;
+}
+
 .animated {
     -webkit-animation-duration: 2s;
     animation-duration: 2s;
@@ -139,6 +165,7 @@
     0% {
         opacity: 1;
     }
+
     100% {
         opacity: 0;
     }
@@ -148,6 +175,7 @@
     0% {
         opacity: 1;
     }
+
     100% {
         opacity: 0;
     }
