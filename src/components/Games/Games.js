@@ -46,12 +46,13 @@ const Games = () => {
     };
 
     useEffect(() => {
-        const fetchParams = { platform: platformName || '', search: searchParams.get('search') };
+        const fetchParams = { platform: platformName || '', search: searchParams.get('search'), page: searchParams.get('page') };
         setSearch(searchParams.get('search') || '');
 
         gameService.getAll(fetchParams).then((res) => {
             setGamesCount(res.count);
             setGames(res.results);
+            setCurrentPage(Number(searchParams.get('page')) || 1);
 
             const platformTitle = PLATFORM_TITLES[fetchParams.platform];
 
@@ -63,6 +64,46 @@ const Games = () => {
             setLoading(false);
         });
     }, [platformName, searchParams]);
+
+    const gamesPerPage = 15;
+    const totalPages = Math.ceil(gamesCount / gamesPerPage);
+
+    const getLink = (page) => {
+        return `/games/${platformName ? platformName : ''}?page=${page}${searchParams.get('search') ? `&search=${searchParams.get('search')}` : ''}`;
+    }
+
+    const getPageLink = (page, label) => {
+        const isActive = page === currentPage;
+        return (
+            <Link to={getLink(page)} className={isActive ? 'active' : ''}>
+                {label}
+            </Link>
+        );
+    }
+
+    const getPages = () => {
+        const pages = [];
+        const maxPagesToShow = 3;
+
+        for (let i = currentPage - 1; i >= currentPage - maxPagesToShow && i >= 1; i--) {
+            pages.unshift(getPageLink(i, i));
+        }
+
+        pages.push(getPageLink(currentPage, currentPage));
+
+        for (let i = currentPage + 1; i <= currentPage + maxPagesToShow && i <= totalPages; i++) {
+            pages.push(getPageLink(i, i));
+        }
+
+        if (pages[0] && pages[0].props.children !== 1) {
+            pages.unshift(<span key="ellipsis1">...</span>);
+        }
+        if (pages[pages.length - 1] && pages[pages.length - 1].props.children !== totalPages) {
+            pages.push(<span key="ellipsis2">...</span>);
+        }
+
+        return pages;
+    }
 
     return (
         <section className="games-section">
@@ -121,26 +162,27 @@ const Games = () => {
                                         <h2>Not found any games with your search criteria.</h2>
                                     )}
                                 </div>
-                                {games.length ? (
-                                    <div className="pagination">
-                                        <Link
-                                            disabled={true}
-                                            to={`/games/${platformName ? platformName : ''}?page=${(searchParams.get('page') || 1) - 1}`}
-                                            className="prev">
-                                            &laquo;
-                                        </Link>
-                                        <a href="#" className="active">
-                                            {searchParams.get('page') || 1}
-                                        </a>
-                                        <a href="#">{Number(searchParams.get('page') || 1) + 1}</a>
-                                        <a href="#">{Number(searchParams.get('page') || 1) + 2}</a>
-                                        <a href="#">{Number(searchParams.get('page') || 1) + 3}</a>
-                                        <a href="#">{Number(searchParams.get('page') || 1) + 4}</a>
-                                        <span>...</span>
-                                        <a href="#">{Math.ceil(gamesCount / 15)}</a>
-                                        <a href="#" className="next">
-                                            &raquo;
-                                        </a>
+                                {gamesCount > 15 ? (
+                                    <div className='pagination'>
+                                        {currentPage > 1 &&
+                                            <Link
+                                                to={getLink(currentPage - 1)}
+                                                className="prev"
+                                            >
+                                                &laquo;
+                                            </Link>
+                                        }
+
+                                        {getPages()}
+                                        {currentPage !== totalPages &&
+                                            <Link
+                                                disabled={currentPage === totalPages}
+                                                to={getLink(currentPage + 1)}
+                                                className="next"
+                                            >
+                                                &raquo;
+                                            </Link>
+                                        }
                                     </div>
                                 ) : (
                                     ''

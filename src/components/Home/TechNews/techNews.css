@@ -1,0 +1,24 @@
+.home-subheading.techNews {
+    margin-bottom: 1rem;
+}
+
+.home-techNews-container {
+    margin-bottom: 1.5rem;
+}
+
+.home-techNews-link {
+    text-decoration: none;
+    margin-bottom: 2rem;
+}
+
+.home-textNews-title {
+    color: rgb(51, 51, 51);
+    font-style: italic;
+}
+
+.home-techNews-desc {
+    color: #fff;
+    font-size: 0.9rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed rgb(51, 51, 51);
+}

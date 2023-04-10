@@ -193,18 +193,20 @@
 }
 
 .pagination a.active {
-    background-color: #49bcc6;
     color: white;
+    text-decoration: underline;
+    background-color: unset;
 }
 
 .pagination a:hover:not(.active) {
-    background-color: #ddd;
+    text-decoration: underline;
 }
 
 .pagination a.prev,
 .pagination a.next {
     background-color: #49bcc6;
     color: white;
+    margin: 0 0.5rem;
 }
 
 .pagination a.disabled {

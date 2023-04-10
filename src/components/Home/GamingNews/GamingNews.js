@@ -1,3 +1,5 @@
+import './gamingNews.css';
+
 const GamingNews = ({ news }) => {
     return (
         <article className="home-news-article">

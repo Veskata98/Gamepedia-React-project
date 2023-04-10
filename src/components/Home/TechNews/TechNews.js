@@ -1,3 +1,5 @@
+import './techNews.css';
+
 const TechNews = ({ news }) => {
     return (
         <div className="home-techNews-container">
