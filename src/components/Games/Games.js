@@ -1,7 +1,7 @@
 import './games.css';
 
 import { useEffect, useState } from 'react';
-import { Link, NavLink, useParams, useSearchParams } from 'react-router-dom';
+import { Link, NavLink, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { GamesRender } from './GamesRender';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,6 +10,8 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import * as gameService from '../../services/gameService';
 
 import Spinner from '../Spinner/Spinner';
+
+const gamesPerPage = 15;
 
 const PLATFORM_TITLES = {
     pc: 'PC',
@@ -24,6 +26,7 @@ const PLATFORM_TITLES = {
 const Games = () => {
     const [games, setGames] = useState([]);
     const [gamesCount, setGamesCount] = useState();
+    const [totalPages, setTotalPages] = useState();
 
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -31,8 +34,38 @@ const Games = () => {
     const [sectorHeading, setSectorHeading] = useState('');
     const [loading, setLoading] = useState(true);
 
+    const navigate = useNavigate();
+
     const { platformName } = useParams();
     const [searchParams, setSearchParams] = useSearchParams();
+
+    useEffect(() => {
+        setLoading(true);
+
+        const fetchParams = { platform: platformName || '', search: searchParams.get('search'), page: searchParams.get('page') };
+        setSearch(searchParams.get('search') || '');
+
+        gameService.getAll(fetchParams)
+            .then((res) => {
+                setGamesCount(res.count);
+                setGames(res.results);
+                setCurrentPage(Number(searchParams.get('page')) || 1);
+                setTotalPages(Math.ceil(res.count / gamesPerPage));
+
+                const platformTitle = PLATFORM_TITLES[fetchParams.platform];
+
+                if (fetchParams.search) {
+                    setSectorHeading(`Results for: ${fetchParams.search}`);
+                } else {
+                    setSectorHeading(platformName ? `${platformTitle} Games` : 'Trending Games');
+                }
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error(error.message);
+                navigate('/games');
+            })
+    }, [platformName, searchParams, navigate]);
 
     const searchInputHandler = (e) => {
         setSearch(e.target.value);
@@ -45,29 +78,6 @@ const Games = () => {
         });
     };
 
-    useEffect(() => {
-        const fetchParams = { platform: platformName || '', search: searchParams.get('search'), page: searchParams.get('page') };
-        setSearch(searchParams.get('search') || '');
-
-        gameService.getAll(fetchParams).then((res) => {
-            setGamesCount(res.count);
-            setGames(res.results);
-            setCurrentPage(Number(searchParams.get('page')) || 1);
-
-            const platformTitle = PLATFORM_TITLES[fetchParams.platform];
-
-            if (fetchParams.search) {
-                setSectorHeading(`Results for: ${fetchParams.search}`);
-            } else {
-                setSectorHeading(platformName ? `${platformTitle} Games` : 'Trending Games');
-            }
-            setLoading(false);
-        });
-    }, [platformName, searchParams]);
-
-    const gamesPerPage = 15;
-    const totalPages = Math.ceil(gamesCount / gamesPerPage);
-
     const getLink = (page) => {
         return `/games/${platformName ? platformName : ''}?page=${page}${searchParams.get('search') ? `&search=${searchParams.get('search')}` : ''}`;
     }
@@ -75,7 +85,7 @@ const Games = () => {
     const getPageLink = (page, label) => {
         const isActive = page === currentPage;
         return (
-            <Link to={getLink(page)} className={isActive ? 'active' : ''}>
+            <Link to={getLink(page)} key={label} className={isActive ? 'active' : ''}>
                 {label}
             </Link>
         );
@@ -174,6 +184,7 @@ const Games = () => {
                                         }
 
                                         {getPages()}
+
                                         {currentPage !== totalPages &&
                                             <Link
                                                 disabled={currentPage === totalPages}

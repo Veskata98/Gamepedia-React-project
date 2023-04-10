@@ -1,6 +1,7 @@
 import './home.css';
+import defaultImg from '../../assets/default.jpg'
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 import { NewsContext } from '../../contexts/NewsContext';
 
@@ -9,7 +10,13 @@ import TechNews from './TechNews/TechNews';
 import Spinner from '../Spinner/Spinner';
 
 export const Home = () => {
+    const [imageError, setImageError] = useState(false);
+
     const { gamingNews, techNews, mainArticle, loading } = useContext(NewsContext);
+
+    const handleImageError = () => {
+        setImageError(true);
+    };
 
     return (
         <section className="home-section">
@@ -21,7 +28,10 @@ export const Home = () => {
                             <h2 className="home-subheading">Gaming News</h2>
 
                             <article className="home-mainNews-article">
-                                <img src={mainArticle.image} alt="news_img" className="home-mainNews-article-img" />
+                                {imageError
+                                    ? <img src={defaultImg} alt="default_news_img" className="home-news-article-img" />
+                                    : <img src={mainArticle.image} alt="news_img" className="home-mainNews-article-img" onError={handleImageError} />
+                                }
                                 <div className="home-mainNews-article-text">
                                     <h3 className="home-mainNews-article-title">{mainArticle.title}</h3>
                                     <p className="home-mainNews-article-date">{mainArticle.date}</p>
