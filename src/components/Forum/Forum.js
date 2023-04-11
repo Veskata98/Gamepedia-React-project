@@ -1,29 +1,51 @@
-import { Link } from 'react-router-dom';
 import './forum.css';
 
+import * as request from '../../services/expressAPI';
+
+import { useContext, useEffect, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+
+import { AuthContext } from '../../contexts/AuthContext';
+
+import DiscussionCard from './Discussions/Discussions/DiscussionCard';
+
+
 export const Forum = () => {
+    const [discussions, setDiscussions] = useState([]);
+
+    const { user } = useContext(AuthContext)
+
+    useEffect(() => {
+        request.get("/api/forum/discussions/latest").then(data => setDiscussions(data));
+    }, []);
+
     return (
         <section className="forum-section">
             <div className="forum-wrapper">
                 <div className="forum-container">
-                    <a className="forum-heading" href="/forum">
+                    <NavLink className="forum-heading" to="/forum">
                         Discussions
-                    </a>
-                    <a className="forum-heading" href="/reviews">
+                    </NavLink>
+                    <NavLink className="forum-heading" to="/forum/reviews">
                         Reviews
-                    </a>
+                    </NavLink>
 
                     <div className="discussions-container">
-                        <Link className="create-discussion-link" to="/forum/discussions/create">
-                            Create discussion
-                        </Link>
-                        <a className="discussion-card" href="/forum/discussions/{{_id}}">
-                            <div className="discussion-container">
-                                <h3 className="discussion-title">title</h3>
-                                <p className="discussion-date">date</p>
-                                <p className="discussion-description">description</p>
+
+                        {user.username &&
+                            <div className='discussions-create-discussion-link-container'>
+                                <Link className="create-discussion-link" to="/forum/discussions/create">
+                                    Create discussion
+                                </Link>
                             </div>
-                        </a>
+                        }
+
+                        {
+                            discussions.length
+                                ? discussions.map(x => <DiscussionCard key={x.id} discussion={x} />)
+                                : <h2 className='discussions-nodiscussions'>Ready to play? Let's start a discussion and see where it takes us.</h2>
+                        }
+
                     </div>
                 </div>
                 <div className="forum-my-navigation">

@@ -1,18 +1,26 @@
 import './home.css';
 import defaultImg from '../../assets/default.jpg'
 
-import { useContext, useState } from 'react';
+import * as request from '../../services/expressAPI';
+
+import { useContext, useEffect, useState } from 'react';
 
 import { NewsContext } from '../../contexts/NewsContext';
 
 import GamingNews from './GamingNews/GamingNews';
 import TechNews from './TechNews/TechNews';
 import Spinner from '../Spinner/Spinner';
+import HomeDiscussions from './HomeDiscussions/HomeDiscussions';
 
 export const Home = () => {
+    const [discussions, setDiscussions] = useState([]);
     const [imageError, setImageError] = useState(false);
 
     const { gamingNews, techNews, mainArticle, loading } = useContext(NewsContext);
+
+    useEffect(() => {
+        request.get("/api/forum/discussions/latest").then(data => setDiscussions(data.slice(0, 5)));
+    }, []);
 
     const handleImageError = () => {
         setImageError(true);
@@ -50,36 +58,7 @@ export const Home = () => {
                             <div className="last-discussions">
                                 <h2 className="home-subheading discussions">Latest threads</h2>
                                 <ul className="last-discussion-list">
-                                    <li className="last-discussion-item">
-                                        <a href="/forum/discussions/{{_id}}">
-                                            <p className="last-discussion-title">title</p>
-                                            <p className="last-discussion-date">date</p>
-                                        </a>
-                                    </li>
-                                    <li className="last-discussion-item">
-                                        <a href="/forum/discussions/{{_id}}">
-                                            <p className="last-discussion-title">title</p>
-                                            <p className="last-discussion-date">date</p>
-                                        </a>
-                                    </li>
-                                    <li className="last-discussion-item">
-                                        <a href="/forum/discussions/{{_id}}">
-                                            <p className="last-discussion-title">title</p>
-                                            <p className="last-discussion-date">date</p>
-                                        </a>
-                                    </li>
-                                    <li className="last-discussion-item">
-                                        <a href="/forum/discussions/{{_id}}">
-                                            <p className="last-discussion-title">title</p>
-                                            <p className="last-discussion-date">date</p>
-                                        </a>
-                                    </li>
-                                    <li className="last-discussion-item">
-                                        <a href="/forum/discussions/{{_id}}">
-                                            <p className="last-discussion-title">title</p>
-                                            <p className="last-discussion-date">date</p>
-                                        </a>
-                                    </li>
+                                    {discussions.map(x => <HomeDiscussions key={x.id} discussion={x} />)}
                                 </ul>
                             </div>
                             <div className="home-technews">

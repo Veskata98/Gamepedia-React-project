@@ -40,7 +40,7 @@
     width: 100%;
     /* border: 3px ridge #7952e2; */
     border-radius: 20px;
-    height: 520px;
+    margin-bottom: 2rem;
 }
 
 .last-discussions h2 {
@@ -83,12 +83,10 @@
 
 @keyframes blue {
     from {
-        text-shadow: 0 0 10px #00ffff, 0 0 20px #000, 0 0 30px #00ffff, 0 0 40px #9d7aff, 0 0 70px #9d7aff, 0 0 80px #9d7aff, 0 0 100px #9d7aff,
-            0 0 150px #9d7aff;
+        text-shadow: 0 0 10px #00ffff, 0 0 20px #000, 0 0 30px #00ffff, 0 0 40px #9d7aff, 0 0 70px #9d7aff, 0 0 80px #9d7aff, 0 0 100px #9d7aff, 0 0 150px #9d7aff;
     }
 
     to {
-        text-shadow: 0 0 5px #00ffff, 0 0 10px #000, 0 0 15px #00ffff, 0 0 20px #9d7aff, 0 0 35px #9d7aff, 0 0 40px #9d7aff, 0 0 50px #9d7aff,
-            0 0 75px #9d7aff;
+        text-shadow: 0 0 5px #00ffff, 0 0 10px #000, 0 0 15px #00ffff, 0 0 20px #9d7aff, 0 0 35px #9d7aff, 0 0 40px #9d7aff, 0 0 50px #9d7aff, 0 0 75px #9d7aff;
     }
 }

@@ -60,7 +60,10 @@
 }
 
 .games-show-options h3 {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    border-bottom: 2px solid #7952e2;
+    user-select: none;
 }
 
 .games-show-options-list {
