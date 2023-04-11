@@ -1,8 +1,12 @@
 import './platform.css';
 
+import * as request from '../../../services/expressAPI';
+
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+
 import { PlatformTopGames } from './PlatformTopGames/PlatformTopGames';
+
 import Spinner from '../../Spinner/Spinner';
 
 export const Platform = () => {
@@ -13,43 +17,13 @@ export const Platform = () => {
     const { platformId } = useParams();
 
     useEffect(() => {
-        //get platform details
-        const RAWG_API_KEY = process.env.REACT_APP_RAWG_GAMING_API_KEY;
-
         (async () => {
-            const response = await fetch(`https://rawg-video-games-database.p.rapidapi.com/platforms/${platformId}?key=${RAWG_API_KEY}`, {
-                headers: { 'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY, 'X-RapidAPI-Host': process.env.REACT_APP_RAWG_API_HOST },
-            });
+            const resultPlatform = await request.get('/api/platforms/' + platformId);
 
-            const data = await response.json();
+            console.log(resultPlatform);
 
-            //Removing HTML Tags and Special Elements from Platform descriptions
-            let descr = data.description;
-            descr = descr.replace(/(&nbsp;|<([^>]+)>)/gim, '');
-            descr = descr.replace(/&quot;/gim, '');
-            descr = descr.replace(/&#39;/gim, "'");
-            descr = descr.replace(/;/gim, '');
-
-            data.description = descr;
-
-            setPlatform(data);
-        })();
-
-        //get top games for the platform
-        (async () => {
-            const response = await fetch(
-                `https://rawg-video-games-database.p.rapidapi.com/games?key=${RAWG_API_KEY}&platforms=${platformId}&page_size=20`,
-                {
-                    headers: { 'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY, 'X-RapidAPI-Host': process.env.REACT_APP_RAWG_API_HOST },
-                }
-            );
-
-            const data = await response.json();
-
-            //Filtering and removing games with adult content
-            const result = data.results.filter((x) => x.esrb_rating?.id !== 5).slice(0, 10);
-
-            setTopGames(result);
+            setPlatform(resultPlatform);
+            setTopGames(resultPlatform.topGames);
             setLoading(false);
         })();
 

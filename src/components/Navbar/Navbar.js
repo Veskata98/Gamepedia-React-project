@@ -1,12 +1,13 @@
 import './navbar.css';
-import logo from '../../assets/logo.png';
 
-import { Link, NavLink } from 'react-router-dom';
+import logo from '../../assets/logo.png';
 import gemepediaTextLogo from '../../assets/gemepedia-text-logo.png';
 
-import { useContext } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
+import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
+
 import Logout from './Logout/Logout';
 
 

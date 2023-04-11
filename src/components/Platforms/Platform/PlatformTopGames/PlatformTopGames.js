@@ -1,5 +1,7 @@
 import './platformTopGames.css';
 
+import defaultImg from '../../../../../src/assets/default.jpg';
+
 import { Link } from 'react-router-dom';
 
 export const PlatformTopGames = ({ game }) => {
@@ -9,7 +11,7 @@ export const PlatformTopGames = ({ game }) => {
                 <Link to={`/game/${game.id}`}>{game.name}</Link>
             </h2>
             <Link to={`/game/${game.id}`}>
-                <img src={game.background_image} alt="topGames-img" className="topGames-img" />
+                <img src={game.backgroundImage || defaultImg} alt="topGames-img" className="topGames-img" />
             </Link>
         </div>
     );

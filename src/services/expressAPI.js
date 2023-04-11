@@ -13,7 +13,7 @@ const request = async (method, url, data, navigateCallback) => {
         let buildRequest;
 
         if (method === 'GET') {
-            buildRequest = fetch(baseUrl + url, { headers });
+            buildRequest = fetch(baseUrl + url, { headers, credentials: 'include', });
         } else {
             buildRequest = fetch(baseUrl + url, {
                 method,
