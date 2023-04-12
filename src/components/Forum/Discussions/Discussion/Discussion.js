@@ -9,6 +9,8 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 const Discussion = () => {
     const [discussion, setDiscussion] = useState({});
+    const [createCommentText, setCreateCommentText] = useState('');
+    const [error, setError] = useState('');
 
     const { user } = useContext(AuthContext);
 
@@ -20,6 +22,22 @@ const Discussion = () => {
         request.get('/api/forum/discussions/' + discussionId)
             .then(data => setDiscussion(data));
     }, [discussionId]);
+
+    const createCommentHandler = (e) => {
+        e.preventDefault();
+        request.post(`/api/forum/discussions/${discussionId}/createComment`, { text: createCommentText })
+            .then(data => {
+                setDiscussion(data);
+                setError('');
+                setCreateCommentText('');
+            })
+            .catch(error => setError(error.message));
+    }
+
+    const createCommentInputHandler = (e) => {
+        e.preventDefault();
+        setCreateCommentText(e.target.value);
+    }
 
     return (
         <section className='one-discussion-section'>
@@ -48,21 +66,29 @@ const Discussion = () => {
             <div className='comment-section'>
                 <h1 className='comment-section-title'>Comments</h1>
                 <div className='comments-container'>
-                    <div className='comment'>
-                        <div className='comment-header'>
-                            <h2 className='comment-username'>creatorId.username</h2>
-                            <p className='comment-date'>date</p>
-                        </div>
-                        <p className='comment-text'>description</p>
-
-                    </div>
-                    <h2>There is nothing here</h2>
+                    {discussion.comments?.length
+                        ? discussion.comments.map(x => (
+                            <div className='comment'>
+                                <div className='comment-header'>
+                                    <h2 className='comment-username'>{x.commentOwner}</h2>
+                                    <p className='comment-date'>{new Date(x.date).toLocaleString()}</p>
+                                </div>
+                                <p className='comment-text'>{x.text}</p>
+                            </div>
+                        ))
+                        : <h2>There is nothing here</h2>
+                    }
                 </div>
             </div>
             <div className='add-comment'>
                 <h1 className='comment-section-title'>Post Comment</h1>
-                <form action='/forum/discussions/{discussion._id}/postComment' method='post'>
-                    <textarea placeholder='Enter comment here' name='description' cols='50' rows='5'></textarea>
+                {error && (
+                    <div className="error">
+                        <p>{error}</p>
+                    </div>
+                )}
+                <form onSubmit={createCommentHandler}>
+                    <textarea placeholder='Enter comment here' value={createCommentText} name='description' cols='50' rows='5' onChange={createCommentInputHandler}></textarea>
                     <button>Post</button>
                 </form>
             </div>
