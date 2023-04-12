@@ -20,8 +20,10 @@ import { AuthProvider } from './contexts/AuthContext';
 import { NewsProvider } from './contexts/NewsContext';
 
 import { Platform } from './components/Platforms/Platform/Platform';
-import NotFound from './components/NotFound/NotFound';
 import CreateDiscussion from './components/Forum/Discussions/CreateDiscussion/CreateDiscussion';
+import Discussion from './components/Forum/Discussions/Discussion/Discussion';
+
+import NotFound from './components/NotFound/NotFound';
 
 const App = () => {
     return (
@@ -40,6 +42,7 @@ const App = () => {
                         <Route path="/platforms/:platformId" element={<Platform />} />
 
                         <Route path="/forum" element={<Forum />} />
+                        <Route path="/forum/discussions/:discussionId" element={<Discussion />} />
                         <Route path="/forum/discussions/create" element={<CreateDiscussion />} />
 
                         <Route path="/auth/login" element={<Login />} />

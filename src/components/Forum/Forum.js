@@ -7,7 +7,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 import { AuthContext } from '../../contexts/AuthContext';
 
-import DiscussionCard from './Discussions/Discussions/DiscussionCard';
+import DiscussionCard from './DiscussionCard';
 
 
 export const Forum = () => {
