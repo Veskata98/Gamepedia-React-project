@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../../../contexts/AuthContext';
 
+import * as request from '../../../services/expressAPI';
+
 export const Register = () => {
     const [registerAuth, setRegisterAuth] = useState({ username: '', password: '', repass: '' });
     const [registerError, setRegisterError] = useState('');
@@ -36,19 +38,13 @@ export const Register = () => {
                 throw new Error('Password do not match');
             }
 
-            const response = await fetch('http://localhost:5000/api/auth/register', {
-                method: 'POST',
-                credentials: 'include',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username: regUsername, password: regPassword, repass: regRepass }),
-            });
+            const { authToken, userId, username } = await request.post('/api/auth/register', { username: regUsername, password: regPassword, repass: regRepass })
 
-            if (!response.ok) {
-                const errorMsg = (await response.json()).error;
-                throw Error(errorMsg);
-            }
+            // if (!response.ok) {
+            //     const errorMsg = (await response.json()).message;
+            //     throw Error(errorMsg);
+            // }
 
-            const { authToken, userId, username } = await response.json();
             setUser({ username, userId });
 
             localStorage.setItem('authToken', authToken);

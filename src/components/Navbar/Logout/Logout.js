@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 const Logout = () => {
-    const { user, setUser } = useContext(AuthContext);
+    const { setUser } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const Logout = () => {
         e.preventDefault();
 
         try {
-            await request.post('/api/auth/logout', { userId: user.userId }, (path) => navigate(path));
+            await request.post('/api/auth/logout');
 
             localStorage.removeItem('authToken');
             localStorage.removeItem('user');

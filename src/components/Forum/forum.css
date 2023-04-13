@@ -211,13 +211,19 @@
 
 /* One discussion Section */
 
-.one-discussion-section {
+.one-discussion-wrapper {
     padding-top: 5%;
     padding-bottom: 5%;
+    display: flex;
+    gap: 2rem;
+}
+
+.one-discussion-section {
+    width: 70%;
 }
 
 .one-discussion-container {
-    width: 70%;
+    width: 80%;
     padding: 2rem;
     padding-bottom: 1rem;
     border-radius: 0.5rem;
@@ -229,11 +235,16 @@
     margin-bottom: 1rem;
 }
 
-.one-discussion-container h1 {
-    background-color: #7952e2;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    font-size: 1.75rem;
+.one-discussion-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 1rem;
+}
+
+.one-discussion-title {
     color: #fff;
 }
 
@@ -259,16 +270,17 @@
     padding: 1rem;
 }
 
+.one-discussion-descr.editing {
+    border: none;
+    resize: vertical;
+}
+
 .one-discussion-date {
     color: #fff;
 }
 
 .one-discussion-link-container {
-    display: flex;
-    font-size: 1.5rem;
-    width: 50%;
-    justify-content: space-around;
-    margin: auto;
+    font-size: 1.25rem;
 }
 
 .one-discussion-link-container a {
@@ -281,13 +293,20 @@
 
 }
 
-.edit-discussion-link {
+.edit-discussion-button {
     font-size: 1.2rem;
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: unset;
     gap: 0.25rem;
+    cursor: pointer;
+    border: none;
+}
+
+.edit-discussion-button:hover {
+    text-decoration: underline;
 }
 
 .last-line-discussion {
@@ -302,14 +321,15 @@
 /* Comment Section */
 
 .comment-section {
-    width: 70%;
+    width: 75%;
     margin: auto;
     margin-bottom: 3rem;
 }
 
 .comment-section-title {
-    font-size: 1.75rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
 }
 
 .comment {
@@ -319,22 +339,24 @@
 
     border-radius: 0.5rem;
 
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
 }
 
 .comments-container {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    width: 95%;
+    margin: auto;
 }
 
 .comment-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #7952e2;
+    background-color: #9d7aff;
 
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
@@ -379,13 +401,14 @@
 }
 
 .add-comment form textarea {
-    width: 70%;
+    width: 80%;
     border-radius: 5px;
     border: 1px solid #ccc;
     margin-bottom: 1rem;
     padding: 0.5rem 1.5rem 0 1rem;
     font-size: 1rem;
     outline: none;
+    resize: vertical;
 }
 
 .add-comment h1 {
@@ -412,4 +435,29 @@
 
 .add-comment form button:hover {
     background: #45d4f8;
+}
+
+.otherDiscussions-heading {
+    color: #fff;
+    border-bottom: 2px solid #7952e2;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.otherDiscussions-container {
+    padding-left: 2.5%;
+    border-left: 2px dashed #7242f8;
+    width: calc(100% - 75% - 2rem);
+}
+
+.otherDiscussions-list {
+    padding-left: 0;
+}
+
+.otherDiscussions-item {
+    margin-bottom: 0.5rem;
+}
+
+.otherDiscussions-item a {
+    text-decoration: none;
 }

@@ -46,7 +46,7 @@ const request = async (method, url, data, navigateCallback) => {
             throw new Error('Something went wrong!');
         }
 
-        if (response.status !== 200 && response.status !== 201) {
+        if (!response.ok) {
             throw new Error(result.message);
         }
 
