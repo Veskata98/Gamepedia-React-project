@@ -16,21 +16,21 @@ export const NewsProvider = ({ children }) => {
         const fetchData = async () => {
             const [resultGamingNews, resultTechNews] = await Promise.all([newsService.getGamingNews(), newsService.getTechNews()]);
 
-            resultGamingNews.map(x => {
-                const date = new Date(x.date);
-                x.date = date.toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                });
-                return x;
-            })
+            // resultGamingNews.map(x => {
+            //     const date = new Date(x.date);
+            //     x.date = date.toLocaleString('en-US', {
+            //         year: 'numeric',
+            //         month: 'short',
+            //         day: 'numeric',
+            //         hour: 'numeric',
+            //         minute: 'numeric',
+            //     });
+            //     return x;
+            // })
 
             setMainArticle(resultGamingNews.slice(0, 1)[0]);
             setGamingNews(resultGamingNews.slice(1, -1));
-            setTechNews(resultTechNews.articles.slice(0, 10));
+            setTechNews(resultTechNews);
             setLoading(false);
         }
 

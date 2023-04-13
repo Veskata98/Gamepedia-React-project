@@ -2,6 +2,7 @@
 .platforms-titles {
     display: flex;
 }
+
 .platforms-heading-main {
     font-size: 1.75rem;
     padding: 2rem;
@@ -127,10 +128,9 @@
     justify-content: space-between;
 }
 
-.platform-news-author {
+.platforms-news-description {
     display: -webkit-box;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    max-width: 120px;
 }

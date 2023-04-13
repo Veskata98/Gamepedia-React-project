@@ -7,12 +7,7 @@ const PlatformNews = ({ news }) => {
                 {news.title}
             </Link>
             <div className="platform-news-info">
-                <span className="platform-news-author">{news.author || '-'}</span>
-                <span className="platform-news-date">
-                    {new Date(news.date).toLocaleString(
-                        ('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' })
-                    )}
-                </span>
+                <p className="platforms-news-description">{news.description}</p>
             </div>
         </li>
     );

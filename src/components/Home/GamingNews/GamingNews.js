@@ -14,13 +14,13 @@ const GamingNews = ({ news }) => {
         <article className="home-news-article">
             {imageError
                 ? <img src={defaultImg} alt="default_news_img" className="home-news-article-img" />
-                : <img src={news.image} alt="news_img" className="home-news-article-img" onError={handleImageError} />
+                : <img src={news.img} alt="news_img" className="home-news-article-img" onError={handleImageError} />
             }
             <div className="home-news-article-text">
                 <h3 className="home-news-article-title">{news.title}</h3>
-                <p className="home-news-article-date">{news.date}</p>
+                <p className="home-news-article-date">{news.time}</p>
                 <p className="home-news-article-desc">{news.description}</p>
-                <a href={news.link} className="home-news-article-link" target="_blank" rel="noreferrer">
+                <a href={news.url} className="home-news-article-link" target="_blank" rel="noreferrer">
                     Read More
                 </a>
             </div>
