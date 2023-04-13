@@ -42,6 +42,9 @@ const Discussion = () => {
             .then((result) => {
                 console.log(result);
                 setIsEditing(state => !state);
+            })
+            .catch((error) => {
+                console.log(error);
             });
     }
 
@@ -59,6 +62,17 @@ const Discussion = () => {
     const createCommentInputHandler = (e) => {
         e.preventDefault();
         setCreateCommentText(e.target.value);
+    }
+
+    const removeCommentHandler = (commentId) => {
+        request.del(`/api/forum/discussions/${discussionId}/comment/delete`, { commentId })
+            .then((result) => {
+                setDiscussion(state => ({
+                    ...state,
+                    comments: discussion.comments.filter(x => x._id !== commentId)
+                }));
+            })
+            .catch(error => console.log(error));
     }
 
     return (
@@ -99,10 +113,13 @@ const Discussion = () => {
                             ? discussion.comments.map(x => (
                                 <div className='comment'>
                                     <div className='comment-header'>
-                                        <h2 className='comment-username'>{x.commentOwner}</h2>
+                                        <h2 className='comment-username'>{x.creator}</h2>
                                         <p className='comment-date'>{new Date(x.date).toLocaleString()}</p>
                                     </div>
                                     <p className='comment-text'>{x.text}</p>
+                                    {user.username === x.creator &&
+                                        <button onClick={() => removeCommentHandler(x._id)}>X</button>
+                                    }
                                 </div>
                             ))
                             : <h2>There is nothing here</h2>
