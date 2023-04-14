@@ -41,6 +41,18 @@ const Games = () => {
 
     useEffect(() => {
         setLoading(true);
+        if (!platformName && !searchParams.get('search') && (!searchParams.get('page') || searchParams.get('page') === "1")) {
+            gameService.trendingGames()
+                .then((res) => {
+                    setGames(res.results);
+                    setGamesCount(898808);
+                    setLoading(false);
+                    setSectorHeading('Trending Games');
+                    setCurrentPage(Number(searchParams.get('page')) || 1);
+                    setTotalPages(Math.ceil(res.count / gamesPerPage));
+                })
+            return;
+        }
 
         const fetchParams = { platform: platformName || '', search: searchParams.get('search'), page: searchParams.get('page') };
         setSearch(searchParams.get('search') || '');

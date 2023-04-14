@@ -1,0 +1,121 @@
+.forum-section {
+    min-height: calc(100vh - 116px);
+}
+
+.forum-wrapper {
+    min-height: inherit;
+}
+
+.forum-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+}
+
+.forum-container {
+    width: 75%;
+    padding-left: 4rem;
+}
+
+.forum-heading {
+    text-decoration: none;
+    color: #fff;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.forum-heading.active {
+    background-color: unset;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    font-weight: bold;
+}
+
+.discussions-nodiscussions {
+    color: #fff;
+}
+
+.forum-heading:hover {
+    text-decoration: underline;
+}
+
+.discussions-container {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.discussions-create-discussion-link-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-discussion-link {
+    text-decoration: none;
+    font-size: 1.25rem;
+    padding: 0.25rem;
+    color: #fff;
+    text-align: center;
+}
+
+.create-discussion-link:hover {
+    text-decoration: underline;
+}
+
+.discussion-card {
+    /* background-color: rgba(114, 66, 248, 0.3); */
+    background: linear-gradient(90deg, rgba(40, 178, 218, 1) 0%, rgba(157, 122, 255, 0.2) 95%, rgba(169, 107, 209, 0.1) 100%);
+    color: #fff;
+    border-radius: 0.5rem;
+    text-decoration: none;
+
+    box-shadow: 0px 0px 3px 1px rgba(74, 45, 151, 0.5);
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(74, 45, 151, 0.5);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(74, 45, 151, 0.5);
+}
+
+.discussion-container {
+    padding: 0.75rem;
+}
+
+.discussion-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+    text-decoration: underline;
+}
+
+.discussion-date {
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.discussion-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-align: justify;
+}
+
+.forum-my-navigation {
+    width: 20%;
+    padding-left: 2.5%;
+    border-left: 2px dashed #7242f8;
+}
+
+.forum-my-navigation ul {
+    padding-left: 0;
+}
+
+.forum-my-navigation ul li {
+    margin-bottom: 0.5rem;
+}
+
+.forum-my-navigation ul li a {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #fff;
+}

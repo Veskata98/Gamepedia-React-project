@@ -56,7 +56,7 @@ export const Game = () => {
     useEffect(() => {
         if (user.userId) {
             request
-                .post('/api/games/isGameInFavorites', { gameId, userId: user.userId })
+                .post('/api/games/isGameInFavorites', { gameId })
                 .then((data) => setGameIsFavorite(data.message))
                 .catch((error) => {
                     console.error(error);
@@ -65,9 +65,9 @@ export const Game = () => {
         }
     }, [user, gameId, navigate]);
 
-    const addToFavorites = (gameId) => {
+    const addToFavorites = () => {
         request
-            .post('/api/games/favoritizeGame', { gameId, userId: user.userId })
+            .post('/api/games/favoritizeGame', { game })
             .then((response) => {
                 setGameIsFavorite((state) => !state);
                 setResult(response.message);
@@ -97,12 +97,11 @@ export const Game = () => {
                         <h1 className="oneGame-title">
                             {game.name}
                             {user.username && (
-                                <button className="button-favorites" onClick={() => addToFavorites(game.id)}>
-                                    {gamesIsFavorite ? (
-                                        <FontAwesomeIcon icon={faStar} size="2xl" style={{ color: '#ffec00' }} />
-                                    ) : (
-                                        <FontAwesomeIcon icon={faStar} size="2xl" style={{ color: '#645a00' }} />
-                                    )}
+                                <button className="button-favorites" onClick={addToFavorites}>
+                                    {gamesIsFavorite
+                                        ? <FontAwesomeIcon icon={faStar} size="2xl" style={{ color: '#ffec00' }} />
+                                        : <FontAwesomeIcon icon={faStar} size="2xl" style={{ color: '#645a00' }} />
+                                    }
                                 </button>
                             )}
                             {showResult && <span className="animated fadeOut">{result}</span>}

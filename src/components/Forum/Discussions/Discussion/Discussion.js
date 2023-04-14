@@ -1,3 +1,5 @@
+import './discussion.css';
+
 import * as request from '../../../../services/expressAPI';
 
 import { useContext, useEffect, useState } from "react";
@@ -81,7 +83,7 @@ const Discussion = () => {
                 <div className='one-discussion-title-container'>
                     <h1 className='one-discussion-title'>{discussion.title}</h1>
                     <div className='one-discussion-link-container'>
-                        <Link to={'/forum'}>Back to Forum</Link>
+                        <Link to={'/forum/discussions'}>Back to Forum</Link>
                     </div>
 
                 </div>
@@ -144,7 +146,7 @@ const Discussion = () => {
                 <ul className='otherDiscussions-list'>
                     {otherDiscussions.map(x => (
                         <li className='otherDiscussions-item'>
-                            <Link to={`/forum/discussions/${x.id}`}>{x.title}</Link>
+                            <Link to={`/forum/discussion/${x.id}`}>{x.title}</Link>
                         </li>
                     ))}
 

@@ -1,3 +1,5 @@
+import './createDiscussion.css';
+
 import * as request from '../../../../services/expressAPI';
 
 import { useContext, useState } from 'react';
@@ -23,7 +25,7 @@ const CreateDiscussion = () => {
             .post('/api/forum/discussions/create', { userId: user.userId, discussion })
             .then((result) => {
                 console.log(result.message);
-                navigate('/forum');
+                navigate('/forum/discussions');
             })
             .catch(error => {
                 console.error(error.message);

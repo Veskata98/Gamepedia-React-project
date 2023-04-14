@@ -1,16 +1,20 @@
 import './profile.css';
+import defaultAvatar from '../../assets/defaultAvatar.png';
 
 import * as request from '../../services/expressAPI';
 
 import { useContext, useState } from 'react';
 
 import { AuthContext } from '../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
     const [file, setFile] = useState(null);
     const [passwords, setPasswords] = useState({ oldPassword: '', newPassword: '', repass: '' });
 
     const { user, setUser } = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const changePasswordInput = (e) => {
         setPasswords((state) => ({
@@ -71,11 +75,27 @@ const Profile = () => {
         }));
     }
 
+    const deleteProfileHandler = async () => {
+        const confirm = window.confirm("Are you sure you want to delete your profile?");
+
+        if (confirm) {
+            await request.del('/api/profile/deleteProfile');
+            localStorage.removeItem('user');
+            localStorage.removeItem('userId');
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('avatar');
+
+            setUser({});
+
+            navigate('/');
+        }
+    }
+
     return (
         <>
             <h1>Profile</h1>
             <h2>{user.username}</h2>
-            <img src={user.avatar} alt='user_avatar'></img>
+            <img src={user.avatar || defaultAvatar} alt='user_avatar'></img>
             <form onSubmit={uploadAvatarHandler}>
                 <input type="file" accept="image/*" onChange={handleFileChange} />
                 <button>Save</button>
@@ -86,6 +106,7 @@ const Profile = () => {
                 <input type="password" name='repass' value={passwords.repass} onChange={changePasswordInput} />
                 <button>Change password</button>
             </form>
+            <button onClick={deleteProfileHandler}>Delete account</button>
         </>
     );
 }

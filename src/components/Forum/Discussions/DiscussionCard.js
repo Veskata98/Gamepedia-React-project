@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const DiscussionCard = ({ discussion }) => {
     return (
-        <Link className="discussion-card" to={`/forum/discussions/${discussion.id}`}>
+        <Link className="discussion-card" to={`/forum/discussion/${discussion.id}`}>
             <div className="discussion-container">
                 <h3 className="discussion-title">{discussion.title}</h3>
                 <p className="discussion-date">{new Date(discussion.date).toLocaleString()}</p>

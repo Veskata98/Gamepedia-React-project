@@ -1,0 +1,93 @@
+.myGames-section {
+    width: 90%;
+    margin: auto;
+    padding-bottom: 2rem;
+}
+
+.myGames-heading {
+    font-size: 1.75rem;
+    padding: 2rem;
+    padding-bottom: 1rem;
+    color: #fff;
+}
+
+.myGames-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.myGames-card {
+    display: flex;
+    width: 400px;
+    position: relative;
+    flex-direction: column;
+    background-color: rgba(201, 201, 201, 0.3);
+    border-radius: 0.5rem;
+}
+
+.myGames-unsubscribe {
+    position: absolute;
+    background-color: unset;
+    border: none;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.myGames-info {
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.myGames-coverImg {
+    border-top-right-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
+}
+
+.myGames-cover {
+    position: relative;
+}
+
+.myGames-cover::before {
+    content: 'Review this game';
+    color: #fff;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 100;
+}
+
+.myGames-cover:hover::before {
+    opacity: 1;
+}
+
+.myGames-cover:hover img.myGames-coverImg {
+    filter: brightness(40%);
+    transition: filter 0.3s ease;
+}
+
+.myGames-title {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.myGames-title:hover {
+    text-decoration: underline;
+}
+
+.myGames-nothing {
+    color: #fff;
+    text-align: center;
+    margin-top: 5rem;
+    padding: 2rem;
+}

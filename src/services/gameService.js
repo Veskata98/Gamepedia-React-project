@@ -14,6 +14,8 @@ const PLATFORMS = {
     android: 21,
 };
 
+export const trendingGames = async () => await request.get(baseUrl + `/lists/main?discover=true&ordering=-relevance&page_size=15&page=1&key=${API_KEY}`);
+
 export const getAll = async (fetchParams) => await request.get(baseUrl + `?key=${API_KEY}&page_size=15${fetchParams.page ? `&page=${fetchParams.page}` : ''}${fetchParams.search ? `&search=${fetchParams.search}` : ''}${fetchParams.platform ? `&platforms=${PLATFORMS[fetchParams.platform]}` : ''}`);
 
 export const getById = async (gameId) => {

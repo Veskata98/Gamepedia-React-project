@@ -1,16 +1,16 @@
-import './forum.css';
+import './discussions.css';
 
-import * as request from '../../services/expressAPI';
+import * as request from '../../../services/expressAPI';
 
 import { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext } from '../../../contexts/AuthContext';
 
-import DiscussionCard from './DiscussionCard';
+import DiscussionCard from './DiscussionCard'
 
 
-export const Forum = () => {
+const Discussions = () => {
     const [discussions, setDiscussions] = useState([]);
 
     const { user } = useContext(AuthContext)
@@ -23,7 +23,7 @@ export const Forum = () => {
         <section className="forum-section">
             <div className="forum-wrapper">
                 <div className="forum-container">
-                    <NavLink className="forum-heading" to="/forum">
+                    <NavLink className="forum-heading" to="/forum/discussions">
                         Discussions
                     </NavLink>
                     <NavLink className="forum-heading" to="/forum/reviews">
@@ -51,10 +51,10 @@ export const Forum = () => {
                 <div className="forum-my-navigation">
                     <ul>
                         <li>
-                            <a href="/forum/discussions/myDiscussions">My Discussions</a>
+                            <Link to="/forum/discussions/myDiscussions">My Discussions</Link>
                         </li>
                         <li>
-                            <a href="/forum/discussions/myDiscussions">My Reviews</a>
+                            <Link to="/forum/discussions/myReviews">My Reviews</Link>
                         </li>
                     </ul>
                 </div>
@@ -62,3 +62,5 @@ export const Forum = () => {
         </section>
     );
 };
+
+export default Discussions;

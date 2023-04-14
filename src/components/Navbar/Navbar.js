@@ -1,4 +1,5 @@
 import './navbar.css';
+import defaultAvatar from '../../assets/defaultAvatar.png';
 
 import logo from '../../assets/logo.png';
 import gemepediaTextLogo from '../../assets/gemepedia-text-logo.png';
@@ -35,7 +36,7 @@ export const Navbar = () => {
                         <NavLink to="/platforms">Platforms</NavLink>
                     </li>
                     <li className="navbar-item">
-                        <NavLink to="/forum">Forum</NavLink>
+                        <NavLink to="/forum/discussions">Forum</NavLink>
                     </li>
                     {user.username && (
                         <li className="navbar-item">
@@ -47,7 +48,7 @@ export const Navbar = () => {
                     <ul className="user-nav-list">
                         <li className="navbar-item user">
                             <Link className="navbar-item-username" to={`/profile/${user.userId}`}>
-                                <img className="navbar-user-avatar" src={user.avatar} alt="user-avatar" />
+                                <img className="navbar-user-avatar" src={user.avatar || defaultAvatar} alt="user-avatar" />
                                 {user.username}
                             </Link>
                         </li>

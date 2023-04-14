@@ -23,6 +23,7 @@ const Logout = () => {
             localStorage.removeItem('authToken');
             localStorage.removeItem('user');
             localStorage.removeItem('userId');
+            localStorage.removeItem('avatar');
             setUser({});
 
             navigate('/');

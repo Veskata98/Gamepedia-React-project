@@ -1,0 +1,56 @@
+.forum-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+}
+
+.forum-container {
+    width: 75%;
+    padding-left: 4rem;
+}
+
+.forum-heading {
+    text-decoration: none;
+    color: #fff;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.forum-heading.active {
+    background-color: unset;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    font-weight: bold;
+}
+
+.forum-heading:hover {
+    text-decoration: underline;
+}
+
+.reviews-container {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.forum-my-navigation {
+    width: 20%;
+    padding-left: 2.5%;
+    border-left: 2px dashed #7242f8;
+}
+
+.forum-my-navigation ul {
+    padding-left: 0;
+}
+
+.forum-my-navigation ul li {
+    margin-bottom: 0.5rem;
+}
+
+.forum-my-navigation ul li a {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #fff;
+}

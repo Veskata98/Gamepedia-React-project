@@ -9,21 +9,24 @@ import { Footer } from './components/Footer/Footer';
 import { Home } from './components/Home/Home';
 import Profile from './components/Profile/Profile';
 
-import { Forum } from './components/Forum/Forum';
+import { Platform } from './components/Platforms/Platform/Platform';
 import Platforms from './components/Platforms/Platforms';
 
-import Games from './components/Games/Games';
+import Discussions from './components/Forum/Discussions/Discussions';
+import CreateDiscussion from './components/Forum/Discussions/CreateDiscussion/CreateDiscussion';
+import Discussion from './components/Forum/Discussions/Discussion/Discussion';
+
+import Reviews from './components/Forum/Reviews/Reviews';
+
 import { Game } from './components/Games/Game/Game';
+import Games from './components/Games/Games';
+import MyGames from './components/MyGames/MyGames';
 
 import { Login } from './components/Auth/Login/Login';
 import { Register } from './components/Auth/Register/Register';
 
 import { AuthProvider } from './contexts/AuthContext';
 import { NewsProvider } from './contexts/NewsContext';
-
-import { Platform } from './components/Platforms/Platform/Platform';
-import CreateDiscussion from './components/Forum/Discussions/CreateDiscussion/CreateDiscussion';
-import Discussion from './components/Forum/Discussions/Discussion/Discussion';
 
 import NotFound from './components/NotFound/NotFound';
 
@@ -41,13 +44,15 @@ const App = () => {
                         <Route path="/game/:gameId" element={<Game />} />
                         <Route path="/games" element={<Games />} />
                         <Route path="/games/:platformName" element={<Games />} />
+                        <Route path="/myGames" element={<MyGames />} />
 
                         <Route path="/platforms" element={<Platforms />} />
                         <Route path="/platforms/:platformId" element={<Platform />} />
 
-                        <Route path="/forum" element={<Forum />} />
-                        <Route path="/forum/discussions/:discussionId" element={<Discussion />} />
+                        <Route path="/forum/discussions" element={<Discussions />} />
+                        <Route path="/forum/discussion/:discussionId" element={<Discussion />} />
                         <Route path="/forum/discussions/create" element={<CreateDiscussion />} />
+                        <Route path="/forum/reviews" element={<Reviews />} />
 
                         <Route path="/auth/login" element={<Login />} />
                         <Route path="/auth/register" element={<Register />} />
