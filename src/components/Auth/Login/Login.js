@@ -34,12 +34,13 @@ export const Login = () => {
 
             await request.post('/api/auth/login', { username: loginUsername, password: loginPassword })
                 .then((data) => {
-                    const { authToken, userId, username } = data;
-                    setUser({ username, userId });
+                    const { authToken, userId, username, avatar } = data;
+                    setUser({ username, userId, avatar });
 
                     localStorage.setItem('authToken', authToken);
                     localStorage.setItem('user', username);
                     localStorage.setItem('userId', userId);
+                    localStorage.setItem('avatar', avatar);
 
                     navigate('/');
 

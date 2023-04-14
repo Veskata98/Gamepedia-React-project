@@ -39,7 +39,11 @@ const request = async (method, url, data, navigateCallback) => {
         }
 
         if (response.status === 401) {
-            throw new Error('Unauthorized access!');
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('user');
+            localStorage.removeItem('userId');
+
+            window.location.href = "/auth/login";
         }
 
         if (response.status === 304) {

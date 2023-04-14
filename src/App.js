@@ -7,6 +7,8 @@ import { Main } from './components/Main/Main';
 import { Footer } from './components/Footer/Footer';
 
 import { Home } from './components/Home/Home';
+import Profile from './components/Profile/Profile';
+
 import { Forum } from './components/Forum/Forum';
 import Platforms from './components/Platforms/Platforms';
 
@@ -33,6 +35,8 @@ const App = () => {
                 <Main>
                     <Routes>
                         <Route path="/" element={<Home />} />
+
+                        <Route path="/profile/:userId" element={<Profile />} />
 
                         <Route path="/game/:gameId" element={<Game />} />
                         <Route path="/games" element={<Games />} />

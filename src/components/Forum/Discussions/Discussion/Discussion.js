@@ -44,7 +44,7 @@ const Discussion = () => {
                 setIsEditing(state => !state);
             })
             .catch((error) => {
-                console.log(error);
+                console.log(error.message);
             });
     }
 

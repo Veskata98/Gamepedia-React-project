@@ -79,7 +79,26 @@
     text-decoration: none;
     font-size: 1.3rem;
     font-weight: 500;
-    color: #00ffff;
+    color: #00ffff !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navbar-item-username:hover {
+    text-decoration: none !important;
+}
+
+.navbar-user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+.navbar-item.logout-form {
+    display: flex;
+    align-items: center;
 }
 
 .navbar-logout-form {

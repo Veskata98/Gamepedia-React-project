@@ -45,10 +45,13 @@ export const Navbar = () => {
                 </ul>
                 {user.username ? (
                     <ul className="user-nav-list">
-                        <li className="navbar-item">
-                            <p className="navbar-item-username">{user.username}</p>
+                        <li className="navbar-item user">
+                            <Link className="navbar-item-username" to={`/profile/${user.userId}`}>
+                                <img className="navbar-user-avatar" src={user.avatar} alt="user-avatar" />
+                                {user.username}
+                            </Link>
                         </li>
-                        <li className="navbar-item">
+                        <li className="navbar-item logout-form">
                             <Logout />
                         </li>
                     </ul>

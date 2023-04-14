@@ -7,13 +7,14 @@ export const AuthProvider = ({ children }) => {
 
     const localStorageUser = localStorage.getItem('user');
     const localStorageUserId = localStorage.getItem('userId');
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('authToken');
+    const avatar = localStorage.getItem('avatar');
 
     useEffect(() => {
         if (localStorageUser) {
-            setUser({ username: localStorageUser, userId: localStorageUserId, token });
+            setUser({ username: localStorageUser, userId: localStorageUserId, token, avatar });
         }
-    }, [localStorageUser, localStorageUserId, token]);
+    }, [localStorageUser, localStorageUserId, token, avatar]);
 
     return (
         <AuthContext.Provider

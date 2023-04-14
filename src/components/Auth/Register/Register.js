@@ -38,18 +38,15 @@ export const Register = () => {
                 throw new Error('Password do not match');
             }
 
-            const { authToken, userId, username } = await request.post('/api/auth/register', { username: regUsername, password: regPassword, repass: regRepass })
+            const { authToken, userId, username, avatar } = await request.post('/api/auth/register', { username: regUsername, password: regPassword, repass: regRepass })
 
-            // if (!response.ok) {
-            //     const errorMsg = (await response.json()).message;
-            //     throw Error(errorMsg);
-            // }
 
-            setUser({ username, userId });
+            setUser({ username, userId, avatar });
 
             localStorage.setItem('authToken', authToken);
             localStorage.setItem('user', username);
             localStorage.setItem('userId', userId);
+            localStorage.setItem('avatar', avatar);
 
             navigate('/');
 

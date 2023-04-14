@@ -87,10 +87,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
 }
 
 .oneGame-stores-link:hover {
     color: rgb(174, 179, 184);
+    text-decoration: underline;
 }
 
 .oneGane-stores-img-wrapper {
