@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const MyGamesCard = ({ game, removeGameHandler }) => {
     return (
         <div className='myGames-card'>
-            <Link className='myGames-cover' to='/forum/reviews'>
+            <Link className='myGames-cover' to={`/forum/reviews/${game.id}/createReview`}>
                 <img className='myGames-coverImg' src={game.backgroundImage} alt={`${game.name}_img`} />
             </Link>
             <Link className='myGames-info' to={`/game/${game.id}`}>

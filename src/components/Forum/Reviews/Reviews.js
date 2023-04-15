@@ -1,6 +1,20 @@
+import './reviews.css';
+
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
+import * as request from '../../../services/expressAPI';
+
 const Reviews = () => {
+    const [reviews, setReviews] = useState([]);
+
+    useEffect(() => {
+        request.get('/api/forum/reviews')
+            .then(data => {
+                setReviews(data);
+            })
+    }, []);
+
     return (
         <section className="forum-section">
             <div className="forum-wrapper">
@@ -13,7 +27,17 @@ const Reviews = () => {
                     </NavLink>
 
                     <div className="reviews-container">
-
+                        {reviews.map(x => (
+                            <Link className='review-link' to={`/forum/reviews/${x.title}`}>
+                                <div className='review-card'>
+                                    <div className='review-info'>
+                                        <p className='review-title'>{x.title}</p>
+                                        <p className='review-overall'>Overall: {x.overall.toFixed(2)}</p>
+                                    </div>
+                                    <img src={x.backgroundImage} />
+                                </div>
+                            </Link>
+                        ))}
                     </div>
 
                 </div>
@@ -23,7 +47,7 @@ const Reviews = () => {
                             <Link to="/forum/discussions/myDiscussions">My Discussions</Link>
                         </li>
                         <li>
-                            <Link to="/forum/discussions/myReviews">My Reviews</Link>
+                            <Link to="/forum/reviews/myReviews">My Reviews</Link>
                         </li>
                     </ul>
                 </div>

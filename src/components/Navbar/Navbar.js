@@ -4,7 +4,7 @@ import defaultAvatar from '../../assets/defaultAvatar.png';
 import logo from '../../assets/logo.png';
 import gemepediaTextLogo from '../../assets/gemepedia-text-logo.png';
 
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -14,6 +14,12 @@ import Logout from './Logout/Logout';
 
 export const Navbar = () => {
     const { user } = useContext(AuthContext);
+
+    const location = useLocation();
+
+    const isActive = (path) => {
+        return location.pathname.startsWith(path);
+    };
 
     return (
         <header className="navbar">
@@ -36,7 +42,9 @@ export const Navbar = () => {
                         <NavLink to="/platforms">Platforms</NavLink>
                     </li>
                     <li className="navbar-item">
-                        <NavLink to="/forum/discussions">Forum</NavLink>
+                        <NavLink to="/forum/discussions" className={isActive('/forum') ? 'active' : ''}>
+                            Forum
+                        </NavLink>
                     </li>
                     {user.username && (
                         <li className="navbar-item">

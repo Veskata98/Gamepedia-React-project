@@ -18,6 +18,8 @@ export const trendingGames = async () => await request.get(baseUrl + `/lists/mai
 
 export const getAll = async (fetchParams) => await request.get(baseUrl + `?key=${API_KEY}&page_size=15${fetchParams.page ? `&page=${fetchParams.page}` : ''}${fetchParams.search ? `&search=${fetchParams.search}` : ''}${fetchParams.platform ? `&platforms=${PLATFORMS[fetchParams.platform]}` : ''}`);
 
+export const simpleGameById = async (gameId) => await request.get(baseUrl + `/${gameId}?key=${API_KEY}`);
+
 export const getById = async (gameId) => {
     return fetch(`https://api.rawg.io/api/games/${gameId}?key=${API_KEY}`)
         .then((res) => res.json())

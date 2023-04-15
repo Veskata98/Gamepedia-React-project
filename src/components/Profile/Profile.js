@@ -102,7 +102,7 @@ const Profile = () => {
             <img className="profile-avatar" src={user.avatar || defaultAvatar} alt='user_avatar'></img>
             <form className="profile-form" onSubmit={uploadAvatarHandler}>
                 <input className="profile-file-upload" type="file" accept="image/*" onChange={handleFileChange} />
-                <button className="profile-btn-save">Save</button>
+                <button className="profile-btn-save" disabled={!file}>Save</button>
             </form>
             <form className="profile-form" onSubmit={changePasswordHandler}>
                 <input className="profile-input-old-password" placeholder='Old Password' type="password" autoComplete="new-password" name='oldPassword' value={passwords.oldPassword} onChange={changePasswordInput} />

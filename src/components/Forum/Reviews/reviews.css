@@ -28,13 +28,6 @@
     text-decoration: underline;
 }
 
-.reviews-container {
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
 .forum-my-navigation {
     width: 20%;
     padding-left: 2.5%;
@@ -53,4 +46,54 @@
     font-size: 1.25rem;
     font-weight: 500;
     color: #fff;
+}
+
+.reviews-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem 0;
+    /* justify-content: space-between; */
+}
+
+.review-link {
+    text-decoration: none;
+}
+
+.review-card {
+    display: flex;
+    width: 460px;
+    position: relative;
+    flex-direction: column;
+    background-color: rgba(201, 201, 201, 0.2);
+    border-radius: 0.5rem;
+    padding: 1rem;
+
+    box-shadow: 0px 0px 3px 1px rgba(74, 45, 151, 0.5);
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(74, 45, 151, 0.5);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(74, 45, 151, 0.5);
+}
+
+.review-info {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+}
+
+.review-title {
+    max-width: 320px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.review-title,
+.review-overall {
+    font-size: 1.1rem;
+}
+
+.review-overall {
+    font-weight: bold;
 }

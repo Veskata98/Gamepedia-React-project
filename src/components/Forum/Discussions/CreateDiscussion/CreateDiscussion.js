@@ -49,7 +49,7 @@ const CreateDiscussion = () => {
                     <button>Post</button>
                 </form>
                 <div className="create-discussion-redirect-container">
-                    <Link className="create-discussion-redirect-link" to={-1}>
+                    <Link className="create-discussion-redirect-link" to='/forum/discussions'>
                         Back to Forum
                     </Link>
                 </div>

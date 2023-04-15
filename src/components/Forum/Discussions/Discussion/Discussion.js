@@ -85,7 +85,6 @@ const Discussion = () => {
                     <div className='one-discussion-link-container'>
                         <Link to={'/forum/discussions'}>Back to Forum</Link>
                     </div>
-
                 </div>
                 <div className='one-discussion-container'>
                     <div className='one-discussion-info'>

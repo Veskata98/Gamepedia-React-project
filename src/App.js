@@ -16,7 +16,10 @@ import Discussions from './components/Forum/Discussions/Discussions';
 import CreateDiscussion from './components/Forum/Discussions/CreateDiscussion/CreateDiscussion';
 import Discussion from './components/Forum/Discussions/Discussion/Discussion';
 
+import MyDiscussions from './components/Forum/Discussions/MyDiscussions/MyDiscussions';
+
 import Reviews from './components/Forum/Reviews/Reviews';
+import CreateReview from './components/Forum/Reviews/CreateReview/CreateReview';
 
 import { Game } from './components/Games/Game/Game';
 import Games from './components/Games/Games';
@@ -52,7 +55,11 @@ const App = () => {
                         <Route path="/forum/discussions" element={<Discussions />} />
                         <Route path="/forum/discussion/:discussionId" element={<Discussion />} />
                         <Route path="/forum/discussions/create" element={<CreateDiscussion />} />
+
+                        <Route path="/forum/discussions/myDiscussions" element={<MyDiscussions />} />
+
                         <Route path="/forum/reviews" element={<Reviews />} />
+                        <Route path="/forum/reviews/:gameId/createReview" element={<CreateReview />} />
 
                         <Route path="/auth/login" element={<Login />} />
                         <Route path="/auth/register" element={<Register />} />

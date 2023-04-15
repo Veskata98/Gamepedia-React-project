@@ -48,16 +48,18 @@ const Discussions = () => {
 
                     </div>
                 </div>
-                <div className="forum-my-navigation">
-                    <ul>
-                        <li>
-                            <Link to="/forum/discussions/myDiscussions">My Discussions</Link>
-                        </li>
-                        <li>
-                            <Link to="/forum/discussions/myReviews">My Reviews</Link>
-                        </li>
-                    </ul>
-                </div>
+                {user.username &&
+                    <div className="forum-my-navigation">
+                        <ul>
+                            <li>
+                                <Link to="/forum/discussions/myDiscussions">My Discussions</Link>
+                            </li>
+                            <li>
+                                <Link to="/forum/reviews/myReviews">My Reviews</Link>
+                            </li>
+                        </ul>
+                    </div>}
+
             </div>
         </section>
     );

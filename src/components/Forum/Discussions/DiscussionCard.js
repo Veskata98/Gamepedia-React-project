@@ -20,7 +20,7 @@ const DiscussionCard = ({ discussion }) => {
         const userDisliked = discussion?.dislikedUsers?.some(x => x === user.userId);
         setLike(userLiked);
         setDislike(userDisliked);
-        setLikesCount(discussion.likesCount)
+        setLikesCount(discussion.likesCount);
     }, [discussion, user]);
 
     const likeHandler = async () => {
@@ -52,8 +52,12 @@ const DiscussionCard = ({ discussion }) => {
             </Link>
             <div className="discussion-likes-container">
                 <p className="discussion-likes-count">{likesCount}</p>
-                <button onClick={likeHandler} className={`discussione-up-button ${like && 'liked'}`}><FontAwesomeIcon icon={faUpLong} /></button>
-                <button onClick={dislikeHandler} className={`discussione-down-button ${dislike && 'disliked'}`}><FontAwesomeIcon icon={faDownLong} /></button>
+                {user.username && <>
+                    <button onClick={likeHandler} className={`discussione-up-button ${like && 'liked'}`}><FontAwesomeIcon icon={faUpLong} /></button>
+                    <button onClick={dislikeHandler} className={`discussione-down-button ${dislike && 'disliked'}`}><FontAwesomeIcon icon={faDownLong} /></button>
+                </>
+                }
+
             </div>
         </div>
     );
