@@ -28,13 +28,13 @@ const Reviews = () => {
 
                     <div className="reviews-container">
                         {reviews.map(x => (
-                            <Link className='review-link' to={`/forum/reviews/${x.title}`}>
+                            <Link className='review-link' to={`/forum/review/${x.title}`}>
                                 <div className='review-card'>
                                     <div className='review-info'>
                                         <p className='review-title'>{x.title}</p>
                                         <p className='review-overall'>Overall: {x.overall.toFixed(2)}</p>
                                     </div>
-                                    <img src={x.backgroundImage} />
+                                    <img src={x.backgroundImage} alt={x.title} />
                                 </div>
                             </Link>
                         ))}

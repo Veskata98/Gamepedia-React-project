@@ -1,0 +1,81 @@
+.review-section {
+    width: 100%;
+    margin: auto;
+    position: relative;
+    min-height: calc(100vh - 116px);
+    z-index: 20;
+    background-color: rgba(0, 0, 0, 1);
+    color: #fff;
+    padding-bottom: 3rem;
+}
+
+.review-container {
+    width: 90%;
+    margin: auto;
+    position: relative;
+}
+
+.review-background-img {
+    position: fixed;
+    width: 100%;
+    height: calc(100vh + 150px);
+    top: 0;
+    left: 0;
+
+    z-index: -1;
+    opacity: 0.2;
+
+    object-fit: fill;
+    object-position: center center;
+}
+
+.review-one-title {
+    padding-top: 3rem;
+    margin-bottom: 2.5rem;
+    font-size: 2.25rem;
+    display: flex;
+}
+
+.review-return-link {
+    position: absolute;
+    top: 3rem;
+    right: 1rem;
+
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5rem;
+    background-color: none;
+
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+}
+
+.review-return-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.review-one-card {
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.review-one-firstline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.25rem;
+}
+
+.review-one-date {
+    font-style: italic;
+}
+
+.review-one-overview {
+    margin-top: 1.5rem;
+    border-top: 1px solid #fff;
+    font-size: 1.25rem;
+}

@@ -19,7 +19,10 @@ import Discussion from './components/Forum/Discussions/Discussion/Discussion';
 import MyDiscussions from './components/Forum/Discussions/MyDiscussions/MyDiscussions';
 
 import Reviews from './components/Forum/Reviews/Reviews';
+import Review from './components/Forum/Reviews/Review/Review';
 import CreateReview from './components/Forum/Reviews/CreateReview/CreateReview';
+
+import MyReviews from './components/Forum/Reviews/MyReviews/MyReviews';
 
 import { Game } from './components/Games/Game/Game';
 import Games from './components/Games/Games';
@@ -59,7 +62,10 @@ const App = () => {
                         <Route path="/forum/discussions/myDiscussions" element={<MyDiscussions />} />
 
                         <Route path="/forum/reviews" element={<Reviews />} />
+                        <Route path="/forum/review/:gameTitle" element={<Review />} />
                         <Route path="/forum/reviews/:gameId/createReview" element={<CreateReview />} />
+
+                        <Route path="/forum/reviews/myReviews" element={<MyReviews />} />
 
                         <Route path="/auth/login" element={<Login />} />
                         <Route path="/auth/register" element={<Register />} />
