@@ -117,11 +117,11 @@ const Discussion = () => {
                                     <div className='comment-header'>
                                         <h2 className='comment-username'>{x.creator}</h2>
                                         <p className='comment-date'>{new Date(x.date).toLocaleString()}</p>
+                                        {user.username === x.creator &&
+                                            <button className='comment-remove-button' onClick={() => removeCommentHandler(x._id)}>X</button>
+                                        }
                                     </div>
                                     <p className='comment-text'>{x.text}</p>
-                                    {user.username === x.creator &&
-                                        <button onClick={() => removeCommentHandler(x._id)}>X</button>
-                                    }
                                 </div>
                             ))
                             : <h2>There is nothing here</h2>

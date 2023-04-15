@@ -80,6 +80,7 @@
 .last-discussion-date {
     font-size: 0.75rem;
     color: #fff;
+    font-style: italic;
 }
 
 @keyframes blue {

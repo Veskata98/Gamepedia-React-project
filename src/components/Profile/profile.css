@@ -1,0 +1,77 @@
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+}
+
+.profile-username {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.profile-avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2.5rem;
+}
+
+.profile-file-upload {
+    margin-bottom: 0.5rem;
+}
+
+.profile-btn-save,
+.profile-btn-change-password,
+.profile-btn-delete {
+    background-color: #9d7aff;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+
+    box-shadow: 0px 0px 3px 1px rgba(74, 45, 151, 0.5);
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(74, 45, 151, 0.5);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(74, 45, 151, 0.5);
+}
+
+.profile-btn-save:hover,
+.profile-btn-change-password:hover,
+.profile-btn-delete:hover {
+    background-color: #7e62d1;
+}
+
+.profile-input-old-password,
+.profile-input-new-password,
+.profile-input-repass {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.profile-input-old-password:focus,
+.profile-input-new-password:focus,
+.profile-input-repass:focus {
+    outline: none;
+    border-color: #7e62d1;
+}
+
+.profile-btn-delete {
+    transition: background-color 0.5s ease-out;
+}
+
+.profile-btn-delete:hover {
+    background-color: red;
+}

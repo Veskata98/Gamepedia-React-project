@@ -170,6 +170,15 @@
     color: #fff;
 }
 
+.comment-remove-button {
+    background-color: unset;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
 /* Add comment */
 
 .add-comment {

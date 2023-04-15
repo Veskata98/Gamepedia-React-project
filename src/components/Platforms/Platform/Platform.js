@@ -20,8 +20,6 @@ export const Platform = () => {
         (async () => {
             const resultPlatform = await request.get('/api/platforms/' + platformId);
 
-            console.log(resultPlatform);
-
             setPlatform(resultPlatform);
             setTopGames(resultPlatform.topGames);
             setLoading(false);

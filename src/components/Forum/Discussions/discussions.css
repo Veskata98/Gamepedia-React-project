@@ -65,7 +65,9 @@
     text-decoration: underline;
 }
 
-.discussion-card {
+.discussion-container {
+    padding: 0.75rem;
+    /* position: relative; */
     /* background-color: rgba(114, 66, 248, 0.3); */
     background: linear-gradient(90deg, rgba(40, 178, 218, 1) 0%, rgba(157, 122, 255, 0.2) 95%, rgba(169, 107, 209, 0.1) 100%);
     color: #fff;
@@ -75,10 +77,16 @@
     box-shadow: 0px 0px 3px 1px rgba(74, 45, 151, 0.5);
     -webkit-box-shadow: 0px 0px 3px 1px rgba(74, 45, 151, 0.5);
     -moz-box-shadow: 0px 0px 3px 1px rgba(74, 45, 151, 0.5);
+
+    display: flex;
+    justify-content: space-between;
 }
 
-.discussion-container {
-    padding: 0.75rem;
+.discussion-card {
+    color: #fff;
+    width: 85%;
+
+    border-right: 1px solid #7242f8;
 }
 
 .discussion-title {
@@ -90,6 +98,7 @@
 .discussion-date {
     font-size: 0.75rem;
     margin-bottom: 0.5rem;
+    font-style: italic;
 }
 
 .discussion-description {
@@ -118,4 +127,33 @@
     font-size: 1.25rem;
     font-weight: 500;
     color: #fff;
+}
+
+.discussion-likes-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.discussion-likes-count {
+    font-size: 1.25rem;
+    margin-right: 0.5rem;
+}
+
+.discussione-up-button,
+.discussione-down-button {
+    background-color: unset;
+    color: #fff;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.liked {
+    color: greenyellow;
+}
+
+.disliked {
+    color: red;
 }

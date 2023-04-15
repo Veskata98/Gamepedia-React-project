@@ -69,10 +69,15 @@ const Profile = () => {
 
         const newAvatar = await response.json();
 
+        localStorage.setItem('avatar', newAvatar);
+
         setUser(state => ({
             ...state,
             avatar: newAvatar
         }));
+
+        e.target.reset();
+        setFile(null);
     }
 
     const deleteProfileHandler = async () => {
@@ -92,22 +97,21 @@ const Profile = () => {
     }
 
     return (
-        <>
-            <h1>Profile</h1>
-            <h2>{user.username}</h2>
-            <img src={user.avatar || defaultAvatar} alt='user_avatar'></img>
-            <form onSubmit={uploadAvatarHandler}>
-                <input type="file" accept="image/*" onChange={handleFileChange} />
-                <button>Save</button>
+        <div className="profile-container">
+            <h2 className="profile-username">{user.username}</h2>
+            <img className="profile-avatar" src={user.avatar || defaultAvatar} alt='user_avatar'></img>
+            <form className="profile-form" onSubmit={uploadAvatarHandler}>
+                <input className="profile-file-upload" type="file" accept="image/*" onChange={handleFileChange} />
+                <button className="profile-btn-save">Save</button>
             </form>
-            <form onSubmit={changePasswordHandler}>
-                <input type="password" autoComplete="new-password" name='oldPassword' value={passwords.oldPassword} onChange={changePasswordInput} />
-                <input type="password" name='newPassword' value={passwords.newPassword} onChange={changePasswordInput} />
-                <input type="password" name='repass' value={passwords.repass} onChange={changePasswordInput} />
-                <button>Change password</button>
+            <form className="profile-form" onSubmit={changePasswordHandler}>
+                <input className="profile-input-old-password" placeholder='Old Password' type="password" autoComplete="new-password" name='oldPassword' value={passwords.oldPassword} onChange={changePasswordInput} />
+                <input className="profile-input-new-password" placeholder='New Password' type="password" name='newPassword' value={passwords.newPassword} onChange={changePasswordInput} />
+                <input className="profile-input-repass" placeholder='Repeat New Password' type="password" name='repass' value={passwords.repass} onChange={changePasswordInput} />
+                <button className="profile-btn-change-password">Change password</button>
             </form>
-            <button onClick={deleteProfileHandler}>Delete account</button>
-        </>
+            <button className="profile-btn-delete" onClick={deleteProfileHandler}>Delete account</button>
+        </div>
     );
 }
 

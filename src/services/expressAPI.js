@@ -1,6 +1,6 @@
 const baseUrl = 'http://localhost:5000';
 
-const request = async (method, url, data, navigateCallback) => {
+const request = async (method, url, data) => {
     try {
         const authToken = localStorage.getItem('authToken');
 
@@ -26,10 +26,10 @@ const request = async (method, url, data, navigateCallback) => {
             });
         }
         const response = await buildRequest;
-        const newAuthToken = response.headers.get('newAuthToken')
+        const newAuthToken = response.headers.get('newAuthToken');
 
         if (newAuthToken) {
-            localStorage.setItem("authToken", newAuthToken)
+            localStorage.setItem("authToken", newAuthToken);
         }
 
         const result = await response.json();
@@ -42,6 +42,7 @@ const request = async (method, url, data, navigateCallback) => {
             localStorage.removeItem('authToken');
             localStorage.removeItem('user');
             localStorage.removeItem('userId');
+            localStorage.removeItem('avatar');
 
             window.location.href = "/auth/login";
         }
