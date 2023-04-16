@@ -1,0 +1,19 @@
+.about-section {
+    padding: 2rem 4rem;
+    color: #fff;
+}
+
+.about-title {
+    margin-bottom: 1rem;
+}
+
+.about-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.about-paragraph {
+    font-size: 1.25rem;
+    text-align: justify;
+}

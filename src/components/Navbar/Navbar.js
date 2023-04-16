@@ -45,6 +45,9 @@ const Navbar = () => {
                             Forum
                         </NavLink>
                     </li>
+                    <li className="navbar-item">
+                        <NavLink to="/about">About</NavLink>
+                    </li>
                     {user.username && (
                         <li className="navbar-item">
                             <NavLink to="/myGames">My Games</NavLink>

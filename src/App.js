@@ -27,6 +27,8 @@ import CreateReview from './components/Forum/Reviews/CreateReview/CreateReview';
 
 import MyReviews from './components/Forum/Reviews/MyReviews/MyReviews';
 
+import About from './components/About/About';
+
 import Game from './components/Games/Game/Game';
 import Games from './components/Games/Games';
 import MyGames from './components/MyGames/MyGames';
@@ -66,6 +68,8 @@ const App = () => {
                         <Route path="/forum/reviews/:gameId/createReview" element={<CreateReview />} />
 
                         <Route path="/forum/reviews/myReviews" element={<MyReviews />} />
+
+                        <Route path='/about' element={<About />} />
 
                         <Route path="/auth/login" element={<Login />} />
                         <Route path="/auth/register" element={<Register />} />
