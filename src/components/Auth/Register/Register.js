@@ -11,7 +11,7 @@ const Register = () => {
     const [registerAuth, setRegisterAuth] = useState({ username: '', password: '', repass: '' });
     const [registerError, setRegisterError] = useState('');
 
-    const { setUser } = useContext(AuthContext);
+    const { register } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -40,7 +40,7 @@ const Register = () => {
 
             const { authToken, userId, username, avatar } = await request.post('/api/auth/register', { username: regUsername, password: regPassword, repass: regRepass })
 
-            setUser({ username, userId, avatar });
+            register({ username, userId, avatar });
 
             localStorage.setItem('authToken', authToken);
             localStorage.setItem('user', username);
@@ -65,7 +65,7 @@ const Register = () => {
 
             <div className="register-block">
                 <form className="register-form" onSubmit={registerHandler}>
-                    <h1>Register</h1>
+                    <h1>Sign Up</h1>
                     <input type="text" value={registerAuth.username} placeholder="Username" name="username" onChange={regInputHandler} />
                     <input
                         type="password"

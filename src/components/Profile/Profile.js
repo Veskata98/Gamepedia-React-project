@@ -15,7 +15,7 @@ const Profile = () => {
     const [message, setMessage] = useState('');
     const [isMessageVisible, setIsMessageVisible] = useState(false);
 
-    const { user, setUser } = useContext(AuthContext);
+    const { user, changeAvatar, logout } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -89,10 +89,7 @@ const Profile = () => {
 
             localStorage.setItem('avatar', newAvatar);
 
-            setUser(state => ({
-                ...state,
-                avatar: newAvatar
-            }));
+            changeAvatar(newAvatar);
 
             setMessage('Profile picture successfully changed!');
 
@@ -121,7 +118,7 @@ const Profile = () => {
                 localStorage.removeItem('authToken');
                 localStorage.removeItem('avatar');
 
-                setUser({});
+                logout();
 
                 navigate('/');
             } catch (error) {

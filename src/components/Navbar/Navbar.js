@@ -69,10 +69,10 @@ const Navbar = () => {
                 ) : (
                     <ul className="user-nav-list">
                         <li className="navbar-item">
-                            <Link to="/auth/login">Login</Link>
+                            <NavLink to="/auth/login">Sign In</NavLink>
                         </li>
-                        <li className="navbar-item">
-                            <Link to="/auth/register">Register</Link>
+                        <li className="navbar-item register-link">
+                            <NavLink to="/auth/register">Sign Up</NavLink>
                         </li>
                     </ul>
                 )}

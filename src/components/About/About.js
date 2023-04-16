@@ -13,7 +13,7 @@ const About = () => {
 
                 <p className='about-paragraph'>In addition to providing information, Gamepedia also has a dedicated section for forums, where users can engage in discussions, share their experiences, and post reviews about games. Every user, including guests, can access this section and read the discussions and reviews. However, only authenticated users have the privilege to create new discussions or reviews.</p>
 
-                <p className='about-paragraph'>To create an account, simply click on the "Register" button and follow the easy registration process. Once registered, you will have access to more features and can actively participate in the community.</p>
+                <p className='about-paragraph'>To create an account, simply click on the "Sign Up" button and follow the easy registration process. Once registered, you will have access to more features and can actively participate in the community.</p>
 
                 <p className='about-paragraph'>At Gamepedia, we strive to provide a platform that caters to the diverse needs of gamers worldwide.</p>
 

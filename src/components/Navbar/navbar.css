@@ -68,11 +68,13 @@
 
 .navbar-item a.active {
     background-color: unset;
-    text-decoration: underline;
+    /* text-decoration: underline; */
+    color: #00ffff;
 }
 
 .navbar-item a:hover {
-    text-decoration: underline;
+    /* text-decoration: underline; */
+    color: #00ffff;
 }
 
 .navbar-item-username {
@@ -99,4 +101,19 @@
 .navbar-item.logout-form {
     display: flex;
     align-items: center;
+}
+
+.navbar-item.register-link a {
+    border: 1px solid #fff;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.navbar-item.register-link a:hover,
+.navbar-item.register-link a:active {
+    border: 1px solid #00ffff;
+}
+
+.navbar-item.register-link a.active {
+    border: 1px solid #00ffff;
 }

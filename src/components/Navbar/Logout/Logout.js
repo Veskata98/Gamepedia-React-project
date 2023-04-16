@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 const Logout = () => {
-    const { setUser } = useContext(AuthContext);
+    const { logout } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ const Logout = () => {
             localStorage.removeItem('user');
             localStorage.removeItem('userId');
             localStorage.removeItem('avatar');
-            setUser({});
+            logout();
 
             navigate('/');
         } catch (err) {

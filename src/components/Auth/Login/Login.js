@@ -11,7 +11,7 @@ const Login = () => {
     const [loginAuth, setLoginAuth] = useState({ username: '', password: '' });
     const [loginError, setLoginError] = useState('');
 
-    const { setUser } = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -36,7 +36,7 @@ const Login = () => {
         request.post('/api/auth/login', { username: loginUsername, password: loginPassword })
             .then((data) => {
                 const { authToken, userId, username, avatar } = data;
-                setUser({ username, userId, avatar });
+                login({ username, userId, avatar });
 
                 localStorage.setItem('authToken', authToken);
                 localStorage.setItem('user', username);
@@ -58,7 +58,7 @@ const Login = () => {
             )}
             <div className="login-block">
                 <form className="login-form" onSubmit={loginHandler}>
-                    <h1>Login</h1>
+                    <h1>Sign In</h1>
                     <input
                         type="text"
                         value={loginAuth.username}
