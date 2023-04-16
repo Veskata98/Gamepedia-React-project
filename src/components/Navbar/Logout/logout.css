@@ -1,0 +1,40 @@
+.navbar-logout-form {
+    margin: 0;
+}
+
+.logout-btn {
+    text-decoration: none;
+    font-size: 1.25rem;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: none;
+
+    line-height: 1.45;
+    position: relative;
+}
+
+.logout-btn:hover {
+    text-decoration: underline;
+}
+
+.logout-btn:before {
+    content: attr(data-hover);
+    visibility: hidden;
+    opacity: 0;
+    color: #fff;
+    transition: opacity 1s ease-in-out;
+
+    position: absolute;
+    z-index: 1;
+    left: 30%;
+    top: 15%;
+    font-size: 0.9rem;
+    width: 100px;
+}
+
+.logout-btn:hover:before {
+    opacity: 1;
+    visibility: visible;
+}

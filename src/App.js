@@ -2,19 +2,22 @@ import './App.css';
 
 import { Routes, Route } from 'react-router-dom';
 
-import { Navbar } from './components/Navbar/Navbar';
-import { Main } from './components/Main/Main';
-import { Footer } from './components/Footer/Footer';
+import { AuthProvider } from './contexts/AuthContext';
+import { NewsProvider } from './contexts/NewsContext';
 
-import { Home } from './components/Home/Home';
+import Navbar from './components/Navbar/Navbar';
+import Main from './components/Main/Main';
+import Footer from './components/Footer/Footer';
+
+import Home from './components/Home/Home';
 import Profile from './components/Profile/Profile';
 
-import { Platform } from './components/Platforms/Platform/Platform';
+import Platform from './components/Platforms/Platform/Platform';
 import Platforms from './components/Platforms/Platforms';
 
 import Discussions from './components/Forum/Discussions/Discussions';
-import CreateDiscussion from './components/Forum/Discussions/CreateDiscussion/CreateDiscussion';
 import Discussion from './components/Forum/Discussions/Discussion/Discussion';
+import CreateDiscussion from './components/Forum/Discussions/CreateDiscussion/CreateDiscussion';
 
 import MyDiscussions from './components/Forum/Discussions/MyDiscussions/MyDiscussions';
 
@@ -24,15 +27,12 @@ import CreateReview from './components/Forum/Reviews/CreateReview/CreateReview';
 
 import MyReviews from './components/Forum/Reviews/MyReviews/MyReviews';
 
-import { Game } from './components/Games/Game/Game';
+import Game from './components/Games/Game/Game';
 import Games from './components/Games/Games';
 import MyGames from './components/MyGames/MyGames';
 
-import { Login } from './components/Auth/Login/Login';
-import { Register } from './components/Auth/Register/Register';
-
-import { AuthProvider } from './contexts/AuthContext';
-import { NewsProvider } from './contexts/NewsContext';
+import Login from './components/Auth/Login/Login';
+import Register from './components/Auth/Register/Register';
 
 import NotFound from './components/NotFound/NotFound';
 
@@ -45,7 +45,7 @@ const App = () => {
                     <Routes>
                         <Route path="/" element={<Home />} />
 
-                        <Route path="/profile/:userId" element={<Profile />} />
+                        <Route path="/myProfile" element={<Profile />} />
 
                         <Route path="/game/:gameId" element={<Game />} />
                         <Route path="/games" element={<Games />} />

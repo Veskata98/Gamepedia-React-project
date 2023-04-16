@@ -1,10 +1,10 @@
+import * as request from '../../services/expressAPI';
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import * as request from '../../services/expressAPI';
 
 const MyGamesCard = ({ game, removeGameHandler }) => {
     const [imageText, setImagetext] = useState('')
@@ -12,11 +12,15 @@ const MyGamesCard = ({ game, removeGameHandler }) => {
 
     useEffect(() => {
         request.post(`/api/forum/reviews/${game.name}/alreadyReviewed`)
-            .then(result => {
-                setCanReview(true);
-                setImagetext('Leave a review')
+            .then((data) => {
+                if (data.canReview) {
+                    setCanReview(true);
+                    setImagetext('Leave a review')
+                } else {
+                    setImagetext('Check reviews')
+                }
             })
-            .catch((error) => setImagetext('Check reviews'));
+            .catch((error) => console.log(error.message));
     }, [game]);
 
     return (

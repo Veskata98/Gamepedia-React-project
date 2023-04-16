@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export const PlatformTemplate = ({ platform }) => {
+const PlatformCard = ({ platform }) => {
     return (
         <div className="platform-card">
             <Link to={`/platforms/${platform._id}`}>
@@ -10,3 +10,5 @@ export const PlatformTemplate = ({ platform }) => {
         </div>
     );
 };
+
+export default PlatformCard;

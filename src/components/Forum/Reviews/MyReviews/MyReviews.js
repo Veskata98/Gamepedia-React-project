@@ -1,9 +1,10 @@
 import './myReviews.css';
 
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import * as request from '../../../../services/expressAPI';
-import { Link } from 'react-router-dom';
+
 import MyReviewCard from './MyReviewCard';
 
 const MyReviews = () => {

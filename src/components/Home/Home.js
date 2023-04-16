@@ -1,18 +1,18 @@
 import './home.css';
 import defaultImg from '../../assets/default.jpg'
 
-import * as request from '../../services/expressAPI';
-
 import { useContext, useEffect, useState } from 'react';
+
+import * as request from '../../services/expressAPI';
 
 import { NewsContext } from '../../contexts/NewsContext';
 
 import GamingNews from './GamingNews/GamingNews';
 import TechNews from './TechNews/TechNews';
-import Spinner from '../Spinner/Spinner';
 import HomeDiscussions from './HomeDiscussions/HomeDiscussions';
+import Spinner from '../Spinner/Spinner';
 
-export const Home = () => {
+const Home = () => {
     const [discussions, setDiscussions] = useState([]);
     const [imageError, setImageError] = useState(false);
 
@@ -72,3 +72,5 @@ export const Home = () => {
         </section>
     );
 };
+
+export default Home;

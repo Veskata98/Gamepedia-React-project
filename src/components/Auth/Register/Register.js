@@ -7,7 +7,7 @@ import { AuthContext } from '../../../contexts/AuthContext';
 
 import * as request from '../../../services/expressAPI';
 
-export const Register = () => {
+const Register = () => {
     const [registerAuth, setRegisterAuth] = useState({ username: '', password: '', repass: '' });
     const [registerError, setRegisterError] = useState('');
 
@@ -40,7 +40,6 @@ export const Register = () => {
 
             const { authToken, userId, username, avatar } = await request.post('/api/auth/register', { username: regUsername, password: regPassword, repass: regRepass })
 
-
             setUser({ username, userId, avatar });
 
             localStorage.setItem('authToken', authToken);
@@ -49,9 +48,6 @@ export const Register = () => {
             localStorage.setItem('avatar', avatar);
 
             navigate('/');
-
-            setRegisterAuth({});
-            setRegisterError({});
         } catch (error) {
             setRegisterError(error.message);
         }
@@ -91,3 +87,5 @@ export const Register = () => {
         </section>
     );
 };
+
+export default Register;

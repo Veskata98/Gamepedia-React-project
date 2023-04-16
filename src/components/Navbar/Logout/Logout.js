@@ -1,3 +1,5 @@
+import './logout.css';
+
 import * as request from '../../../services/expressAPI';
 
 import { useContext } from 'react';
@@ -33,7 +35,7 @@ const Logout = () => {
     };
     return (
         <form className="navbar-logout-form" onSubmit={logoutHandler}>
-            <button data-hover="Log Out" className="logout-btn"><FontAwesomeIcon icon={faRightFromBracket} style={{ color: "#ffffff", }} /></button>
+            <button data-hover="Log Out" className="logout-btn"><FontAwesomeIcon icon={faRightFromBracket} /></button>
         </form>
     );
 }

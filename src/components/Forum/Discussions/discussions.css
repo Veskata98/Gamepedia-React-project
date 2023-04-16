@@ -87,12 +87,23 @@
     width: 85%;
 
     border-right: 1px solid #7242f8;
+    text-decoration: none;
+    padding-right: 1rem;
+}
+
+.discussion-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .discussion-title {
     font-size: 1.25rem;
     margin-bottom: 0.25rem;
-    text-decoration: underline;
+}
+
+.discussion-comments-count {
+    font-style: italic;
 }
 
 .discussion-date {

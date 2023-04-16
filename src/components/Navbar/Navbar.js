@@ -11,8 +11,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 
 import Logout from './Logout/Logout';
 
-
-export const Navbar = () => {
+const Navbar = () => {
     const { user } = useContext(AuthContext);
 
     const location = useLocation();
@@ -55,7 +54,7 @@ export const Navbar = () => {
                 {user.username ? (
                     <ul className="user-nav-list">
                         <li className="navbar-item user">
-                            <Link className="navbar-item-username" to={`/profile/${user.userId}`}>
+                            <Link className="navbar-item-username" to={`/myProfile`}>
                                 <img className="navbar-user-avatar" src={user.avatar || defaultAvatar} alt="user-avatar" />
                                 {user.username}
                             </Link>
@@ -78,3 +77,5 @@ export const Navbar = () => {
         </header>
     );
 };
+
+export default Navbar;

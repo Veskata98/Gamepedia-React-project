@@ -1,10 +1,11 @@
 import './myDiscussions.css';
 
 import { useEffect, useState } from "react";
-
-import * as request from '../../../../services/expressAPI';
 import { Link } from "react-router-dom";
 
+import * as request from '../../../../services/expressAPI';
+
+import MyDiscussionsCard from './MyDiscussionsCard';
 
 const MyDiscussions = () => {
     const [discussions, setDiscussions] = useState([]);
@@ -14,16 +15,6 @@ const MyDiscussions = () => {
             .then(data => setDiscussions(data))
             .catch(error => console.log(error.message));
     }, []);
-
-    const likesColor = (count) => {
-        if (count > 0) {
-            return 'liked';
-        } else if (count === 0) {
-            return;
-        } else {
-            return 'disliked';
-        }
-    }
 
     return (
         <section className='forum-section'>
@@ -39,27 +30,10 @@ const MyDiscussions = () => {
                     <div className='myDiscussions-all-container'>
                         {discussions.length
                             ?
-                            discussions.map(x => (
-                                <div className="myDiscussion-container">
-                                    <Link className="myDiscussion-card" to={`/forum/discussion/${x.id}`}>
-                                        <>
-                                            <h3 className="discussion-title">{x.title}</h3>
-                                            <p className="discussion-date">{new Date(x.date).toLocaleString()}</p>
-                                            <p className="discussion-description">{x.description}</p>
-                                        </>
-                                    </Link>
-                                    <div className="discussion-likes-container">
-                                        <div className='myDiscussion-likes-wrapper'>
-                                            <span>Likes: </span>
-                                            <p className={`myDiscussion-likes-count ${likesColor(x.likesCount)}`}> {x.likesCount}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))
+                            discussions.map(x => <MyDiscussionsCard key={x.id} discussion={x} />)
                             : <h2 className='discussions-nodiscussions'>Ready to play? Let's start a discussion and see where it takes us.</h2>
                         }
                     </div>
-
                 </div>
                 <div className='forum-my-navigation'>
                     <ul>

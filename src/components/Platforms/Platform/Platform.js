@@ -9,7 +9,7 @@ import { PlatformTopGames } from './PlatformTopGames/PlatformTopGames';
 
 import Spinner from '../../Spinner/Spinner';
 
-export const Platform = () => {
+const Platform = () => {
     const [platform, setPlatform] = useState({});
     const [topGames, setTopGames] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -49,7 +49,8 @@ export const Platform = () => {
                     </div>
                 </>
             }
-
         </section>
     );
 };
+
+export default Platform;

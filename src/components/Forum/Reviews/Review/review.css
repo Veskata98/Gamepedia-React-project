@@ -68,14 +68,21 @@
     justify-content: space-between;
     align-items: center;
     font-size: 1.25rem;
+    border-bottom: 1px solid #fff;
 }
 
 .review-one-date {
     font-style: italic;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.8rem;
 }
 
 .review-one-overview {
-    margin-top: 1.5rem;
-    border-top: 1px solid #fff;
     font-size: 1.25rem;
+}
+
+.review-one-overview-container {
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.3);
 }

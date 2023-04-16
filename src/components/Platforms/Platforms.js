@@ -6,7 +6,7 @@ import { useEffect, useState, useContext } from 'react';
 
 import { NewsContext } from '../../contexts/NewsContext';
 
-import { PlatformTemplate } from './PlatformTemplate';
+import PlatformCard from './PlatformCard';
 import PlatformNews from './PlatformNews/PlatformNews';
 
 import Spinner from '../Spinner/Spinner';
@@ -50,9 +50,9 @@ const Platforms = () => {
                         <div className="platforms-main">
                             <div className="platforms-container">
                                 {platforms.slice(0, 15).map((x) => (
-                                    <PlatformTemplate key={x._id} platform={x} />
+                                    <PlatformCard key={x._id} platform={x} />
                                 ))}
-                                {showAll && platforms.slice(16, -1).map((x) => <PlatformTemplate key={x._id} platform={x} />)}
+                                {showAll && platforms.slice(16, -1).map((x) => <PlatformCard key={x._id} platform={x} />)}
                             </div>
                             <button className="platforms-showAll-button" onClick={showAllHandler}>
                                 {showAll ? 'Show less' : 'Show All'}

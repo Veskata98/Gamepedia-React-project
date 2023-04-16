@@ -2,13 +2,13 @@ import './games.css';
 
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { GamesRender } from './GamesRender';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import * as gameService from '../../services/gameService';
 
+import GamesRender from './GamesRender';
 import Spinner from '../Spinner/Spinner';
 
 const gamesPerPage = 15;

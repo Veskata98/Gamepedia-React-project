@@ -1,15 +1,13 @@
 const request = async (method, url, data) => {
     try {
-        let headers = {};
         let buildRequest;
 
         if (method === 'GET') {
-            buildRequest = fetch(url, { headers });
+            buildRequest = fetch(url);
         } else {
             buildRequest = fetch(url, {
                 method,
                 headers: {
-                    ...headers,
                     'content-type': 'application/json',
                 },
                 body: JSON.stringify(data),

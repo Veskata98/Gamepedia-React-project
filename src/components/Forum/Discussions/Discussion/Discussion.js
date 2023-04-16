@@ -9,13 +9,18 @@ import { AuthContext } from '../../../../contexts/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 
+import Comments from './Comments';
+import OtherDiscussions from './OtherDiscussions';
+
 const Discussion = () => {
     const [discussion, setDiscussion] = useState({});
     const [otherDiscussions, setOtherDiscussions] = useState([]);
     const [createCommentText, setCreateCommentText] = useState('');
 
     const [isEditing, setIsEditing] = useState(false);
+
     const [error, setError] = useState('');
+    const [isMessageVisible, setIsMessageVisible] = useState(false);
 
     const { user } = useContext(AuthContext);
 
@@ -58,23 +63,20 @@ const Discussion = () => {
                 setError('');
                 setCreateCommentText('');
             })
-            .catch(error => setError(error.message));
+            .catch(error => {
+                setIsMessageVisible(true);
+                setError(error.message)
+
+                setTimeout(() => {
+                    setIsMessageVisible(false);
+                    setError('');
+                }, 2000);
+            });
     }
 
     const createCommentInputHandler = (e) => {
         e.preventDefault();
         setCreateCommentText(e.target.value);
-    }
-
-    const removeCommentHandler = (commentId) => {
-        request.del(`/api/forum/discussions/${discussionId}/comment/delete`, { commentId })
-            .then((result) => {
-                setDiscussion(state => ({
-                    ...state,
-                    comments: discussion.comments.filter(x => x._id !== commentId)
-                }));
-            })
-            .catch(error => console.log(error));
     }
 
     return (
@@ -111,43 +113,38 @@ const Discussion = () => {
                     <h1 className='comment-section-title'>Comments</h1>
                     <div className='comments-container'>
                         {discussion.comments?.length
-                            ? discussion.comments.map(x => (
-                                <div className='comment'>
-                                    <div className='comment-header'>
-                                        <h2 className='comment-username'>{x.creator}</h2>
-                                        <p className='comment-date'>{new Date(x.date).toLocaleString()}</p>
-                                        {user.username === x.creator &&
-                                            <button className='comment-remove-button' onClick={() => removeCommentHandler(x._id)}>X</button>
-                                        }
-                                    </div>
-                                    <p className='comment-text'>{x.text}</p>
-                                </div>
-                            ))
+                            ? discussion.comments.map(x =>
+                                <Comments
+                                    key={x._id}
+                                    comment={x}
+                                    setDiscussion={setDiscussion}
+                                    discussion={discussion}
+                                    discussionId={discussionId}
+                                />
+                            )
                             : <h2>There is nothing here</h2>
                         }
                     </div>
                 </div>
-                <div className='add-comment'>
-                    <h1 className='comment-section-title'>Post Comment</h1>
-                    {error && (
-                        <div className="error">
-                            <p>{error}</p>
-                        </div>
-                    )}
-                    <form onSubmit={createCommentHandler}>
-                        <textarea placeholder='Enter comment here' value={createCommentText} name='description' cols='50' rows='5' onChange={createCommentInputHandler}></textarea>
-                        <button>Post</button>
-                    </form>
-                </div>
+                {user.username &&
+                    <div className='add-comment'>
+                        <h1 className='comment-section-title'>Post Comment</h1>
+                        {isMessageVisible && (
+                            <div className="error">
+                                <p>{error}</p>
+                            </div>
+                        )}
+                        <form onSubmit={createCommentHandler}>
+                            <textarea placeholder='Enter comment here' value={createCommentText} name='description' cols='50' rows='5' onChange={createCommentInputHandler}></textarea>
+                            <button>Post</button>
+                        </form>
+                    </div>
+                }
             </div>
             <div className='otherDiscussions-container'>
                 <h2 className='otherDiscussions-heading'>Other discussions</h2>
                 <ul className='otherDiscussions-list'>
-                    {otherDiscussions.map(x => (
-                        <li className='otherDiscussions-item'>
-                            <Link to={`/forum/discussion/${x.id}`}>{x.title}</Link>
-                        </li>
-                    ))}
+                    {otherDiscussions.map(x => <OtherDiscussions key={x.id} discussion={x} />)}
 
                 </ul>
             </div>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import * as request from '../../../../services/expressAPI';
+import SingleGameReviews from './SingleGameReviews';
 
 const Review = () => {
     const [reviews, setReviews] = useState([]);
@@ -35,18 +36,8 @@ const Review = () => {
                 <h2 className="review-one-title">
                     Overall Rating: {overall.toFixed(2)}
                 </h2>
-                {reviews.map(x => (
-                    <div className="review-one-card">
-                        <div className='review-one-firstline'>
-                            <p className='review-one-user'>Reviewed by: <b>{x.creatorId.username}</b></p>
-                            <p>Rating: {x.rating}</p>
-                        </div>
-                        <p className='review-one-date'>{new Date(x.date).toLocaleString()}</p>
-                        <p className='review-one-overview'>Overview: {x.description}</p>
-                    </div>
-                ))
-
-
+                {
+                    reviews.map(x => <SingleGameReviews key={x._id} singleGameReviews={x} />)
                 }
             </div>
         </section>

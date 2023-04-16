@@ -97,3 +97,7 @@
 .review-overall {
     font-weight: bold;
 }
+
+.reviews-noreviews {
+    color: #fff;
+}

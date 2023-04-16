@@ -20,7 +20,6 @@ const MyGames = () => {
             })
     }, []);
 
-
     const removeGameHandler = (gameId) => {
         setLoading(true);
         request.del(`/api/games/myGames/${gameId}/remove`)

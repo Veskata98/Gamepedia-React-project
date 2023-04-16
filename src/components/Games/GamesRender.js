@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import defaultImg from '../../../src/assets/default.jpg';
 
-export const GamesRender = ({ game }) => {
+const GamesRender = ({ game }) => {
     return (
         <div className="games-card">
             <h2 title={game.name} className="games-name">
@@ -14,3 +14,5 @@ export const GamesRender = ({ game }) => {
         </div>
     );
 };
+
+export default GamesRender;

@@ -8,7 +8,6 @@ const useFetch = (url) => {
 
             return result;
         }
-
         fetchData(url);
     }, [url]);
 };

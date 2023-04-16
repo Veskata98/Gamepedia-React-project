@@ -2,11 +2,12 @@ import '../auth.css';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
+
 import { AuthContext } from '../../../contexts/AuthContext';
 
 import * as request from '../../../services/expressAPI';
 
-export const Login = () => {
+const Login = () => {
     const [loginAuth, setLoginAuth] = useState({ username: '', password: '' });
     const [loginError, setLoginError] = useState('');
 
@@ -21,35 +22,30 @@ export const Login = () => {
         }));
     };
 
-    const loginHandler = async (e) => {
+    const loginHandler = (e) => {
         e.preventDefault();
 
-        try {
-            const loginUsername = loginAuth.username;
-            const loginPassword = loginAuth.password;
+        const loginUsername = loginAuth.username;
+        const loginPassword = loginAuth.password;
 
-            if (loginUsername === '' || loginPassword === '') {
-                throw new Error('All fields are required');
-            }
-
-            await request.post('/api/auth/login', { username: loginUsername, password: loginPassword })
-                .then((data) => {
-                    const { authToken, userId, username, avatar } = data;
-                    setUser({ username, userId, avatar });
-
-                    localStorage.setItem('authToken', authToken);
-                    localStorage.setItem('user', username);
-                    localStorage.setItem('userId', userId);
-                    localStorage.setItem('avatar', avatar);
-
-                    navigate('/');
-
-                    setLoginAuth({});
-                    setLoginError({});
-                });
-        } catch (error) {
-            setLoginError(error.message);
+        if (loginUsername === '' || loginPassword === '') {
+            setLoginError('All fields are required');
+            return;
         }
+
+        request.post('/api/auth/login', { username: loginUsername, password: loginPassword })
+            .then((data) => {
+                const { authToken, userId, username, avatar } = data;
+                setUser({ username, userId, avatar });
+
+                localStorage.setItem('authToken', authToken);
+                localStorage.setItem('user', username);
+                localStorage.setItem('userId', userId);
+                localStorage.setItem('avatar', avatar);
+
+                navigate('/');
+            })
+            .catch(error => setLoginError(error.message));
     };
 
     return (
@@ -89,3 +85,5 @@ export const Login = () => {
         </section>
     );
 };
+
+export default Login;

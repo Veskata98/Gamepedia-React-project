@@ -5,12 +5,14 @@ import defaultImg from '../../../../src/assets/default.jpg';
 import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
+import { AuthContext } from '../../../contexts/AuthContext';
+
 import * as gameService from '../../../services/gameService';
 import * as request from '../../../services/expressAPI';
 
-import { AuthContext } from '../../../contexts/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+
 import Spinner from '../../Spinner/Spinner';
 
 const STORE_NAMES = {
@@ -26,7 +28,7 @@ const STORE_NAMES = {
     11: 'Epic Games',
 };
 
-export const Game = () => {
+const Game = () => {
     const [game, setGame] = useState({});
     const [gamesIsFavorite, setGameIsFavorite] = useState();
     const [stores, setStores] = useState([]);
@@ -149,3 +151,5 @@ export const Game = () => {
         </section>
     );
 };
+
+export default Game;
