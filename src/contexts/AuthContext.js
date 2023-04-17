@@ -3,10 +3,14 @@ import { createContext, useEffect, useState } from 'react';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState(() => {
         const localStorageUser = localStorage.getItem('user');
         const localStorageUserId = localStorage.getItem('userId');
         const avatar = localStorage.getItem('avatar');
+        if (localStorageUser) {
+            setIsAuthenticated(true);
+        }
         return localStorageUser
             ? { username: localStorageUser, userId: localStorageUserId, avatar }
             : {};
@@ -22,14 +26,17 @@ export const AuthProvider = ({ children }) => {
 
     const login = (userData) => {
         setUser(userData);
+        setIsAuthenticated(true);
     }
 
     const register = (userData) => {
         setUser(userData);
+        setIsAuthenticated(true);
     }
 
     const logout = () => {
         setUser({});
+        setIsAuthenticated(false);
     }
 
     const changeAvatar = (newAvatar) => {
@@ -47,6 +54,7 @@ export const AuthProvider = ({ children }) => {
                 logout,
                 register,
                 changeAvatar,
+                isAuthenticated
             }}>
             {children}
         </AuthContext.Provider>

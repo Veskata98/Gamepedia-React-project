@@ -57,7 +57,7 @@ const Navbar = () => {
                 {user.username ? (
                     <ul className="user-nav-list">
                         <li className="navbar-item user">
-                            <Link className="navbar-item-username" to={`/myProfile`}>
+                            <Link className="navbar-item-username" to={`/profile/${user.userId}`}>
                                 <img className="navbar-user-avatar" src={user.avatar || defaultAvatar} alt="user-avatar" />
                                 {user.username}
                             </Link>

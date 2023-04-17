@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import * as request from '../../../services/expressAPI';
 
-import { faDownLong, faUpLong } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsDown, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { AuthContext } from "../../../contexts/AuthContext";
@@ -28,20 +28,38 @@ const DiscussionCard = ({ discussion }) => {
     }, [discussion, user]);
 
     const likeHandler = async () => {
-        setDislike(false);
-        setLike(true);
+        if (like) {
+            await request.post(`/api/forum/discussions/${discussion.id}/removeLike`)
+                .then(data => {
+                    setLikesCount(data);
+                    setLike(false);
+                });
+            return;
+        }
+
         await request.post(`/api/forum/discussions/${discussion.id}/like`)
             .then(data => {
                 setLikesCount(data);
+                setDislike(false);
+                setLike(true);
             });
     }
 
     const dislikeHandler = async () => {
-        setDislike(true);
-        setLike(false);
+        if (dislike) {
+            await request.post(`/api/forum/discussions/${discussion.id}/removeDislike`)
+                .then(data => {
+                    setLikesCount(data);
+                    setDislike(false);
+                });
+            return;
+        }
+
         await request.post(`/api/forum/discussions/${discussion.id}/dislike`)
             .then(data => {
                 setLikesCount(data);
+                setDislike(true);
+                setLike(false);
             });
     }
 
@@ -60,8 +78,8 @@ const DiscussionCard = ({ discussion }) => {
             <div className="discussion-likes-container">
                 <p className="discussion-likes-count">{likesCount}</p>
                 {user.username && <>
-                    <button onClick={likeHandler} className={`discussione-up-button ${like && 'liked'}`}><FontAwesomeIcon icon={faUpLong} /></button>
-                    <button onClick={dislikeHandler} className={`discussione-down-button ${dislike && 'disliked'}`}><FontAwesomeIcon icon={faDownLong} /></button>
+                    <button onClick={likeHandler} className={`discussione-up-button ${like && 'liked'}`}><FontAwesomeIcon icon={faThumbsUp} /></button>
+                    <button onClick={dislikeHandler} className={`discussione-down-button ${dislike && 'disliked'}`}><FontAwesomeIcon icon={faThumbsDown} /></button>
                 </>
                 }
 

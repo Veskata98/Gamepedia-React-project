@@ -37,6 +37,7 @@ import Login from './components/Auth/Login/Login';
 import Register from './components/Auth/Register/Register';
 
 import NotFound from './components/NotFound/NotFound';
+import PrivateRoute from './components/common/PrivateRoute';
 
 const App = () => {
     return (
@@ -47,27 +48,50 @@ const App = () => {
                     <Routes>
                         <Route path="/" element={<Home />} />
 
-                        <Route path="/myProfile" element={<Profile />} />
+                        <Route path="/profile/:proflieId" element={
+                            <PrivateRoute>
+                                <Profile />
+                            </PrivateRoute>
+                        } />
 
                         <Route path="/game/:gameId" element={<Game />} />
                         <Route path="/games" element={<Games />} />
                         <Route path="/games/:platformName" element={<Games />} />
-                        <Route path="/myGames" element={<MyGames />} />
+                        <Route path="/myGames" element={
+                            <PrivateRoute>
+                                <MyGames />
+                            </PrivateRoute>
+                        } />
 
                         <Route path="/platforms" element={<Platforms />} />
                         <Route path="/platforms/:platformId" element={<Platform />} />
 
                         <Route path="/forum/discussions" element={<Discussions />} />
                         <Route path="/forum/discussion/:discussionId" element={<Discussion />} />
-                        <Route path="/forum/discussions/create" element={<CreateDiscussion />} />
+                        <Route path="/forum/discussions/create" element={<
+                            PrivateRoute>
+                            <CreateDiscussion />
+                        </PrivateRoute>
+                        } />
 
-                        <Route path="/forum/discussions/myDiscussions" element={<MyDiscussions />} />
+                        <Route path="/forum/discussions/myDiscussions" element={
+                            <PrivateRoute>
+                                <MyDiscussions />
+                            </PrivateRoute                        >} />
 
                         <Route path="/forum/reviews" element={<Reviews />} />
                         <Route path="/forum/review/:gameTitle" element={<Review />} />
-                        <Route path="/forum/reviews/:gameId/createReview" element={<CreateReview />} />
+                        <Route path="/forum/reviews/:gameId/createReview" element={
+                            <PrivateRoute>
+                                <CreateReview />
+                            </PrivateRoute>
+                        } />
 
-                        <Route path="/forum/reviews/myReviews" element={<MyReviews />} />
+                        <Route path="/forum/reviews/myReviews" element={
+                            <PrivateRoute>
+                                <MyReviews />
+                            </PrivateRoute>
+                        } />
 
                         <Route path='/about' element={<About />} />
 

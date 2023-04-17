@@ -1,7 +1,7 @@
 import '../auth.css';
 
 import { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../../../contexts/AuthContext';
 
@@ -11,9 +11,13 @@ const Register = () => {
     const [registerAuth, setRegisterAuth] = useState({ username: '', password: '', repass: '' });
     const [registerError, setRegisterError] = useState('');
 
-    const { register } = useContext(AuthContext);
+    const { register, user } = useContext(AuthContext);
 
     const navigate = useNavigate();
+
+    if (user.userId) {
+        return <Navigate to='/' replace />;
+    }
 
     const regInputHandler = (e) => {
         setRegisterAuth((state) => ({
@@ -47,7 +51,7 @@ const Register = () => {
             localStorage.setItem('userId', userId);
             localStorage.setItem('avatar', avatar);
 
-            navigate('/');
+            navigate('/', { replace: true });
         } catch (error) {
             setRegisterError(error.message);
         }

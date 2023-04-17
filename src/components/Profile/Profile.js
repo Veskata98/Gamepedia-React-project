@@ -6,7 +6,7 @@ import * as request from '../../services/expressAPI';
 import { useContext, useState } from 'react';
 
 import { AuthContext } from '../../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
 const Profile = () => {
     const [file, setFile] = useState(null);
@@ -17,7 +17,13 @@ const Profile = () => {
 
     const { user, changeAvatar, logout } = useContext(AuthContext);
 
+    const { proflieId } = useParams();
+
     const navigate = useNavigate();
+
+    if (proflieId !== user.userId) {
+        return <Navigate to='/' replace />;
+    }
 
     const passwordInputHandler = (e) => {
         setPasswords((state) => ({

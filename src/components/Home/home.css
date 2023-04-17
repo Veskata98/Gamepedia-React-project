@@ -61,9 +61,10 @@
     border-bottom-left-radius: 0.5rem;
     color: #fff;
     border-bottom-right-radius: 9999px;
-    /* box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75); */
+
+    box-shadow: 0px 0px 3px 1px rgba(74, 45, 151, 0.5);
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(74, 45, 151, 0.5);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(74, 45, 151, 0.5);
 }
 
 
@@ -74,10 +75,17 @@
 .last-discussion-title {
     font-size: 1.25rem;
     color: #fff;
-    text-decoration: underline;
+    font-weight: 500;
 }
 
-.last-discussion-date {
+.last-discussion-info {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.last-discussion-date,
+.last-discussion-creator {
     font-size: 0.75rem;
     color: #fff;
     font-style: italic;

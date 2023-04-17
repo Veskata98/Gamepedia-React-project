@@ -1,6 +1,6 @@
 import '../auth.css';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 
 import { AuthContext } from '../../../contexts/AuthContext';
@@ -11,9 +11,13 @@ const Login = () => {
     const [loginAuth, setLoginAuth] = useState({ username: '', password: '' });
     const [loginError, setLoginError] = useState('');
 
-    const { login } = useContext(AuthContext);
+    const { login, user } = useContext(AuthContext);
 
     const navigate = useNavigate();
+
+    if (user.userId) {
+        return <Navigate to='/' replace />;
+    }
 
     const loginInputHandler = (e) => {
         setLoginAuth((state) => ({
@@ -43,7 +47,7 @@ const Login = () => {
                 localStorage.setItem('userId', userId);
                 localStorage.setItem('avatar', avatar);
 
-                navigate('/');
+                navigate('/', { replace: true });
             })
             .catch(error => setLoginError(error.message));
     };
