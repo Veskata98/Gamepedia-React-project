@@ -77,7 +77,8 @@ const App = () => {
                         <Route path="/forum/discussions/myDiscussions" element={
                             <PrivateRoute>
                                 <MyDiscussions />
-                            </PrivateRoute                        >} />
+                            </PrivateRoute>
+                        } />
 
                         <Route path="/forum/reviews" element={<Reviews />} />
                         <Route path="/forum/review/:gameTitle" element={<Review />} />
