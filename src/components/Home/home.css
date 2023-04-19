@@ -76,6 +76,11 @@
     font-size: 1.25rem;
     color: #fff;
     font-weight: 500;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .last-discussion-info {
